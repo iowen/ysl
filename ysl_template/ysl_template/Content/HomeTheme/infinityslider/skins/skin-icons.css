@@ -1,0 +1,239 @@
+.iS.iS-SkinIcons  {
+	position: relative;
+	top: 0px;
+	left: 0px;
+}
+.iS-SkinIcons .iS-Commands {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+}
+.iS-SkinIcons .iS-Content {
+	position: absolute;	
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top:0px;
+}
+.iS-SkinIcons .iS-Items {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+}
+.iS-SkinIcons .iS-Item {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+}
+.iS-SkinIcons .iS-Previous {
+	position: absolute;	
+	z-index: 3;
+	cursor: pointer;
+	text-align: center;
+	width: 40px;
+	height: 40px;
+	top: 50%;
+	left: 5%;
+	border-radius: 50%;
+	border: 1px solid;
+	line-height: 41px;
+	margin-top: -20px;
+}
+.iS-SkinIcons .iS-Next {
+	position: absolute;	
+	z-index: 3;
+	cursor: pointer;
+	text-align: center;
+	width: 40px;
+	height: 40px;
+	top: 50%;
+	right: 5%;
+	border-radius: 50%;
+	border: 1px solid;
+	line-height: 41px;
+	margin-top: -20px;
+}
+.iS-SkinIcons .iS-Play {
+	position: absolute;	
+	z-index: 3;
+	cursor: pointer;
+	text-align: center;
+	top: 5%;
+	right: 5%;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1px solid;
+	line-height: 38px;
+}
+.iS-SkinIcons .iS-Playactive {
+}
+.iS-SkinIcons .iS-Stop {
+	position: absolute;
+	z-index: 3;
+	cursor: pointer;
+	text-align: center;
+	top: 5%;
+	right: 5%;
+	margin-right: 50px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1px solid;
+	line-height: 38px;
+}
+.iS-SkinIcons .iS-Stopactive {
+}
+.iS-SkinIcons .iS-Loopline {
+	position: absolute;
+	z-index: 3;
+	width: 100%;
+	height: 5px;
+	left: 0px;
+	bottom: 0px;
+}
+.iS-SkinIcons .iS-Dots {
+	position: absolute;	
+	text-align: center;
+	left: 0%;
+	bottom: -30px;
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+.iS-SkinIcons .iS-Dot {
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	z-index: 3;
+	width: 59px;
+	height: 59px;
+	margin: 0px 10px;
+	border: 2px solid;
+	border-radius: 50%;
+	line-height: 59px;
+	font-size: 20px;
+	text-align: center;
+}
+/*Colors*/
+
+.iS-SkinIcons .iS-Previous {
+	color: #fff;
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background-color: rgba(255,72,72,0.1);
+}
+.iS-SkinIcons .iS-Previous:hover {
+	background-color: #ff4848;
+}
+.iS-SkinIcons .iS-Next {
+	color: #fff;
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background-color: rgba(255,72,72,0.1);
+}
+.iS-SkinIcons .iS-Next:hover {
+	background-color: #ff4848;
+}
+.iS-SkinIcons .iS-Play {
+	color: #fff;
+	border-color: #fff;
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background-color: rgba(255,72,72,0.1);
+}
+.iS-SkinIcons .iS-Play:hover {
+	background-color: #ff4848;
+}
+.iS-SkinIcons .iS-Playactive {
+}
+.iS-SkinIcons .iS-Stop {
+	color: #fff;
+	border-color: #fff;
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background-color: rgba(255,72,72,0.1);
+}
+.iS-SkinIcons .iS-Stop:hover {
+	background-color: #ff4848;
+}
+.iS-SkinIcons .iS-Stopactive {
+}
+.iS-SkinIcons .iS-Dots {
+	
+}
+.iS-SkinIcons .iS-Dot {
+	color: #ff4848;
+	background-color: #fff;	
+	box-shadow: 0px 0px 0px 2px #fff;
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+.iS-SkinIcons .iS-Dot:hover {
+	color: #fff;
+	background-color: #ff4848;
+	border-color: #ff4848;
+}
+.iS-SkinIcons .iS-Dotactive {
+	color: #fff;
+	background-color: #ff4848;	
+	border-color: #ff4848;			
+}
+.iS-SkinIcons .iS-Loopline {
+	background-color: #ff4848;	
+}
+/*Responsive*/
+@media (min-width: 0px) and (max-width: 499px) {
+	.iS.iS-SkinIcons  {
+		width: 100%;
+		height: 480px;
+	}
+	.iS-SkinIcons .iS-Next, .iS-SkinIcons .iS-Previous {
+		display: none;
+	}
+	.iS-SkinIcons .iS-Dots {
+		bottom: -20px;
+	}
+	.iS-SkinIcons .iS-Dot {
+		width: 40px;
+		height: 40px;
+		line-height: 40px;
+		margin: 0px 5px;
+	}
+}
+@media (min-width: 500px) and (max-width: 767px) {
+	.iS.iS-SkinIcons  {
+		width: 100%;
+		height: 568px;
+	}
+	.iS-SkinIcons .iS-Next, .iS-SkinIcons .iS-Previous {
+		display: none;
+	}
+}
+@media (min-width: 768px) and (max-width: 991px) { 
+	.iS.iS-SkinIcons  {
+		width: 100%;
+		height: 668px;
+	}
+}
+@media (min-width: 992px) and (max-width: 1199px){ 
+	.iS.iS-SkinIcons  {
+		width: 100%;
+		height: 700px;
+	}
+}
+@media (min-width: 1200px) {
+	.iS.iS-SkinIcons  {
+		width: 100%;
+		height: 700px;
+	}
+}

@@ -1,0 +1,240 @@
+.iS.iS-SkinThumbnails {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	margin-bottom: 100px;
+}
+.iS-SkinThumbnails .iS-Commands {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+}
+.iS-SkinThumbnails .iS-Content {
+	position: absolute;	
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top:0px;
+}
+.iS-SkinThumbnails .iS-Items {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+}
+.iS-SkinThumbnails .iS-Item {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+}
+.iS-SkinThumbnails .iS-Previous {
+	position: absolute;	
+	z-index: 3;
+	cursor: pointer;
+	text-align: center;
+	height: 110px;
+	width: 10%;
+	left: 0%;
+	bottom: 0;
+	line-height: 108px;
+	font-size: 4em;
+}
+.iS-SkinThumbnails .iS-Next {
+	position: absolute;	
+	z-index: 3;
+	cursor: pointer;
+	text-align: center;
+	height: 110px;
+	width: 10%;
+	right: 0%;
+	bottom: 0;
+	line-height: 108px;
+	font-size: 4em;
+}
+.iS-SkinThumbnails .iS-Play {
+	position: absolute;	
+	z-index: 3;
+	cursor: pointer;
+	text-align: center;
+	top: 5%;
+	right: 5%;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1px solid;
+	line-height: 38px;
+}
+.iS-SkinThumbnails .iS-Playactive {
+}
+.iS-SkinThumbnails .iS-Stop {
+	position: absolute;
+	z-index: 3;
+	cursor: pointer;
+	text-align: center;
+	top: 5%;
+	right: 5%;
+	margin-right: 50px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	border: 1px solid;
+	line-height: 38px;
+}
+.iS-SkinThumbnails .iS-Stopactive {
+}
+.iS-SkinThumbnails .iS-Loopline {
+	position: absolute;
+	z-index: 4;
+	width: 100%;
+	height: 5px;
+	left: 0px;
+	bottom: 110px;
+}
+.iS-SkinThumbnails .iS-Dots {
+	position: absolute;
+	z-index: 3;
+	text-align: center;
+	left: 10%;
+	bottom: 0;
+	width: 80%;
+	height: 110px;
+	text-align: center;
+	overflow: hidden;
+}
+.iS-SkinThumbnails .iS-Dot {
+	position: absolute;
+	z-index: 3;
+	cursor: pointer;
+	text-align: center;
+	width: 20%;
+	height: 110px;
+	opacity: 0.5;
+	min-width: 110px;
+	max-width: 200px;
+}
+.iS-SkinThumbnails .iS-Dotactive {
+	opacity: 1;
+}
+/*Plus*/
+.iS-SkinThumbnails .iS-Dot:after {
+	content: '';
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	position: absolute;
+	z-index: 10;
+	opacity: 0;
+}
+.iS-SkinThumbnails .iS-Dotactive:after {
+	opacity: 1;	
+}
+/*Colors*/
+.iS-SkinThumbnails .iS-Previous {
+	background-color: #222;
+	color: #555;
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+.iS-SkinThumbnails .iS-Previous:hover {
+	background-color: #ff4848;
+	color: #fff;
+}
+.iS-SkinThumbnails .iS-Next {
+	background-color: #222;
+	color: #555;
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+}
+.iS-SkinThumbnails .iS-Next:hover {
+	background-color: #ff4848;
+	color: #fff;
+}
+.iS-SkinThumbnails .iS-Play {
+	color: #fff;
+	border-color: #fff;
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background-color: rgba(255,72,72,0.1);
+}
+.iS-SkinThumbnails .iS-Play:hover {
+	background-color: #ff4848;
+}
+.iS-SkinThumbnails .iS-Playactive {
+}
+.iS-SkinThumbnails .iS-Stop {
+	color: #fff;
+	border-color: #fff;
+	-webkit-transition: all .3s ease-in-out;
+	transition: all .3s ease-in-out;
+	background-color: rgba(255,72,72,0.1);
+}
+.iS-SkinThumbnails .iS-Stop:hover {
+	background-color: #ff4848;
+}
+.iS-SkinThumbnails .iS-Stopactive {
+}
+.iS-SkinThumbnails .iS-Dots {
+	background-color: #222;
+}
+.iS-SkinThumbnails .iS-Dot {
+	color: #ff4848;
+	background-color: #fff;	
+	-webkit-transition: -webkit-transform .3s ease-in-out;
+	transition: transform .3s ease-in-out;
+}
+.iS-SkinThumbnails .iS-Dotactive {
+	color: #fff;
+	background-color: #ff4848;	
+	border-color: #ff4848;
+}
+.iS-SkinThumbnails .iS-Dot:after {
+	background-color: rgba(255, 72, 72, 0.8)
+}
+.iS-SkinThumbnails .iS-Loopline {
+	background-color: #ff4848;	
+}
+/*Responsive*/
+@media (min-width: 0px) and (max-width: 499px) {
+	.iS.iS-SkinThumbnails  {
+		width: 100%;
+		height: 480px;
+	}
+	.iS-SkinThumbnails .iS-Next, .iS-SkinThumbnails .iS-Previous {
+		width: 50%;
+	}
+	.iS-SkinThumbnails .iS-Dots {
+		display: none;
+	}
+}
+@media (min-width: 500px) and (max-width: 767px) {
+	.iS.iS-SkinThumbnails  {
+		width: 100%;
+		height: 568px;
+	}
+}
+@media (min-width: 768px) and (max-width: 991px) { 
+	.iS.iS-SkinThumbnails  {
+		width: 100%;
+		height: 668px;
+	}
+}
+@media (min-width: 992px) and (max-width: 1199px){ 
+	.iS.iS-SkinThumbnails  {
+		width: 100%;
+		height: 700px;
+	}
+}
+@media (min-width: 1200px) {
+	.iS.iS-SkinThumbnails  {
+		width: 100%;
+		height: 700px;
+	}
+}

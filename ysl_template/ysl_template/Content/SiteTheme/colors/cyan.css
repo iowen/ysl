@@ -1,0 +1,50 @@
+
+/* Text links */
+
+a {
+    text-decoration:none;
+    color: #20839d;
+}
+
+a:focus,a:active,a:hover {
+    text-decoration:none;
+    color: #1F6881;
+}
+
+.ci-read-more {
+    background: #20839d;
+}
+
+#sidebar .widget ul li a  {
+    color: #20839d;
+}
+
+#navigation li li a:hover {
+    background: #20839d;
+    color: #fff !important;
+}
+
+#header {
+    background: url("../images/colors/cyan/bodybg.jpg") no-repeat left top;
+}
+
+#footer {
+    background: url("../images/colors/cyan/bodybg.jpg") no-repeat center top;
+}
+
+.events-container {
+    background: url("../images/colors/cyan/bodybg.jpg") no-repeat scroll -1315px 0
+}
+
+.comment-reply-link, .btn-reply, .post-form input[type='submit'], button.button {
+    background-color: #20839d;
+}
+
+.comment-reply-link:hover, .btn-reply:hover, .post-form input[type='submit']:hover, button.button:hover, .ci-read-more:hover  {
+    background-color: #1F6881;
+    color:#fff;
+}
+
+#paging .current {
+    background:#20839d; color:#fff;
+}
