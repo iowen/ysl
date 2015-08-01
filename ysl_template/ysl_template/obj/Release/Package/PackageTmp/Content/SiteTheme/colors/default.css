@@ -1,0 +1,49 @@
+/* Text links */
+
+a {
+	text-decoration:none;
+	color: #448596;
+}
+
+a:focus,a:active,a:hover {
+	text-decoration:none;
+    color: #2b616f;
+}
+
+.ci-read-more {
+	background: #448596; 
+}
+
+#sidebar .widget ul li a  {
+	color: #377d8f;
+}
+
+#navigation li li a:hover {
+	background: #448596;
+	color: #fff !important;
+}
+
+#header {
+	background: url("../../../Images/SiteTheme/images/colors/default/bodybg.jpg") no-repeat center top; background-size: 100%;
+}
+
+#footer {
+	background: url("../../../Images/SiteTheme/images/colors/default/bodybg.jpg") no-repeat center top; background-size: 100%;
+}
+
+.events-container {
+ background: url("../../../Images/SiteTheme/images/colors/default/bodybg.jpg") no-repeat scroll -1315px 0 
+}
+
+.comment-reply-link, .btn-reply, .post-form input[type='submit'], button.button {
+  background-color: #448596;
+}
+
+.comment-reply-link:hover, .btn-reply:hover, .post-form input[type='submit']:hover, button.button:hover, .ci-read-more:hover  {
+    background-color: #2b616f;
+    color:#fff;
+}
+
+#paging .current {
+    background:#448596; color:#fff;
+}

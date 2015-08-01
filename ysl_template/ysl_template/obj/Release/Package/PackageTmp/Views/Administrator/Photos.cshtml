@@ -1,0 +1,769 @@
+﻿	<script type="text/javascript" src="~/Scripts/js/timepicker.js"></script>
+                    <script type="text/javascript" src="~/Scripts/js/jquery.uploadify.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jquery.jplayer.min.js"></script>
+				<script type="text/javascript" src="~/Scripts/js/jplayer.playlist.min.js"></script>
+@*   <script src="//code.jquery.com/jquery-1.10.2.js"></script>*@
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+  #sortable li { height: 1.5em; line-height: 1.2em; }
+  .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+  </style>
+<script type="text/javascript">
+
+    var itemCount = 0;
+    var totalCount = 0;
+    var jsonAudio = [];
+    var myPlaylist;
+    var photoLoc;
+    var at = '@DateTime.Now.ToString("MMMM dd, yyyy")';
+
+    var isSaved = false;
+    function createPlayer() {
+        myPlaylist = new jPlayerPlaylist({
+            jPlayer: "#jquery_jplayer_1",
+            cssSelectorAncestor: "#jp_container_1"
+        }, jsonAudio, {
+            swfPath: "/Scripts/js",
+            supplied: " mp3",
+            wmode: "window"
+        });
+
+
+
+
+    }
+    function getUploadedTrack(id, title, data)
+    {
+        data+='<li class="ui-state-default"><input type="text" value="' + title + '" name="tracksN[]"/><input type="hidden" value="' + id + '" name="tracksNI[]"/><span class="pull-right label label-info ttip_t" onclick="removeTrack();" >Remove</span></li>';
+        return data;
+        }
+    function getUploadedItem(location, title, data) {
+        var output = "";
+        if (itemCount == 0) {
+            if (data.length == 0) {
+                output = '<ul class="media_ul pgtst" style="padding:3px;"><li class="columns3 images_gallery" data-rel="festival" >'
+                    + '<input type="hidden" class="uItem" id="item' + totalCount + '" value="' + location + ',' + title + '"/>'
+                    + ' <!-- Image -->'
+                   + ' <div class="image" style="width:100%">'
+                      + '  <img src="' + location + '" alt="img" width="120" height="120">'
+                      + '  <a href="photo_open.html" class="color1">'
+                       + '     <div class="hover color2b">'
+                            + '    <span class="font72px"></span>'
+                            + '</div>'
+                        + '</a>'
+                   + ' </div>'
+                  + '  <span class="color5" style="clear:both">' + title + '</span>'
+               + ' </li></ul>';
+            }
+            else {
+                output = data + '<ul class="media_ul pgtst" ><li class="columns3 images_gallery"  data-rel="festival">'
+                                          + '<input type="hidden" class="uItem" id="item' + totalCount + '" value="' + location + ',' + title + '"/>'
+   + ' <!-- Image -->'
+   + ' <div class="image" style="width:100%" >'
+      + '  <img src="' + location + '" alt="img">'
+      + '  <a href="video_open.html" class="color1">'
+       + '     <div class="hover color2b">'
+            + '    <span class="font72px">D</span>'
+            + '</div>'
+        + '</a>'
+   + ' </div>'
+  + '  <span class="color5" style="clear:both">' + title + '</span>'
++ ' </li></ul>';
+            }
+            ++itemCount;
+            ++totalCount;
+        }
+        else if (itemCount <= 5) {
+            data = data.substring(0, data.length - 5);
+            output = data + '<li class="columns3 images_gallery"  data-rel="festival">'
+                                      + '<input type="hidden" class="uItem" id="item' + totalCount + '" value="' + location + ',' + title + '"/>'
+                           + ' <!-- Image -->'
+                           + ' <div class="image" style="width:100%">'
+                              + '  <img src="' + location + '" alt="img">'
+                              + '  <a href="video_open.html" class="color1">'
+                               + '     <div class="hover color2b">'
+                                    + '    <span class="font72px">D</span>'
+                                    + '</div>'
+                                + '</a>'
+                           + ' </div>'
+                          + '  <span class="color5" style="clear:both">' + title + '</span>'
+                       + ' </li></ul>';
+
+            if (itemCount <= 4)
+                ++itemCount;
+            else
+                itemCount = 0;
+            ++totalCount;
+
+        }
+
+        return output;
+    }
+    </script>
+    <script>
+        var selectedAlbum = 0;;
+        function checkMe(id){
+       //     alert(id);
+            $("input:checkbox[name=row_sel]").each(function () {
+                $(this).checked = false;
+                selectedAlbum = 0;
+            });
+
+            $("input:checkbox[name=row_sel]").each(function () {
+                if ($(this).val() == id)
+                {
+                    $(this).checked = true;
+                    selectedAlbum = id;
+             //alert("checked");
+                }
+           
+            });
+        }
+        function afterUpload(location, title) {
+            alert(location);
+            alert(title);
+            var data = document.getElementById("uploadedItems").innerHTML;
+            var output = getUploadedItem(location, title, data);
+            alert(output);
+            document.getElementById("uploadedItems").innerHTML = output;
+            document.getElementById("uploadedItems").style.display = "block";
+
+        }
+        function afterUploadTrack(location, title, itemNumber) {
+            alert(location);
+            alert(title);
+            alert(itemNumber);
+            var data = document.getElementById("sortable").innerHTML;
+            var output = getUploadedTrack(itemNumber, title, data);
+            alert(output);
+            document.getElementById("sortable").innerHTML = output;
+        }
+    function afterUploadPhoto(location, title) {
+        document.getElementById("pldr").style.display = "none";
+             alert("here");
+        photoLoc = location;
+        var ele = document.getElementById("ploc");
+        ele.href = location;
+        ele.innerHTML = "<img id=\"plid\" src='" + location + "' alt='img'><input type=\"hidden\" value=\"" + location + "\" id=\"ppiidd\">";
+    }
+    function updateTitle() {
+        document.getElementById("_aID").innerHTML = $('#albumTitle').val();
+    }
+    function showAlbumDetails() {
+        var chkbx = document.getElementById("isAlbum");
+        var details = document.getElementById("albumData");
+
+        if (chkbx.checked) {
+            document.getElementById("sPhoto").style.display = "none";
+            details.style.display = "block";
+        }
+        else {
+            details.style.display = "none";
+            document.getElementById("sPhoto").style.display = "block";
+            document.getElementById("albumTitle").value = "";
+            document.getElementById("albumDescription").value = "";
+        }
+    }
+
+    function closeEditPane() {
+        $("#editPane").hide();
+        $("#viewPane").show();
+    }
+    function AddTracks(){
+        
+        $('#file_upload').uploadify({
+            'swf': '\\Content\\flash\\uploadify.swf',
+            'uploader': '/Audio/HandleTrackUpload?aId='+selectedAlbum,
+            'multi': 'true',
+            'buttonText': 'Browse Music',
+            'fileTypeDesc': 'Audio Files',
+            'fileTypeExts': '*.mp3',
+            'fileSizeLimit': '3000000000',
+            'onUploadError': function (file, errorCode, errorMsg, errorString) {
+          
+                alert('The file ' + file.name + ' could not be uploaded: ' + errorString+ '\n'+errorCode);
+            },
+            'onUploadSuccess': function (file, data, response) {
+
+                var item = eval(data);
+                if ((item.length / 3) == 1) {
+                    var dta = item[0].replace(/[\\*]/g, "/");
+
+                    var l = dta.split("wMedia");
+                    var loc = "/wMedia" + l[1];
+                    afterUploadTrack(loc, item[1], item[2]);
+                }
+
+            }
+        });
+        $("#tracksAdded").show();
+    }
+    function saveTracks() {
+        var lis = document.getElementsByName("tracksNI[]");
+        var li = document.getElementsByName("tracksN[]");
+        nTracks =lis.length;     
+        var o=' {"tracks" :[';
+        for (var i = 0; i < nTracks; i++) {
+            var val =  lis[i].value ;
+            var nm = li[i].value;
+            var nu = i+1;
+            if(i>0)
+                o+=',';
+
+            o+= '{"Title" : "'+nm+'", "audioAlbumItemId" : "'+val+'", "Number" : "'+nu+'"}';
+        }
+        o+=']}';
+      //   alert(o);
+         $.ajax({
+             type: 'Post',
+             dataType: 'json',
+             url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Audio/UpdateTracks',
+             data: JSON.stringify({aId: selectedAlbum, TrackList: o }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                alert("y");
+            },
+            error: function (data) {
+                alert(data);
+            }
+          });
+
+    }
+
+    function editTracks() {
+        var lis = document.getElementsByName("tracks[]");
+        var li = document.getElementsByName("tracksI[]");
+
+        nTracks =lis.length;
+
+        var o = '<div><span class="pull-right label label-info ttip_t" onclick="saveTracks();" >Save</span><span class="pull-right label label-info ttip_t" onclick="closeEditPane();" >Cancel</span></div><br><div><span class="pull-right label label-info ttip_t" onclick="AddTracks();" >Add</span></div><br><div style="width:300px; float:left; display:inline;>"<ul id="sortable">';
+        for (var i = 0; i < nTracks; i++) {
+            var t = lis[i].innerHTML;
+            var ni =  li[i].value ;
+            o += '<li class="ui-state-default"><input type="text" value="' + t + '" name="tracksN[]"/><input type="hidden" value="' + ni + '" name="tracksNI[]"/><span class="pull-right label label-info ttip_t" onclick="removeTrack();" >Remove</span></li>';
+        }
+        o += '</ul></div>';
+        o+= '<div id="tracksAdded" style="display:none;width: 300px;  float: left;"><div style="width: 240px; display: inline; float: left;">' +
+        '   <div style="display: inline">       <input type="file" name="file_upload" id="file_upload" />' +
+   '</div></div></div>'
+        $("#editPane").html(o);
+        $("#sortable").sortable({
+            placeholder: "ui-state-highlight",
+            appendTo: "editPane",
+            update: function( event, ui ) {
+                alert("here");
+                var o="";
+                $( ".ui-state-default" ).each(function( ) {
+                    o+=$(this).html()+"\n";
+                });                
+
+                alert(o);
+            }
+        });
+        $("#sortable").disableSelection();
+  
+            $("#viewPane").hide();
+            $("#editPane").show();
+          
+    }
+    function showEditAlbum() {
+        var val;
+        if (selectedAlbum == 0)
+            return;
+
+        alert(selectedAlbum);
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Photo/Get',
+            data: JSON.stringify({ id: selectedAlbum }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                var e = JSON.stringify(data);
+                var jsonObj = $.parseJSON('[' + e + ']');
+                alert(jsonObj[0].photoAlbumId);
+                var o = '<div id="editPane" style="display:none"></div><div id="viewPane"><div class="row-fluid"> \
+                        <div class="span5"> \
+                            <div class="heading clearfix"> \
+                            <h3 class="pull-left">Title</h3> \
+                                                          <div id="eTitle">  <span class="pull-right label label-info ttip_t" onclick="showEditTitle();" >Edit</span></div> \
+                                </div> \
+\
+                            <div id="cTitle"> \
+                             '+ jsonObj[0].title.trim() + '   \
+                            </div>\
+                        </div>\
+                        <div class="span7">\
+                            <div class="heading clearfix">\
+                                <h3 class="pull-left">Description</h3>\
+                                <div id="eDesc"> <span class="pull-right label label-info ttip_t" onclick="showEditArtist()">Edit</span></div>\
+                            </div>\
+\
+                            <div id="cDesc"> \
+                             '+ jsonObj[0].description.trim() + '   \
+                        </div>\
+                    </div>\
+                    <div class="row-fluid">\
+                        <div class="span5">\
+                            <div class="heading clearfix">\
+                                <h3 class="pull-left">Photos</h3>\
+                                <span class="pull-right label label-info ttip_t" onclick="editTracks()">Edit</span>\
+                            </div>';
+                            
+                for (var i = 0; i < jsonObj[0].photos.length; i++) {
+                    o += '<span name="photos[]"><img src="'  + jsonObj[0].photos[i].photo.Location +  '" name="pUI"\></span><input type="hidden" name="photoI[]" value="'+jsonObj[0].photos[i].photoAlbumItemId+'"/><br>';
+                }
+                o += '</div></div> </div></div>';
+                document.getElementById("contentt").innerHTML = o;
+               // alert("here");
+                showModal();
+            },
+            error: function (data) {
+                alert("fail");
+                alert(data);
+            }
+        });
+
+    }
+</script>
+
+<script>
+    var cnt = 1;
+    var selectedFighter;
+    function saveFighter() {
+        var fName = document.getElementById("fName").value;
+        var lName = document.getElementById("lName").value;
+        var fightName = document.getElementById("fightName").value;
+        var bio = document.getElementById("bio").value;
+        var pic = document.getElementById("cpic").value;
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Fighters/Add',
+            data: JSON.stringify({ firstName: fName, lastName: lName, profilePic: pic, bio: bio, fighterName: fightName }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                alert(data);
+                closeModal();
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    }
+    
+    function showAddPhotos() {
+        alert("clcked");
+        document.getElementById("contentt").innerHTML = '<div id="lefter" style="width: 300px; display: inline; clear: right; float: left;">' +
+'<h2>Upload Photos</h2>'+
+        '<br/>'+
+'<p style="padding-bottom:1em;">Click the browse button to select photos to upload.</p>'+
+
+'<div style="width:240px; display:inline; float:left;">'+
+'<div style="display:inline"><input type="file" name="file_upload" id="file_upload" /></div>'+
+
+'<div style="display:inline"><input type="checkbox" id="isAlbum" value="album" onclick="showAlbumDetails();" style="clear:right;"/>Upload as an album </div>'+
+
+'<div style="clear:both; margin-top:20px; width:85px;" id="sPhoto"><a id="submitPhotos" href="javascript:void(0);" class="default_button color1 color4b font1 color_hover1b" onClick="saveUploadedPhotos();" >Save Photos</a></div>'+
+
+'<br />'+
+    
+'<div id="albumData" style="display:none; width:100%">'+
+ '        <div class="line color1b"></div>'+
+  '      <label>Title: </label><input id="albumTitle" /><br />'+
+   '     <label>Description: </label> <textarea id="albumDescription"></textarea>'+
+   ' <br />'+
+    '<a id="submitAlbum" href="javascript:void(0);" class="default_button color1 color4b font1 color_hover1b" onClick="saveUploadedAlbum();">Save Album</a>'+
+'</div>'+
+'</div>'+
+'</div>'+
+
+'<div style="width:300px; display:inline;clear:right; float:left; margin-left:20px;"> '+
+    					'<section class="media">'+
+
+'        <div id="uploadResult" style="clear:right;"></div>'+
+ '           <div id="Pagination"></div>'+
+'<div id="uploadedItems" style="display:none;">'+
+
+'</div>'+
+
+ '       <br style="clear:both;" /></section>'+
+'</div>'+
+'</div>';
+        $('#file_upload').uploadify({
+            'swf': '\\Content\\flash\\uploadify.swf',
+            'uploader': '@Url.Action("HandleUpload", "Photo", new { })',
+              'multi': 'true',
+              'buttonText': 'Browse Images',
+              'fileTypeDesc': 'Image Files',
+              'fileTypeExts': '*.gif; *.jpg; *.jpeg; *.png',
+              'onUploadSuccess': function (file, data, response) {
+
+                  var item = eval(data);
+                  if ((item.length / 2) == 1) {
+                      var dta = item[0].replace(/[\\*]/g, "/");
+
+                      var l = dta.split("wMedia");
+                      var loc = "/wMedia" + l[1];
+                      afterUpload(loc, item[1]);
+                  }
+
+              }
+          });
+         
+        showModal();
+    }
+
+
+    function showEditFighter() {
+        var val;
+        $("input:checkbox[name=row_sel]:checked").each(function () {
+            selectedFighter = $(this).val();
+        });
+
+        // alert(val);
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Fighters/Get',
+            data: JSON.stringify({ id: selectedFighter }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                var e = JSON.stringify(data);
+                var jsonObj = $.parseJSON('[' + e + ']');
+                alert(jsonObj[0].fighterId);
+                document.getElementById("contentt").innerHTML = '<br><div class="row-fluid"> \
+                        <div class="span5"> \
+                            <div class="heading clearfix"> \
+                            <h3 class="pull-left">Name</h3> \
+                                                          <div id="eName">  <span class="pull-right label label-info ttip_t" onclick="showEditName();" >Edit</span></div> \
+                                </div> \
+\
+                            <div id="cName"> \
+                             '+ jsonObj[0].name.trim() + '   \
+                            </div>\
+                        </div>\
+                        <div class="span7">\
+                            <div class="heading clearfix">\
+                                <h3 class="pull-left">Bio</h3>\
+                                <div id="eBack"> <span class="pull-right label label-info ttip_t" onclick="showEditBio()">Edit</span></div>\
+                            </div>\
+                            <div id="cBack">'+ jsonObj[0].bio.trim() + '</div>\
+\
+                        </div>\
+                    </div>\
+                    <div class="row-fluid">\
+                        <div class="span7">\
+                                                     <div class="heading clearfix">\
+                            <h3 class="pull-left">Profile Image </h3>\
+                                                          <div id="ePhoto">  <span class="pull-right label label-info ttip_t" onclick="showEditPhoto()">Edit</span></div>\
+                                </div>\
+<input type="hidden" id="pId" value="'+ jsonObj[0].photo.photoId + '"/>\
+                            <div id="pImg">\
+<img id="pImgSrc" src="'+ jsonObj[0].photo.location + '" />\
+                            </div>\
+                        </div>';
+                alert("here");
+                showModal();
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+
+    }
+
+    function showViewFighter(val) {
+
+
+        // alert(val);
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Fighters/Get',
+            data: JSON.stringify({ id: val }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                var e = JSON.stringify(data);
+                var jsonObj = $.parseJSON('[' + e + ']');
+                alert(jsonObj[0].fighterId);
+                document.getElementById("contentt").innerHTML = '<div class="row-fluid"> \
+                        <div class="span5"> \
+                            <div class="heading clearfix"> \
+                            <h3 class="pull-left">Name</h3> \
+                                </div> \
+\
+                            <div id="cName"> \
+                             '+ jsonObj[0].name.trim() + '   \
+                            </div>\
+                        </div>\
+                        <div class="span7">\
+                            <div class="heading clearfix">\
+                                <h3 class="pull-left">Bio</h3>\
+                            </div>\
+                            <div id="cBack">'+ jsonObj[0].bio.trim() + '</div>\
+\
+                        </div>\
+                    </div>\
+                    <div class="row-fluid">\
+                        <div class="span7">\
+                                                     <div class="heading clearfix">\
+                            <h3 class="pull-left">Profile Image </h3>\
+                                </div>\
+                            <div id="pImg">\
+<img id="pImgSrc" src="'+ jsonObj[0].photo.location.trim() + '" />\
+                            </div>\
+                        </div>' ;
+                showModal();
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+
+    }
+
+    var oldName;
+    function showEditName() {
+        var t = document.getElementById("cName").innerHTML;
+        oldName = t.trim();
+        oldName
+        document.getElementById("eName").innerHTML = "<span class='pull-right label label-info ttip_t' onclick='saveName()'>Save</span><span class='pull-right label label-info ttip_t' onclick='closeEditName()'>Cancel</span>";
+        document.getElementById("cName").innerHTML = "<input type='text' value='" + t.trim() + "' id='cEditName'\><br> ";
+    }
+
+    function closeEditName() {
+        document.getElementById("eName").innerHTML = "<span class=\"pull-right label label-info ttip_t\" onclick=\"showEditName();\" >Edit</span>";
+        document.getElementById("cName").innerHTML = oldName;
+    }
+    function saveName() {
+        var name = document.getElementById("cEditName").value;
+        var np = name.split(" ");
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Fighters/Updatename',
+            data: JSON.stringify({ fId: selectedTrainer, FirstName: np[0], LastName: np[1], FighterName:"" }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                alert(data);
+                document.getElementById("eName").innerHTML = "<span class=\"pull-right label label-info ttip_t\" onclick=\"showEditName();\" >Edit</span>";
+                document.getElementById("cName").innerHTML = name;
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    }
+    var oldTitle;
+    function showEditTitle() {
+        var t = document.getElementById("cTitle").innerHTML;
+        oldTitle = t.trim();
+        document.getElementById("eTitle").innerHTML = "<span class='pull-right label label-info ttip_t' onclick='saveTitle()'>Save</span><span class='pull-right label label-info ttip_t' onclick='closeEditBackground()'>Cancel</span>";
+        document.getElementById("cTitle").innerHTML = "<input id='cEditTitle' type='text' value='"+t.trim() + "'/> ";
+    }
+
+    function closeEditTitle() {
+        document.getElementById("eTitle").innerHTML = "<span class=\"pull-right label label-info ttip_t\" onclick=\"showEditTitle();\" >Edit</span>";
+        document.getElementById("cTitle").innerHTML = oldTitle;
+    }
+    function saveTitle() {
+        var back = document.getElementById("cEditTitle").value;
+
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Audio/UpdateAlbumTitle',
+            data: JSON.stringify({ aId: selectedAlbum, Text: back }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                alert(data);
+                document.getElementById("eTitle").innerHTML = "<span class=\"pull-right label label-info ttip_t\" onclick=\"showEditTitle();\" >Edit</span>";
+                document.getElementById("cTitle").innerHTML = back;
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    }
+
+    var oldPhoto;
+    var oldLocation;
+    function closeEditPhoto() {
+        document.getElementById("ePhoto").innerHTML = "<span class=\"pull-right label label-info ttip_t\" onclick=\"showEditPhoto()\">Edit</span>";
+        document.getElementById("pImg").innerHTML = "<img id=\"pImgSrc\" src=\"" + oldLocation + "\" />";
+        document.getElementById("pId").value = oldPhoto;
+
+    }
+    function savePhoto() {
+        var pic = document.getElementById("cpic").value;
+
+
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Audio/UpdateAlbumPhoto',
+            data: JSON.stringify({ aId: selectedAlbum, photo: pic }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                alert(data);
+                document.getElementById("ePhoto").innerHTML = "<span class=\"pull-right label label-info ttip_t\" onclick=\"showEditPhoto()\">Edit</span>";
+                document.getElementById("pImg").innerHTML = "<img id=\"pImgSrc\" src=\"" + pic + "\" />";
+                document.getElementById("pId").value = data;
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    }
+    function showEditPhoto() {
+
+        document.getElementById("ePhoto").innerHTML = "<span class='pull-right label label-info ttip_t' onclick='savePhoto()'>Save</span><span class='pull-right label label-info ttip_t' onclick='closeEditPhoto()'>Cancel</span>";
+
+        oldPhoto = document.getElementById("pId").value;
+        oldLocation = document.getElementById("pImgSrc").src;
+        document.getElementById("pImg").innerHTML = "<span>Photo:</span><input id=\"cpic\" type=\"hidden\"/><br>" +
+                                                      "<div style=\"width:250px;display:inline;float:left;\"><input type=\"file\" name=\"file_upload\" id=\"file_upload\" />" +
+                              "<ul id=\"photoList\" style=\"width:400px;min-width:400px;min-height:100%;height:100%;float:right;\" >" +
+                              "</ul>" +
+                              "</div></div>";
+        $('#file_upload').uploadify({
+            'swf': '\\Content\\flash\\uploadify.swf',
+            'uploader': '@Request.Url.GetLeftPart(UriPartial.Authority)/Upload/UploadPhoto',
+            'multi': 'false',
+            'buttonText': 'Select Photo',
+            'fileTypeDesc': 'Image Files',
+            'fileTypeExts': '*.gif; *.jpg; *.jpeg; *.png',
+            'onUploadSuccess': function (file, data, response) {
+                var data = data.replace(/[\\*]/g, "/");
+
+                var l = data.split("Images");
+                var loc = "/Images" + l[1];
+                var curContent = document.getElementById("photoList").innerHTML;
+                curContent = "<li  style=\"display:inline;width:237px;min-width:237px;max-width:237px;overflow:hidden;float:left;\">" +
+                    "<div style=\"width:inherit;overflow:hidden;\">" +
+                    "<img src='" + loc + "' alt='Uploaded Image' height=\"263\" width=\"237\" /><br>"
+                                      + "  </div>"
+                                   + " </li>";
+                $("#cpic").val(loc);
+            }
+        });
+    }
+
+</script>
+
+<script>
+    function saveUploadedPhotos() {
+        isSaved = true;
+        alert("here");
+        var output = "";
+        var dat = $('#uploadedItems').html();
+        // $('#uploadedItems').html("");
+        $('.uItem').each(function () {
+            var content = $(this).val();
+            //  alert(content);
+            var result = content.split(",");
+            output += result[0] + "," + result[1] + ";";
+        });
+        $('#uploadedItems').html(dat);
+
+        $.post('@Url.Action("Processupload","Photo", new{})', { uploads: output });
+    }
+
+
+    function saveUploadedAlbum() {
+        isSaved = true;
+        var output = "";
+        var meta = ""
+        var dat = $('#uploadedItems').html();
+        //    $('#uploadedItems').html("");
+        $('.uItem').each(function () {
+            var content = $(this).val();
+            //     alert(content);
+            var result = content.split(",");
+            output += result[0] + "," + result[1] + ";";
+        });
+        meta = $('#albumTitle').val() + "~" + $('#albumDescription').val();
+       // $('#uploadedItems').html(dat);
+        $.post('@Url.Action("Processalbum", "Photo")', { meta: meta, uploads: output });
+    }
+</script>
+      <!-- main content -->
+            <div id="contentwrapper">
+                <div class="main_content">
+                    
+                  
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <h3 class="heading">Photos</h3>
+                            <div class="btn-group sepH_b">
+                                <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0)" onclick="showAddPhotos();"><i class="icon-plus-sign"></i>&nbsp;&nbsp;Add</a></li>
+                                    <li><a href="javascript:void(0)" onclick="showEditAlbum();"><i class="icon-pencil"></i>&nbsp;&nbsp;Edit</a></li>
+                                    <li><a href="javascript:void(0)"><i class="icon-trash"></i>&nbsp;&nbsp;Delete</a></li>
+                                </ul>
+                            </div>
+                            <table class="table table-bordered table-striped" id="smpl_tbl">
+                                <thead>
+                                    <tr>
+                                        <th style="width:10px"></th>
+                                        <th></th>
+                                        <th>Album Name</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var f in ViewBag.photos)
+                                    {
+                                    <tr>
+                                        <td><input type="checkbox" name="row_sel" value="@f.album.PhotoAlbumId" onclick="checkMe(@f.album.PhotoAlbumId);"/></td>
+                                        <td><img src="@f.photos[0].Location" width="50" height="50" /></td>
+                                        <td>@f.album.Title</td>
+                                        <td><a href="javascript:void(0)" class="btn jqShowRow" onclick="showViewFighter(@f.album.PhotoAlbumId);">View</a></td>
+                                   </tr>
+                                    }
+                                </tbody>
+                            </table>
+                                <!-- Modal -->
+                                <div id="modalRow" class="modal hide fade" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h3>Row details</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-bordered table-striped" id="modal_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Customer</th>
+                                                    <th>Status</th>
+                                                    <th>Date Added</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    
+                  
+                        
+                </div>
+            

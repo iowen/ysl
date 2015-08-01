@@ -1,0 +1,110 @@
+/**/
+.iS-Red {
+	background-color: red;
+}
+.iS-Blue {
+	background-color: blue;
+}
+.iS-Red-Mask {
+	background-color: rgba(255, 0, 0, 0.5);
+}
+.iS-Grey-Mask {
+	background-color: rgba(51,51,51,0.5);
+}
+/**/
+/******************************** SLIDE 1 ********************************/
+.slide1-text1 {
+	color: #fff;
+	background-color: rgba(255, 102, 204, 0.9)
+}
+/******************************** SLIDE 2 ********************************/
+.slide2-text1 {
+	color: #ff4848;
+}
+.slide2-text2 {
+	color: #444;
+}
+/******************************** SLIDE 3 ********************************/
+.slide3-text1 {
+	color: #ff4848;
+}
+.slide3-text2 {
+	color: #444;
+}
+.slide3-button1 a{
+	color: #fff;
+}
+.slide3-button2 {	
+		color: #444;
+		border: 2px solid #444;
+		background-color: transparent;
+}
+	.slide3-button2:hover {
+		color: #fff;
+		border: 2px solid #fff;
+		background-color: #ff4848;
+	}
+/******************************** SLIDE 4 ********************************/
+.slide4-text1 {
+	color: #fff;
+}
+.slide4-text2 {
+	color: #fff;
+}
+.slide4-text3 {
+	color: rgba(255,255,255,0.3);
+}
+.slide4-text4 {
+	color: #fff;
+}
+.slide4-text5 {
+	color: #fff;
+}
+/******************************** SLIDE 5 ********************************/
+.slide5-text1 {
+	color: #ff4848;
+}
+.slide5-text2 {
+	color: #444;
+}
+.slide5-button1{
+	color: #444;
+	border: 2px solid #444;
+	background-color: transparent;
+}
+.slide5-button1:hover {
+	color: #fff;
+	border: 2px solid #fff;
+	background-color: #ff4848;
+}
+.slide5-button2 a{
+	color: #fff;
+}
+/******************************** OTHERS ********************************/
+@media (min-width: 0px) and (max-width: 499px) {
+	.slide2-bg1, .slide5-bg1 {
+		background-color: rgba(0, 0, 0, 0.6);
+	}	
+	.slide5-text2, .slide2-text2, .slide5-button1 {
+		color: #fff;
+		border-color: #fff;
+	}
+}
+@media (min-width: 500px) and (max-width: 767px){
+	.slide2-bg1, .slide5-bg1 {
+		background-color: rgba(0, 0, 0, 0.6);
+	}	
+	.slide5-text2, .slide2-text2, .slide5-button1 {
+		color: #fff;
+		border-color: #fff;
+	}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+	.slide5-bg1 {
+		background-color: rgba(0, 0, 0, 0.6);
+	}	
+	.slide5-text2, .slide5-button1 {
+		color: #fff;
+		border-color: #fff;
+	}
+}

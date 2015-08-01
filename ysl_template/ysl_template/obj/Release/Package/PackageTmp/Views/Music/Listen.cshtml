@@ -1,0 +1,344 @@
+﻿@{
+    var urlPrefix = "http://guerilladevteam.com";
+}
+<style>
+    
+    .jp-controls {
+        float: left;
+        margin-bottom: 15px;
+        list-style:none;
+    }
+
+        .jp-controls li {
+            float: left;
+            margin-right: 10px;
+        }
+
+        .jp-controls a {
+            display: block;
+            overflow: hidden;
+            text-indent: -9999px;
+        }
+
+    .jp-current-time {
+        float: right;
+        margin: -5px 0 0 0;
+    }
+
+    div.jp-progress {
+        left: 166px;
+        width: 100%;
+        height: 5px;
+        overflow: hidden;
+        background-color: #ddd;
+    }
+
+    div.jp-seek-bar {
+        background-color: #fff;
+        width: 0px;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    div.jp-play-bar {
+        background-color: #707070;
+        width: 0px;
+        height: 100%;
+    }
+
+    .jp-jplayer {
+        overflow: hidden;
+    }
+
+    .jp-playlist {
+        margin: 20px 0 0 0;
+        background: none;
+        width: 90%;
+        list-style:none;
+    }
+
+        .jp-playlist ul{
+        list-style:none;
+    }
+
+    .jp-playlist-current a {
+        color: #fff !important;
+        font-style:italic;
+    }
+
+    .jp-playlist li {
+        border-bottom: 1px dotted;
+        border-color: #b8b8b8;
+        padding: 8px 0;
+    }
+
+    div.jp-playlist span.jp-free-media {
+        float: right;
+        color: #828282;
+    }
+
+    .player_album {
+        width: 145px;
+        float: left;
+        line-height: 16px;
+    }
+
+        .player_album span {
+            float: left;
+            margin: 15px 0 0 0;
+            width: 60%;
+        }
+
+    .media_player img {
+        float: right;
+        width: 80px;
+        height: 80px;
+    }
+
+    .jp-audio {
+        float: left;
+        margin-top: 20px;
+        width: 100%;
+        background: rgba(128,128,128,0.5);
+        width: 600px;
+    }
+
+    .media_player .default_button {
+        float: right;
+        margin: 25px 0 0 0;
+    }
+
+    .media_player .button_info {
+        float: right;
+        margin: 29px 12px 0 0;
+    }
+
+    .jp-no-solution a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .album_open .player_album {
+        width: 600px;
+    }
+
+    .album_open p {
+        float: left;
+        width: 60%;
+        margin: 10px 0 0 0;
+    }
+
+    .album_open img {
+        width: 200px;
+        height: 200px;
+        margin-top: -50px;
+        float: right;
+    }
+
+    .album_open .player_album {
+        line-height: 24px;
+    }
+
+    .jp-interface {
+        float: left;
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+</style>
+<script type="text/javascript" src="~/Scripts/js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jplayer.playlist.min.js"></script>
+<script>
+    var songs;
+
+    function loadSongs(aid)
+    {
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Music/GetMusic',
+            data: JSON.stringify({ aid: aid}),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                songs = eval(data);
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    }
+
+    function createPlayer() {
+        loadSongs(@ViewBag.albumId);
+        myPlaylist = new jPlayerPlaylist({
+            jPlayer: "#jquery_jplayer_1",
+            cssSelectorAncestor: "#jp_container_1"
+        }, songs, {
+            swfPath: "/Scripts/js",
+            supplied: " mp3",
+            wmode: "window"
+        });
+
+    }
+
+    window.onload = function () { createPlayer(); };
+
+</script>
+<div id="main-content" >
+    <div class="wrap">
+        <div class="inner-wrap" style="margin-top:0px;">
+            <div class="page-content group">
+                <article class="entry group" style="width:100%;">
+                    <h2 class="page-title">@ViewBag.albumTitle</h2>
+
+                    <div class="entry-content group">
+                        <figure class="entry-thumb">
+                            <img src="@urlPrefix@ViewBag.albumPhoto.Location" alt="" class="alignleft">
+
+                            <span class="font11px color6">@ViewBag.artistName</span><br />
+                            <!-- text -->
+                            <p>
+                                @ViewBag.albumDesc
+                            </p>
+                            @if(!string.IsNullOrWhiteSpace(ViewBag.albumDownloadLink))
+                            {
+                                <a href="@ViewBag.albumDownloadLink" class="color5 color_hover2">Download Album</a>
+                            }
+                        </figure>
+
+                        <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+                        <div id="jp_container_1" class="jp-audio" style="margin-bottom:20px;margin-left:10px;">
+                            <div class="jp-type-playlist">
+                                <div class="jp-gui jp-interface" style="width:100%;  padding-top:10px;">
+                                    <ul class="jp-controls">
+                                        <li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
+                                        <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                                        <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                                        <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
+                                    </ul>
+                                    <div class="jp-current-time color6 font11px"></div>
+                                    <div class="jp-progress">
+                                        <div class="jp-seek-bar">
+                                            <div class="jp-play-bar"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="jp-playlist link_color2 font11px link_color_hover1" style="margin-left:20px;">
+                                    <ul></ul>
+                                </div>
+                                <div class="jp-no-solution">
+                                    <span>Update Required</span>
+                                    To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    @*<div class="post-comments">
+                        <h2><span>12 Comments</span></h2>
+                        <ol id="comment-list">
+                            <li class="comment depth-1">
+                                <div class="comment-text group">
+                                    <img alt="" src="~/Images/SiteTheme/images/dummy.png" class="avatar" />
+
+                                    <div class="comment-copy ">
+                                        <p class="comment-meta">admin - August 17, 2009</p>
+
+                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Etiam sit amet elit vitae arcu interdum ullamcorper. Nullam ultrices, nisi quis scelerisque convallis, augue neque tempor enim, et mattis justo nibh eu elit. Quisque ultrices gravida pede. Mauris accumsan vulputate tellus. Phasellus condimentum bibendum dolor. Mauris sed ipsum. Phasellus in diam. Nam sapien ligula, consectetuer id, hendrerit in, cursus sed, leo. Nam tincidunt rhoncus urna. Aliquam id massa ut nibh bibendum imperdiet. Curabitur neque mauris, porta vel, lacinia quis, placerat ultrices, orci.</p>
+                                        <a href="#" class="btn-reply">Reply</a>
+                                    </div>
+                                </div>
+                                <ul class="children">
+                                    <li class="comment depth-2">
+                                        <div class="comment-text group">
+                                            <img alt="" src="~/Images/SiteTheme/images/dummy.png" class="avatar" />
+
+                                            <div class="comment-copy">
+                                                <p class="comment-meta"><a href="#">tsiger</a> - August 17, 2009</p>
+
+                                                <p>Phasellus condimentum bibendum dolor. Mauris sed ipsum. Phasellus in diam. Nam sapien ligula, consectetuer id, hendrerit in, cursus sed, leo. Nam tincidunt rhoncus urna. Aliquam id massa ut nibh bibendum imperdiet. Curabitur neque mauris, porta vel, lacinia quis, placerat ultrices, orci.</p>
+                                                <a href="#" class="btn-reply">Reply</a>
+                                            </div>
+                                        </div>
+                                        <ul class="children">
+                                            <li class="comment depth-3">
+                                                <div class="comment-text group">
+                                                    <img alt="" src="~/Images/SiteTheme/images/dummy.png" class="avatar" />
+
+                                                    <div class="comment-copy">
+                                                        <p class="comment-meta">admin - August 17, 2009</p>
+
+                                                        <p>Mauris accumsan vulputate tellus. Phasellus condimentum bibendum dolor. Mauris sed ipsum. Phasellus in diam. Nam sapien ligula, consectetuer id, hendrerit in, cursus sed, leo. Nam tincidunt rhoncus urna. Aliquam id massa ut nibh bibendum imperdiet. Curabitur neque mauris, porta vel, lacinia quis, placerat ultrices, orci.</p>
+                                                        <a href="#" class="btn-reply">Reply</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="comment depth-3">
+                                                <div class="comment-text group">
+                                                    <img alt="" src="~/Images/SiteTheme/images/dummy.png" class="avatar" />
+
+                                                    <div class="comment-copy">
+                                                        <p class="comment-meta"><a href="#">user</a> - August 17, 2009</p>
+
+                                                        <p>Mauris accumsan vulputate tellus. Phasellus condimentum bibendum dolor. Mauris sed ipsum. Phasellus in diam. Nam sapien ligula, consectetuer id, hendrerit in, cursus sed, leo. Nam tincidunt rhoncus urna. Aliquam id massa ut nibh bibendum imperdiet. Curabitur neque mauris, porta vel, lacinia quis, placerat ultrices, orci.</p>
+                                                        <a href="#" class="btn-reply">Reply</a>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="comment depth-1">
+                                <div class="comment-text group">
+                                    <img alt="" src="~/Images/SiteTheme/images/dummy.png" class="avatar" />
+
+                                    <div class="comment-copy">
+                                        <p class="comment-meta">admin - August 17, 2009</p>
+
+                                        <p>et mattis justo nibh eu elit. Quisque ultrices gravida pede. Mauris accumsan vulputate tellus. Phasellus condimentum bibendum dolor. Mauris sed ipsum. Phasellus in diam. Nam sapien ligula, consectetuer id, hendrerit in, cursus sed, leo. Nam tincidunt rhoncus urna. Aliquam id massa ut nibh bibendum imperdiet. Curabitur neque mauris, porta vel, lacinia quis, placerat ultrices, orci.</p>
+                                        <a href="#" class="btn-reply">Reply</a>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+                    <!-- /post-comments -->
+
+                    <div id="form-wrapper">
+                        <h2><span>Have your say</span></h2>
+
+                        <div class="post-form">
+                            <form method="post" action="">
+                                <fieldset>
+                                    <label>Name:</label> <input type="text" class="text" id="name1" name="name1" />
+                                </fieldset>
+                                <fieldset>
+                                    <label>Email:</label> <input type="text" class="text" id="email1" name="email1" />
+                                </fieldset>
+                                <fieldset>
+                                    <label>Comment:</label> <textarea cols="5" rows="5" id="comment" name="comment"></textarea>
+                                </fieldset>
+                                <fieldset>
+                                    <input type="submit" class="button" name="submit1" id="submit1" value="Submit Comment" />
+                                </fieldset>
+                            </form>
+                        </div>
+                        <!-- /post-form -->
+                    </div>*@
+                    <!-- /form-wrapper -->
+                </article>
+
+                
+            </div>
+            <!-- .page-content -->
+        </div>
+        <!-- .inner-wrap -->
+    </div>
+    <!-- .wrap < #main-content -->
+</div>
+<!-- #main-content -->
+

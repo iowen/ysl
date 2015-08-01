@@ -1,0 +1,49 @@
+/* Text links */
+
+a {
+    text-decoration:none;
+    color: #336f1a;
+}
+
+a:focus,a:active,a:hover {
+    text-decoration:none;
+    color: #2c5917;
+}
+
+.ci-read-more {
+    background: #336f1a;
+}
+
+#sidebar .widget ul li a  {
+    color: #336f1a;
+}
+
+#navigation li li a:hover {
+    background: #336f1a;
+    color: #fff !important;
+}
+
+#header {
+    background: url("../images/colors/green/bodybg.jpg") no-repeat center top;
+}
+
+#footer {
+    background: url("../images/colors/green/bodybg.jpg") no-repeat center top;
+}
+
+.events-container {
+    background: url("../images/colors/green/bodybg.jpg") no-repeat scroll -1315px 0
+}
+
+.comment-reply-link, .btn-reply, .post-form input[type='submit'], button.button {
+    background-color: #336f1a;
+}
+
+.comment-reply-link:hover, .btn-reply:hover, .post-form input[type='submit']:hover, button.button:hover, .ci-read-more:hover  {
+    background-color: #2c5917;
+    color:#fff;
+}
+
+#paging .current {
+    background:#336f1a; color:#fff;
+}

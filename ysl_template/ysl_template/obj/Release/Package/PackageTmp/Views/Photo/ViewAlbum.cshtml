@@ -1,0 +1,79 @@
+﻿@{
+    var urlPrefix = "http://guerilladevteam.com";
+}
+<div id="main-content">
+    <div class="wrap">
+        <div class="inner-wrap" style="margin-top:0px;">
+            <div class="page-content group">
+                <article class="entry group" style="width:100%;">
+                    <h2 class="page-title">@ViewBag.album.Title</h2>
+
+                    <div class="entry-content group">
+                        <div class="portfolio_masonry">
+
+                            <ul id="portfolio_tiles">
+                                <!-- These are our grid blocks -->
+                                @foreach (var p in ViewBag.photos)
+                                {
+                                    <li class="portfolio_tile">
+                                        <div class="portfolio-wrapper">
+                                            <a href="@urlPrefix@p.Location" class="position">
+                                                <img src="@urlPrefix@p.Location" alt="portfolio" />
+                                            </a>
+                                            @*<div class="label">
+                                <div class="label-text">
+                                    <a class="text-title">Lorem ipsum</a>
+                                    <span class="text-category">photography</span>
+                                </div>
+                                <div class="label-bg"></div>
+                            </div>*@
+                                        </div>
+                                    </li>
+                                }
+
+                                <!-- End of grid blocks -->
+                            </ul>
+                            <script>
+	      $('.position').colorbox({
+	          rel: 'position'
+	      });
+                            </script>
+                        </div>
+                        <script>
+
+		    // Prepare layout options.
+		    var options = {
+		        container: $('#portfolio_tiles'), // Optional, used for some extra CSS styling
+		        offset: 30, // Optional, the distance between grid items
+		        outerOffset: 0, // Optional the distance from grid to parent
+		        autoResize: true, // This will auto-update the layout when the browser window is resized.
+		    };
+
+		    if ($.isFunction($.fn.imagesLoaded)) {
+		        // Get a reference to your grid items.
+		        var handler = $('#portfolio_tiles .portfolio_tile');
+		        $('#portfolio_tiles .portfolio_tile').imagesLoaded(function () {
+		            // Prepare layout options.
+		            // Get a reference to your grid items.
+		            // Call the layout function.
+		            handler.wookmark(options);
+		        });
+		    }
+
+		    // Call the layout function.
+		    if ($.isFunction($.fn.wookmark)) {
+		        handler.wookmark(options);
+		    }
+
+
+                        </script>
+                    </div>
+                </article>
+            </div>
+            <!-- .page-content -->
+        </div>
+        <!-- .inner-wrap -->
+    </div>
+    <!-- .wrap < #main-content -->
+</div>
+<!-- #main-content -->

@@ -1,0 +1,160 @@
+﻿
+<div id="main-content">
+    <div class="wrap">
+        <div class="inner-wrap" style="margin-top:0px;">
+            <div class="page-content group">
+                <article class="entry group vevent">
+                    <h1 class="entry-title summary">@ViewBag._event.Title</h1>
+
+                    <div id="map-single">
+                        <img style="width:100%; height:400px"src="@ViewBag._event.Photo.Location" />
+                    </div>
+
+                    <div class="event-desc group">
+                        <aside class="event-venue-info">
+                            <ul>
+                                <li>
+                                    <span>When:</span>
+                                    <time class="dtstart" datetime="@ViewBag._event.Start.ToString("yyyy-MM-dd HH:mm")">@ViewBag._event.Start.ToString("MMMM dd, yyyy h:mm tt")</time>
+                                </li>
+                                <li>
+                                    <span>Venue</span> <b class="location">@ViewBag._event.Venue</b>
+                                </li>
+                                <li>
+                                    <span>Address:</span> <b class="addr">@ViewBag._event.Location</b>
+                                </li>
+                                <li>
+                                    <span>Phone:</span> <b class="contact">000-000-00000</b>
+                                </li>
+                                <li>
+                                    <span>Website:</span> <b><a href="#">http://www.cssigniter.com</a></b>
+                                </li>
+                            </ul>
+                        </aside>
+
+                        <h3>About @ViewBag._event.Title</h3>
+
+                        <div class="description">
+                            <p>@ViewBag._event.Description</p>
+                        </div>
+                        <!-- .description -->
+                    </div>
+                    <!-- event-desc -->
+
+                    <aside class="related block">
+                        <h3>Possibly related events</h3>
+
+                        <ul class="related-holder group">
+                            <li>
+                                <a href=""><img src="images/dummy/threecol.jpg" alt=""></a>
+                                <h4><a href="#">Northern Exposure</a></h4>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            </li>
+                            <li>
+                                <a href=""><img src="images/dummy/threecol.jpg" alt=""></a>
+                                <h4><a href="#">Northern Exposure</a></h4>
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            </li>
+                        </ul>
+
+                    </aside>
+                    <!--related -->
+                </article>
+
+                <div id="sidebar">
+                    <h3>Upcoming Events</h3>
+                    <div class="block widget group block-events last">
+                        
+
+                        <div class="events-container">
+                            <ul id="locations">
+                                @foreach (var e in ViewBag.events)
+                                {
+                                    <li class="vevent">
+                                        <a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Event/View/@e.EventId" title="" class="url">
+                                            <time class="dtstart" datetime="@e.Start.ToString("yyyy-MM-dd HH:mm")" title="@e.Start.ToString("yyyy-MM-dd HH:mm")">
+                                                @e.Start.ToString("MMMM dd, yyyy h:mm tt")
+                                            </time>
+                                            <h4 class="summary">@e.Description</h4>
+                                            <h4 class="summary">@e.Venue</h4>
+                                            <b class="location">@e.Location</b>
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+
+                            <ul class="event-nav">
+                                <li><a href="#" class="up">Up</a></li>
+                                <li><a href="#" class="down">Down</a></li>
+                            </ul>
+                        </div>
+                        <!-- .events -->
+                    </div>
+                    <!-- .block-events -->
+
+                    <aside class="widget widget_search group">
+                        <h3>Search</h3>
+
+                        <form action="action.php" id="searchform" method="get" role="search">
+                            <div>
+                                <input type="text" onblur="if (this.value == '') {this.value = 'Search';}" onfocus="if (this.value == 'Search') {this.value = '';}" size="18" value="Search" id="s" name="s">
+                                <input type="submit" value="Search" id="searchsubmit">
+                            </div>
+                        </form>
+                    </aside>
+
+
+                    <aside class="widget group">
+                        <h3>Social</h3>
+                        <a href="#" class="icn twitter">Twitter</a> <a href="#" class="icn facebook">Facebook</a>
+                        <a href="#" class="icn flickr">Flickr</a> <a href="#" class="icn picasa">Picasa</a>
+                        <a href="#" class="icn lnkdin">Linked In</a> <a href="#" class="icn gplus">Google+</a>
+                    </aside>
+
+                    <aside class="widget">
+                        <h3>Link List</h3>
+                        <ul>
+                            <li><a href="#">January 2012</a> (12)</li>
+                            <li><a href="#">December 2011</a> (12)</li>
+                            <li><a href="#">November 2011</a> (12)</li>
+                            <li><a href="#">October 2011</a> (12)</li>
+                        </ul>
+                    </aside>
+
+                    <aside class="widget widget_ci_twitter_widget group">
+                        <h3 class="widget-title">Twitter</h3>
+
+                        <div class="twitter_update_list">
+                            <ul>
+                                <li>
+                                    <span>Olark is an amazing service <a href="http://t.co/QZMt1zp7">http://t.co/QZMt1zp7</a></span>
+                                    <a href="http://twitter.com/cssigniter/statuses/179650190767169540" class="twitter-time">1 day ago</a>
+                                </li>
+
+                                <li>
+                                    <span>My precious partners links for our new  #WordPress theme Nico are up go get them <a href="http://t.co/bECfyGrT">http://t.co/bECfyGrT</a></span>
+                                    <a href="http://twitter.com/cssigniter/statuses/179646818160873470" class="twitter-time">1 day ago</a>
+                                </li>
+
+                                <li>
+                                    <span>Is it time to put your portfolio online? Meet Nico: Our brand new #WordPress theme <a href="http://t.co/4xKrHKqY">http://t.co/4xKrHKqY</a></span>
+                                    <a href="http://twitter.com/cssigniter/statuses/179640811196129280" class="twitter-time">1 day ago</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                    <!-- twitter-widget -->
+
+                </div>
+                <!-- #sidebar -->
+            </div>
+            <!-- .page-content -->
+        </div>
+        <!-- .inner-wrap -->
+    </div>
+    <!-- .wrap < #main-content -->
+</div>
+<!-- #main-content -->
+

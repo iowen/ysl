@@ -1,0 +1,1045 @@
+﻿	<script type="text/javascript" src="~/Scripts/js/timepicker.js"></script>
+                    <script type="text/javascript" src="~/Scripts/js/jquery.uploadify.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jquery.jplayer.min.js"></script>
+				<script type="text/javascript" src="~/Scripts/js/jplayer.playlist.min.js"></script>
+@*   <script src="//code.jquery.com/jquery-1.10.2.js"></script>*@
+  <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+<style>
+  #sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  #sortable li { margin: 0 5px 5px 5px; padding: 5px; font-size: 1.2em; height: 1.5em; }
+  #sortable li { height: 1.5em; line-height: 1.2em; }
+  .ui-state-highlight { height: 1.5em; line-height: 1.2em; }
+  </style>
+<script type="text/javascript">
+
+    var itemCount = 0;
+    var totalCount = 0;
+    var jsonAudio = [];
+    var myPlaylist;
+    var photoLoc;
+    var cnt = 0;
+    var at = '@DateTime.Now.ToString("MMMM dd, yyyy")';
+    var availableTags = [
+          @foreach(var a in ViewBag.artist){
+             @Html.Raw( @String.Format("\"{0}\",", @a.Name.Trim()));
+          }
+    ];
+    function removeArtist(id) {
+        $("#"+id).remove();
+        //      alert("removed");
+    }
+    function addArtist(){
+        var txt =  "<div id=\"aart_"+cnt+"\"><br><input type=\"text\" name=\"art[]\" id=\"art_"+cnt+"\"/><span class=\"pull-right label label-info ttip_t\" onclick=\"removeArtist('aart_"+cnt+"');\" >Remove</span></div>";
+
+        $("#aArtists").append(txt);
+        //     alert("appended");
+        $("#art_"+cnt).autocomplete({
+            source: availableTags,
+            appendTo: "#aArtists"
+        });
+        cnt = cnt + 1;
+
+    }
+    var isSaved = false;
+    function createPlayer() {
+        myPlaylist = new jPlayerPlaylist({
+            jPlayer: "#jquery_jplayer_1",
+            cssSelectorAncestor: "#jp_container_1"
+        }, jsonAudio, {
+            swfPath: "/Scripts/js",
+            supplied: " mp3",
+            wmode: "window"
+        });
+
+
+
+
+    }
+    function getUploadedTrack(id, title, data)
+    {
+        data+='<li class="ui-state-default"><input type="text" value="' + title + '" name="tracksN[]"/><input type="hidden" value="' + id + '" name="tracksNI[]"/><span class="pull-right label label-info ttip_t" onclick="removeTrack();" >Remove</span></li>';
+        return data;
+        }
+    function getUploadedItem(location, title, data) {
+        var now = new Date();
+
+        alert(at);
+        item = {};
+        item["title"] = title;
+        item["mp3"] = location;
+        var l = jsonAudio.length;
+        jsonAudio.push(item);
+
+        if ($('#albumTitle').val() == "")
+            document.getElementById("_aID").innerHTML = at;
+        else
+            document.getElementById("_aID").innerHTML = $('#albumTitle').val();
+
+        if (l == 0) {
+            alert("creating player");
+            createPlayer();
+            document.getElementById("uploadedItemsView").style.display = "block";
+
+        }
+        else {
+            // alert("adding to play list");
+            myPlaylist.add({
+                title: title,
+                mp3: location
+            });
+        }
+        var output = "";
+        if (itemCount == 0) {
+            if (data.length == 0) {
+                output = '<ul class="media_ul pgtst" style="padding:3px;"><li class="columns3 images_gallery" data-rel="festival" >'
+                    + '<input type="hidden" class="uItem" id="item' + totalCount + '" value="' + location + ',' + title + '"/>'
+                    + ' <!-- Image -->'
+                    + ' <div class="image" style="width:100%">'
+                    + '  <img src="' + photoLoc + '" alt="img">'
+                    + '  <a href="music_open.html" class="color1">'
+                    + '     <div class="hover color2b">'
+                    + '    <span class="font72px">D</span>'
+                    + '</div>'
+                    + '</a>'
+                    + ' </div>'
+                    + '  <span class="color5" style="clear:both">' + title + '</span>'
+                    + ' </li></ul>';
+            }
+            else {
+                output = data + '<ul class="media_ul pgtst" ><li class="columns3 images_gallery"  data-rel="festival">'
+                    + '<input type="hidden" class="uItem" id="item' + totalCount + '" value="' + location + ',' + title + '"/>'
+                    + ' <!-- Image -->'
+                    + ' <div class="image" style="width:100%" >'
+                    + '  <img src="' + photoLoc + '" alt="img">'
+                    + '  <a href="music_open.html" class="color1">'
+                    + '     <div class="hover color2b">'
+                    + '    <span class="font72px">D</span>'
+                    + '</div>'
+                    + '</a>'
+                    + ' </div>'
+                    + '  <span class="color5" style="clear:both">' + title + '</span>'
+                    + ' </li></ul>';
+            }
+            ++itemCount;
+            ++totalCount;
+        }
+        else if (itemCount <= 5) {
+            data = data.substring(0, data.length - 5);
+            output = data + '<li class="columns3 images_gallery"  data-rel="festival">'
+                + '<input type="hidden" class="uItem" id="item' + totalCount + '" value="' + location + ',' + title + '"/>'
+                + ' <!-- Image -->'
+                + ' <div class="image" style="width:100%">'
+                + '  <img src="' + location + '" alt="img">'
+                + '  <a href="music_open.html" class="color1">'
+                + '     <div class="hover color2b">'
+                + '    <span class="font72px">D</span>'
+                + '</div>'
+                + '</a>'
+                + ' </div>'
+                + '  <span class="color5" style="clear:both">' + title + '</span>'
+                + ' </li></ul>';
+
+            if (itemCount <= 4)
+                ++itemCount;
+            else
+                itemCount = 0;
+            ++totalCount;
+
+        }
+        //    alert("here");
+        return output;
+    }
+    </script>
+    <script>
+        var selectedAlbum = 0;;
+        function checkMe(id) {
+            //     alert(id);
+            $("input:checkbox[name=row_sel]").each(function () {
+                $(this).checked = false;
+                selectedAlbum = 0;
+            });
+
+            $("input:checkbox[name=row_sel]").each(function () {
+                if ($(this).val() == id) {
+                    $(this).checked = true;
+                    selectedAlbum = id;
+                    //alert("checked");
+                }
+
+            });
+        }
+        function afterUpload(location, title) {
+            alert(location);
+            alert(title);
+            var data = document.getElementById("uploadedItems").innerHTML;
+            var output = getUploadedItem(location, title, data);
+            alert(output);
+            document.getElementById("uploadedItems").innerHTML = output;
+        }
+        function afterUploadTrack(location, title, itemNumber) {
+            alert(location);
+            alert(title);
+            alert(itemNumber);
+            var data = document.getElementById("sortable").innerHTML;
+            var output = getUploadedTrack(itemNumber, title, data);
+            alert(output);
+            document.getElementById("sortable").innerHTML = output;
+        }
+    function afterUploadPhoto(location, title) {
+        document.getElementById("pldr").style.display = "none";
+             alert("here");
+        photoLoc = location;
+        var ele = document.getElementById("ploc");
+        ele.href = location;
+        ele.innerHTML = "<img id=\"plid\" src='" + location + "' alt='img'><input type=\"hidden\" value=\"" + location + "\" id=\"ppiidd\">";
+    }
+    function updateTitle() {
+        document.getElementById("_aID").innerHTML = $('#albumTitle').val();
+    }
+    function showSingleDetails() {
+          alert("changed_s");
+          var chkbx = document.getElementById("isSingle");
+          var details = document.getElementById("singleData");
+          var adetails = document.getElementById("albumData");
+          adetails.style.display = "none";
+          document.getElementById("_aID").innerHTML = at;
+          document.getElementById("singleTitle").value = "";
+          document.getElementById("singleDescription").value = "";
+        if (chkbx.checked) {
+            $("#isAlbum").attr('checked', false);
+            document.getElementById("browseMusicAlbumDiv").style.display = "none";
+            document.getElementById("_aID").innerHTML = $('#singleTitle').val();
+            document.getElementById("browseMusicSingleDiv").style.display = "block";
+            details.style.display = "block";
+        }
+        else {
+            details.style.display = "none";
+            var chkbx2 = document.getElementById("isAlbum");
+            if (!chkbx2.checked)
+                document.getElementById("browseMusicSingleDiv").style.display = "none";
+            document.getElementById("_sID").innerHTML = at;
+            document.getElementById("singleTitle").value = "";
+            document.getElementById("singleDescription").value = "";
+        }
+
+    }
+
+    function showAlbumDetails() {
+        alert("changed");
+        var chkbx = document.getElementById("isAlbum");
+        var details = document.getElementById("albumData");
+        var sdetails = document.getElementById("singleData");
+        sdetails.style.display = "none";
+        document.getElementById("_aID").innerHTML = at;
+        document.getElementById("albumTitle").value = "";
+        document.getElementById("albumDescription").value = "";
+        if (chkbx.checked) {
+            $("#isSingle").attr('checked', false);
+            document.getElementById("browseMusicSingleDiv").style.display = "none";
+            document.getElementById("_aID").innerHTML = $('#albumTitle').val();
+            document.getElementById("browseMusicAlbumDiv").style.display = "block";
+            details.style.display = "block";
+        }
+        else {
+            details.style.display = "none";
+            var chkbx2 = document.getElementById("isSingle");
+            if (!chkbx2.checked)
+                document.getElementById("browseMusicAlbumDiv").style.display = "none";
+            document.getElementById("_aID").innerHTML = at;
+            document.getElementById("albumTitle").value = "";
+            document.getElementById("albumDescription").value = "";
+        }
+
+    }
+    function closeEditPane() {
+        $("#editPane").hide();
+        $("#viewPane").show();
+    }
+    function AddTracks(){
+        
+        $('#file_upload').uploadify({
+            'swf': '\\Content\\flash\\uploadify.swf',
+            'uploader': '/Audio/HandleTrackUpload?aId='+selectedAlbum,
+            'multi': 'true',
+            'buttonText': 'Browse Music',
+            'fileTypeDesc': 'Audio Files',
+            'fileTypeExts': '*.mp3',
+            'fileSizeLimit': '3000000000',
+            'onUploadError': function (file, errorCode, errorMsg, errorString) {
+          
+                alert('The file ' + file.name + ' could not be uploaded: ' + errorString+ '\n'+errorCode);
+            },
+            'onUploadSuccess': function (file, data, response) {
+
+                var item = eval(data);
+                if ((item.length / 3) == 1) {
+                    var dta = item[0].replace(/[\\*]/g, "/");
+
+                    var l = dta.split("wMedia");
+                    var loc = "/wMedia" + l[1];
+                    afterUploadTrack(loc, item[1], item[2]);
+                }
+
+            }
+        });
+        $("#tracksAdded").show();
+    }
+    function saveTracks() {
+        var lis = document.getElementsByName("tracksNI[]");
+        var li = document.getElementsByName("tracksN[]");
+        nTracks =lis.length;     
+        var o=' {"tracks" :[';
+        for (var i = 0; i < nTracks; i++) {
+            var val =  lis[i].value ;
+            var nm = li[i].value;
+            var nu = i+1;
+            if(i>0)
+                o+=',';
+
+            o+= '{"Title" : "'+nm+'", "audioAlbumItemId" : "'+val+'", "Number" : "'+nu+'"}';
+        }
+        o+=']}';
+      //   alert(o);
+         $.ajax({
+             type: 'Post',
+             dataType: 'json',
+             url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Audio/UpdateTracks',
+             data: JSON.stringify({aId: selectedAlbum, TrackList: o }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                alert("y");
+            },
+            error: function (data) {
+                alert(data);
+            }
+          });
+
+    }
+
+    function editTracks() {
+        var lis = document.getElementsByName("tracks[]");
+        var li = document.getElementsByName("tracksI[]");
+
+        nTracks =lis.length;
+
+        var o = '<div><span class="pull-right label label-info ttip_t" onclick="saveTracks();" >Save</span><span class="pull-right label label-info ttip_t" onclick="closeEditPane();" >Cancel</span></div><br><div><span class="pull-right label label-info ttip_t" onclick="AddTracks();" >Add</span></div><br><div style="width:300px; float:left; display:inline;>"<ul id="sortable">';
+        for (var i = 0; i < nTracks; i++) {
+            var t = lis[i].innerHTML;
+            var ni =  li[i].value ;
+            o += '<li class="ui-state-default"><input type="text" value="' + t + '" name="tracksN[]"/><input type="hidden" value="' + ni + '" name="tracksNI[]"/><span class="pull-right label label-info ttip_t" onclick="removeTrack();" >Remove</span></li>';
+        }
+        o += '</ul></div>';
+        o+= '<div id="tracksAdded" style="display:none;width: 300px;  float: left;"><div style="width: 240px; display: inline; float: left;">' +
+        '   <div style="display: inline">       <input type="file" name="file_upload" id="file_upload" />' +
+   '</div></div></div>'
+        $("#editPane").html(o);
+        $("#sortable").sortable({
+            placeholder: "ui-state-highlight",
+            appendTo: "editPane",
+            update: function( event, ui ) {
+                alert("here");
+                var o="";
+                $( ".ui-state-default" ).each(function( ) {
+                    o+=$(this).html()+"\n";
+                });                
+
+                alert(o);
+            }
+        });
+        $("#sortable").disableSelection();
+  
+            $("#viewPane").hide();
+            $("#editPane").show();
+          
+    }
+    function showEditAlbum() {
+        var val;
+        if (selectedAlbum == 0)
+            return;
+
+         //alert(selectedAlbum);
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Music/Get',
+            data: JSON.stringify({ id: selectedAlbum }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                var e = JSON.stringify(data);
+                var jsonObj = $.parseJSON('[' + e + ']');
+             //   alert(jsonObj[0].audioAlbumId);
+                var o = '<div id="editPane" style="display:none"></div><div id="viewPane"><div class="row-fluid"> \
+                        <div class="span5"> \
+                            <div class="heading clearfix"> \
+                            <h3 class="pull-left">Title</h3> \
+                                                          <div id="eTitle">  <span class="pull-right label label-info ttip_t" onclick="showEditTitle();" >Edit</span></div> \
+                                </div> \
+\
+                            <div id="cTitle"> \
+                             '+ jsonObj[0].title.trim() + '   \
+                            </div>\
+                        </div>\
+                        <div class="span7">\
+                            <div class="heading clearfix">\
+                                <h3 class="pull-left">Artist</h3>\
+                                <div id="eArtist"> <span class="pull-right label label-info ttip_t" onclick="showEditArtist()">Edit</span></div>\
+                            </div>\
+                            <div id="cArtist">'+ jsonObj[0].artist + '</div>\
+\
+                        </div>\
+                    </div>';
+                var dLinkSing = "";
+                if (jsonObj[0].isSingle)
+                    dLinkSing = jsonObj[0].tracks[0].downloadLink;
+                o+='<div class="row-fluid"> \
+                        <div class="span5"> \
+                            <div class="heading clearfix"> \
+                            <h3 class="pull-left">Download Link</h3> \
+                                                          <div id="eDLink">  <span class="pull-right label label-info ttip_t" onclick="showEditTitle();" >Edit</span></div> \
+                                </div> </div>\
+                      </div>\
+                    <div class="row-fluid">\
+                        <div class="span7">\
+                                                     <div class="heading clearfix">\
+                            <h3 class="pull-left">Cover </h3>\
+                                                          <div id="ePhoto">  <span class="pull-right label label-info ttip_t" onclick="showEditPhoto()">Edit</span></div>\
+                                </div>\
+<input type="hidden" id="pId" value="'+ jsonObj[0].photo.PhotoId + '"/>\
+                            <div id="pImg">\
+<img id="pImgSrc" src="'+ jsonObj[0].photo.Location.trim() + '" width="200" height="200" />\
+                            </div>\
+                        </div>\
+                        <div class="span5">\
+                            <div class="heading clearfix">\
+                                <h3 class="pull-left">Tracks';
+                if (jsonObj[0].isSingle)
+                {
+                    o += ' - Single';
+                }
+                o+='</h3>\
+                                <span class="pull-right label label-info ttip_t" onclick="editTracks()">Edit</span>\
+                            </div>';
+                            
+                for (var i = 0; i < jsonObj[0].tracks.length; i++) {
+                    o += '<span name="tracks[]">'  + jsonObj[0].tracks[i].audio.Title +  '</span><input type="hidden" name="tracksI[]" value="'+jsonObj[0].tracks[i].audioAlbumItemId+'"/><br>';
+                }
+                o += '</div></div> </div></div>';
+                document.getElementById("contentt").innerHTML = o;
+               // alert("here");
+                showModal();
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+
+    }
+</script>
+
+<script>
+    var cnt = 1;
+   
+    
+    function showAddMusic() {
+        document.getElementById("contentt").innerHTML = '<div id="lefter" style="width: 300px; display: inline; clear: right; float: left;">' +
+    '<h2><span class="bold">Upload</span> Music</h2>' +
+   ' <br />' +
+       '    <ul style="clear:both">' +
+           ' <li style="display: inline; width:50px; float:left;"><input type="checkbox" id="isAlbum" value="album" onclick="showAlbumDetails();" style="clear: right;" /><label>Album </label></li>' +
+           ' <li style="display: inline; width:50px; float:left;"><label> OR </label></li>' +
+           ' <li style="display: inline; width:50px; float:left;"><input type="checkbox" id="isSingle" value="single" onclick="showSingleDetails();" style="clear: right;" /><label>Single </label></li>' +
+        '</ul>' +
+               '<br\>    <ul style="clear:both">' +
+           ' <li style="display: inline; width:100px; float:left;"><input type="checkbox" id="isFeatured" value="featured" style="display: inline;" /><label style="display: inline;">&nbsp;Featured On</label></li>' +
+        '</ul> <br\>' +
+   '<div id="browseMusicAlbumDiv" style="clear:both; display:none"> <p style="padding-bottom: 1em;">Click the browse button to select music to upload.</p>' +
+
+   ' <div style="width: 240px; display: inline; float: left;">' +
+     '   <div style="display: inline">       <input type="file" name="file_upload" id="file_upload" />' +
+
+'</div> </div></div>' +
+   '<div id="browseMusicSingleDiv" style="clear:both; display:none"> <p style="padding-bottom: 1em;">Click the browse button to select music to upload.</p>' +
+
+   ' <div style="width: 240px; display: inline; float: left;">' +
+     '   <div style="display: inline">       <input type="file" name="file_upload_s" id="file_upload_s" />' +
+
+'</div> </div></div>' +
+        '<br />' +
+               ' <div id="singleData" style="display: none; width: 100%; clear:both;">' +
+         '   <div class="line color1b"></div> <ul>' +
+          '  <li><label>Title: </label>' +
+           ' <input id="singleTitle" onblur="updateSingleTitle();"/></li>' +
+           '  <li><label>Download Location: </label>' +
+           ' <input id="singleDownloadLoc" /></li>' +
+           ' <li><label>Description: </label></li>' +
+            '<li><textarea id="singleDescription"></textarea></li>' +
+            '</ul>' +
+             '       <div style="display: inline" id="spldr"><input type="file" name="file_upload3" id="file_upload3" /></div>' +
+            '<br />' +
+                    '   <div style="width:800px;height:70px; margin-top:10px;"> <div style="width:220px; float:left; display:inline;"><span class="pull-right label label-info ttip_t" onclick="addArtist();" >Add More</span><label>Artists: </label><br><div id="aArtists"> <input type="text" name="art[]" id="art_0"/></div> </div></div>' +
+
+        '<a id="submitSingle" href="javascript:void(0);" class="default_button color1 color4b font1 color_hover1b" onclick="saveUploadedSingle();">Save Single</a>' +
+
+        '<a id="preview" href="javascript:void(0);" class="default_button color2b color1 color_hover2b" onclick="updatePreview();">Update Preview</a>' +
+    '</div>' +
+       ' <div id="albumData" style="display: none; width: 100%; clear:both;" >' +
+         '   <div class="line color1b"></div> <ul>' +
+          '  <li><label>Title: </label>' +
+           ' <input id="albumTitle" onblur="updateTitle();"/></li>' +
+                      '  <li><label>Download Location: </label>' +
+           ' <input id="albumDownloadLoc" /></li>' +
+           ' <li><label>Description: </label></li>' +
+            '<li><textarea id="albumDescription"></textarea></li>' +
+            '</ul>' +
+             '       <div style="display: inline" id="pldr"><input type="file" name="file_upload2" id="file_upload2" /></div>' +
+            '<br />' +
+
+        '<a id="submitAlbum" href="javascript:void(0);" class="default_button color1 color4b font1 color_hover1b" onclick="saveUploadedAlbum();">Save Album</a>' +
+
+        '<a id="preview" href="javascript:void(0);" class="default_button color2b color1 color_hover2b" onclick="updatePreview();">Update Preview</a>' +
+    '</div>' +
+'</div>' +
+'</div>' +
+'<div style="width: 300px; display: inline; clear: right; float: left; margin-left: 100px;">' +
+ '   <section class="media">' +
+
+
+  '      <div id="uploadedItemsView" style="display: none;">' +
+
+
+
+   '         <!-- MEDIA PLAYER -->' +
+
+    '        <section class="media_player" style="width: 300px;">' +
+     '           <header>' +
+      '              <h3><span class="bold">Uploaded</span> Audio</h3>' +
+       '             <div class="line color1b"></div>' +
+        '        </header>' +
+         '       <!-- Title & Cover -->' +
+          '      <div class="player_album">' +
+           '         <header>' +
+            '            <h6 class="bold" id="_aID"></h6>' +
+             '       </header>' +
+              '      <span class="font11px color6">Waggy Tee Movements</span>' +
+               ' </div>' +
+                '<a href="" data-rel="prettyPhoto" id="ploc">' +
+                 '   <img src="~/Images/Theme/images/albums/1.jpg" alt="img"></a>' +
+                '<!-- Player -->' +
+                '<div id="jquery_jplayer_1" class="jp-jplayer"></div>' +
+                '<div id="jp_container_1" class="jp-audio">' +
+                 '   <div class="jp-type-playlist">' +
+                  '      <div class="jp-gui jp-interface">' +
+                   '         <ul class="jp-controls">' +
+                    '            <li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>' +
+                     '           <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>' +
+                      '          <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>' +
+                       '         <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>' +
+                        '    </ul>' +
+                         '   <div class="jp-current-time color6 font11px"></div>' +
+                          '  <div class="jp-progress">' +
+                           '     <div class="jp-seek-bar">' +
+                            '        <div class="jp-play-bar"></div>' +
+                             '   </div>' +
+                            '</div>' +
+                        '</div>' +
+                     '   <div class="jp-playlist link_color2 font11px link_color_hover1" style="width: 100%;">' +
+                      '      <ul style="width: 90%;">' +
+                       '     </ul>' +
+             '           </div>' +
+              '          <div class="jp-no-solution">' +
+               '             <span>Update Required</span>' +
+       ' To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.' +
+    '</div>' +
+'</div>' +
+'</div>' +
+'</section>' +
+
+'<!-- /MEDIA PLAYER -->' +
+
+
+'</div>' +
+
+'<br style="clear: both;" />' +
+'</section>' +
+'</div>' +
+'<div id="uploadResult" style="clear: right; display: none;"></div>' +
+'<div id="Pagination" style="display: none;"></div>' +
+'<div id="uploadedItems" style="display: none;">' +
+'</div>' +
+'<div id="uploadedPhoto" style="display: none;">' +
+'</div>' +
+'<br />';
+
+            $('#file_upload').uploadify({
+                'swf': '\\Content\\flash\\uploadify.swf',
+                'uploader': '@Url.Action("HandleUpload", "Music", new { })',
+                'multi': 'true',
+                'buttonText': 'Browse Music',
+                'fileTypeDesc': 'Audio Files',
+                'fileTypeExts': '*.mp3',
+                'fileSizeLimit': '3000000000',
+                'onUploadError': function (file, errorCode, errorMsg, errorString) {
+          
+                    alert('The file ' + file.name + ' could not be uploaded: ' + errorString+ '\n'+errorCode);
+                },
+                'onUploadSuccess': function (file, data, response) {
+
+                    var item = eval(data);
+                    if ((item.length / 2) == 1) {
+                        var dta = item[0].replace(/[\\*]/g, "/");
+
+                        var l = dta.split("wMedia");
+                        var loc = "/wMedia" + l[1];
+                        afterUpload(loc, item[1]);
+                    }
+
+                }
+            });
+        $('#file_upload_s').uploadify({
+            'swf': '\\Content\\flash\\uploadify.swf',
+            'uploader': '@Url.Action("HandleUpload", "Music", new { })',
+            'multi': 'false',
+            'buttonText': 'Browse Music',
+            'fileTypeDesc': 'Audio Files',
+            'fileTypeExts': '*.mp3',
+            'fileSizeLimit': '3000000000',
+            'onUploadError': function (file, errorCode, errorMsg, errorString) {
+
+                alert('The file ' + file.name + ' could not be uploaded: ' + errorString + '\n' + errorCode);
+            },
+            'onUploadSuccess': function (file, data, response) {
+
+                var item = eval(data);
+                if ((item.length / 2) == 1) {
+                    var dta = item[0].replace(/[\\*]/g, "/");
+
+                    var l = dta.split("wMedia");
+                    var loc = "/wMedia" + l[1];
+                    afterUpload(loc, item[1]);
+                }
+
+            }
+        });
+        $('#file_upload2').uploadify({
+            'swf': '\\Content\\flash\\uploadify.swf',
+            'uploader': '@Url.Action("HandleUpload", "Music", new { })',
+                          'multi': 'false',
+                          'buttonText': 'Browse Images',
+                          'fileTypeDesc': 'Image Files',
+                          'fileTypeExts': '*.gif; *.jpg; *.jpeg; *.png',
+                          'onUploadSuccess': function (file, data, response) {
+
+                              var item = eval(data);
+                              if ((item.length / 2) == 1) {
+                                  var dta = item[0].replace(/[\\*]/g, "/");
+
+                                  var l = dta.split("wMedia");
+                                  var loc = "/wMedia" + l[1];
+                                  afterUploadPhoto(loc, item[1]);
+                              }
+
+                          }
+                      });
+        $('#file_upload3').uploadify({
+            'swf': '\\Content\\flash\\uploadify.swf',
+            'uploader': '@Url.Action("HandleUpload", "Music", new { })',
+                          'multi': 'false',
+                          'buttonText': 'Browse Images',
+                          'fileTypeDesc': 'Image Files',
+                          'fileTypeExts': '*.gif; *.jpg; *.jpeg; *.png',
+                          'onUploadSuccess': function (file, data, response) {
+
+                              var item = eval(data);
+                              if ((item.length / 2) == 1) {
+                                  var dta = item[0].replace(/[\\*]/g, "/");
+
+                                  var l = dta.split("wMedia");
+                                  var loc = "/wMedia" + l[1];
+                                  afterUploadPhoto(loc, item[1]);
+                              }
+
+                          }
+                      });
+   
+
+
+         
+        showModal();
+    }
+
+
+
+    function showViewFighter(val) {
+
+
+        // alert(val);
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Fighters/Get',
+            data: JSON.stringify({ id: val }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                var e = JSON.stringify(data);
+                var jsonObj = $.parseJSON('[' + e + ']');
+                alert(jsonObj[0].fighterId);
+                document.getElementById("contentt").innerHTML = '<div class="row-fluid"> \
+                        <div class="span5"> \
+                            <div class="heading clearfix"> \
+                            <h3 class="pull-left">Name</h3> \
+                                </div> \
+\
+                            <div id="cName"> \
+                             '+ jsonObj[0].name.trim() + '   \
+                            </div>\
+                        </div>\
+                        <div class="span7">\
+                            <div class="heading clearfix">\
+                                <h3 class="pull-left">Bio</h3>\
+                            </div>\
+                            <div id="cBack">'+ jsonObj[0].bio.trim() + '</div>\
+\
+                        </div>\
+                    </div>\
+                    <div class="row-fluid">\
+                        <div class="span7">\
+                                                     <div class="heading clearfix">\
+                            <h3 class="pull-left">Profile Image </h3>\
+                                </div>\
+                            <div id="pImg">\
+<img id="pImgSrc" src="'+ jsonObj[0].photo.location.trim() + '" />\
+                            </div>\
+                        </div>' ;
+                showModal();
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+
+    }
+
+    var oldArtist;
+    function showEditArtist() {
+        var t = document.getElementById("cArtist").innerHTML;
+        oldArtist = t.trim();
+        oldArtist
+        document.getElementById("eArtist").innerHTML = "<span class='pull-right label label-info ttip_t' onclick='saveArtist()'>Save</span><span class='pull-right label label-info ttip_t' onclick='closeEditArtist()'>Cancel</span>";
+        document.getElementById("cArtist").innerHTML = "<input type='text' value='" + t.trim() + "' id='cEditArtist'\><br> ";
+        $("#cEditArtist").autocomplete({
+            source: availableTags,
+            appendTo: "#cArtist"
+        });
+    }
+
+    function closeEditArtist() {
+        document.getElementById("eArtist").innerHTML = "<span class=\"pull-right label label-info ttip_t\" onclick=\"showEditArtist();\" >Edit</span>";
+        document.getElementById("cArtist").innerHTML = oldArtist;
+    }
+    function saveArtist() {
+        var name = document.getElementById("cEditArtist").value;
+        var np = name;
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Audio/UpdateArtist',
+            data: JSON.stringify({ aId: selectedAlbum, Name: np }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                alert(data);
+                document.getElementById("eArtist").innerHTML = "<span class=\"pull-right label label-info ttip_t\" onclick=\"showEditArtist();\" >Edit</span>";
+                document.getElementById("cArtist").innerHTML = name;
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    }
+    var oldTitle;
+    function showEditTitle() {
+        var t = document.getElementById("cTitle").innerHTML;
+        oldTitle = t.trim();
+        document.getElementById("eTitle").innerHTML = "<span class='pull-right label label-info ttip_t' onclick='saveTitle()'>Save</span><span class='pull-right label label-info ttip_t' onclick='closeEditBackground()'>Cancel</span>";
+        document.getElementById("cTitle").innerHTML = "<input id='cEditTitle' type='text' value='"+t.trim() + "'/> ";
+    }
+
+    function closeEditTitle() {
+        document.getElementById("eTitle").innerHTML = "<span class=\"pull-right label label-info ttip_t\" onclick=\"showEditTitle();\" >Edit</span>";
+        document.getElementById("cTitle").innerHTML = oldTitle;
+    }
+    function saveTitle() {
+        var back = document.getElementById("cEditTitle").value;
+
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Audio/UpdateAlbumTitle',
+            data: JSON.stringify({ aId: selectedAlbum, Text: back }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                alert(data);
+                document.getElementById("eTitle").innerHTML = "<span class=\"pull-right label label-info ttip_t\" onclick=\"showEditTitle();\" >Edit</span>";
+                document.getElementById("cTitle").innerHTML = back;
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    }
+
+    var oldPhoto;
+    var oldLocation;
+    function closeEditPhoto() {
+        document.getElementById("ePhoto").innerHTML = "<span class=\"pull-right label label-info ttip_t\" onclick=\"showEditPhoto()\">Edit</span>";
+        document.getElementById("pImg").innerHTML = "<img id=\"pImgSrc\" src=\"" + oldLocation + "\" />";
+        document.getElementById("pId").value = oldPhoto;
+
+    }
+    function savePhoto() {
+        var pic = document.getElementById("cpic").value;
+
+
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Audio/UpdateAlbumPhoto',
+            data: JSON.stringify({ aId: selectedAlbum, photo: pic }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                alert(data);
+                document.getElementById("ePhoto").innerHTML = "<span class=\"pull-right label label-info ttip_t\" onclick=\"showEditPhoto()\">Edit</span>";
+                document.getElementById("pImg").innerHTML = "<img id=\"pImgSrc\" src=\"" + pic + "\" />";
+                document.getElementById("pId").value = data;
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    }
+    function showEditPhoto() {
+
+        document.getElementById("ePhoto").innerHTML = "<span class='pull-right label label-info ttip_t' onclick='savePhoto()'>Save</span><span class='pull-right label label-info ttip_t' onclick='closeEditPhoto()'>Cancel</span>";
+
+        oldPhoto = document.getElementById("pId").value;
+        oldLocation = document.getElementById("pImgSrc").src;
+        document.getElementById("pImg").innerHTML = "<span>Photo:</span><input id=\"cpic\" type=\"hidden\"/><br>" +
+                                                      "<div style=\"width:250px;display:inline;float:left;\"><input type=\"file\" name=\"file_upload\" id=\"file_upload\" />" +
+                              "<ul id=\"photoList\" style=\"width:400px;min-width:400px;min-height:100%;height:100%;float:right;\" >" +
+                              "</ul>" +
+                              "</div></div>";
+        $('#file_upload').uploadify({
+            'swf': '\\Content\\flash\\uploadify.swf',
+            'uploader': '@Request.Url.GetLeftPart(UriPartial.Authority)/Upload/UploadPhoto',
+            'multi': 'false',
+            'buttonText': 'Select Photo',
+            'fileTypeDesc': 'Image Files',
+            'fileTypeExts': '*.gif; *.jpg; *.jpeg; *.png',
+            'onUploadSuccess': function (file, data, response) {
+                var data = data.replace(/[\\*]/g, "/");
+
+                var l = data.split("Images");
+                var loc = "/Images" + l[1];
+                var curContent = document.getElementById("photoList").innerHTML;
+                curContent = "<li  style=\"display:inline;width:237px;min-width:237px;max-width:237px;overflow:hidden;float:left;\">" +
+                    "<div style=\"width:inherit;overflow:hidden;\">" +
+                    "<img src='" + loc + "' alt='Uploaded Image' height=\"263\" width=\"237\" /><br>"
+                                      + "  </div>"
+                                   + " </li>";
+                $("#cpic").val(loc);
+            }
+        });
+    }
+
+</script>
+
+<script>
+    function saveUploadedMusic() {
+        isSaved = true;
+        var output = "";
+        var dat = $('#uploadedItems').html();
+      //  $('#uploadedItems').html("");
+        if ($('.uItem').length <= 0) {
+            alert("Atleast one item must be uploaded.");
+            isSaved = false;
+            return;
+        }
+        $('.uItem').each(function () {
+            var content = $(this).val();
+            //     alert(content);
+            var result = content.split(",");
+            output += result[0] + "," + result[1] + ";";
+        });
+        $('#uploadedItems').html(dat);
+
+        $.post('@Url.Action("Processupload","Audio", new{})', { uploads: output });
+    }
+
+
+    function saveUploadedAlbum() {
+        isSaved = true;
+        var output = "";
+        var metta = "";
+        var dLink = "";
+        if ($('#albumTitle').val() == "") {
+            $('#albumTitle').focus();
+            isSaved = false;
+            return;
+        }
+        var dat = $('#uploadedItems').html();
+        //   $('#uploadedItems').html("");
+        if ($('.uItem').length <= 0) {
+            alert("Atleast one item must be uploaded.");
+            isSaved = false;
+            return;
+        }
+        $('.uItem').each(function () {
+            var content = $(this).val();
+            var result = content.split(",");
+            output += result[0] + "," + result[1] + ";";
+        });
+        var featuredOn = "false";
+        if (document.getElementById("isFeatured").checked)
+            featuredOn = "true";
+        if ($('#albumDownloadLoc').val() == "") {
+            dLink = "autoGen";
+        }
+        else
+            dLink = $('#albumDownloadLoc').val();
+        metta = $('#albumTitle').val() + "~" + $('#albumDescription').val() + "~" + $('#ppiidd').val()+ "~" +featuredOn+ "~" +dLink;
+        //  $('#uploadedItems').html(dat);
+        alert(output);
+        $.post('@Url.Action("Processalbum", "Audio", new { })', { meta: metta, uploads: output });
+    }
+
+    function saveUploadedSingle() {
+        isSaved = true;
+        var output = "";
+        var metta = "";
+        var dLink ="";
+        if ($('#singleTitle').val() == "") {
+            $('#singleTitle').focus();
+            isSaved = false;
+            return;
+        }
+     /*   $("input[name='art[]']").each(function () {
+            alert("checking");
+            var content = $(this).val();
+            // alert(content);
+            var result = content;
+            if (result.trim() != "") {
+                alert("adding");
+                output += result+";";
+            }
+        });*/
+        var dat = $('#uploadedItems').html();
+        //   $('#uploadedItems').html("");
+        if ($('.uItem').length <= 0) {
+            alert("Atleast one item must be uploaded.");
+            isSaved = false;
+            return;
+        }
+    //    output += "-_-";
+        $('.uItem').each(function () {
+            var content = $(this).val();
+            var result = content.split(",");
+            output += result[0] + "," + result[1] + ";";
+        });
+        if ($('#singleDownloadLoc').val() == "") {
+            dLink = "autoGen";
+        }
+        else
+            dLink = $('#singleDownloadLoc').val();
+        
+        var featuredOn = "false";
+        if (document.getElementById("isFeatured").checked)
+            featuredOn = "true";
+        metta = $('#singleTitle').val() + "~" + $('#singleDescription').val() + "~" + $('#ppiidd').val() + "~" + featuredOn + "~" + dLink;
+        //  $('#uploadedItems').html(dat);
+        alert(output);
+        $.post('@Url.Action("Processsingle", "Audio", new { })', { meta: metta, uploads: output });
+    }
+</script>
+      <!-- main content -->
+            <div id="contentwrapper">
+                <div class="main_content">
+                    
+                  
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <h3 class="heading">Music</h3>
+                            <div class="btn-group sepH_b">
+                                <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0)" onclick="showAddMusic();"><i class="icon-plus-sign"></i>&nbsp;&nbsp;Add</a></li>
+                                    <li><a href="javascript:void(0)" onclick="showEditAlbum();"><i class="icon-pencil"></i>&nbsp;&nbsp;Edit</a></li>
+                                    <li><a href="javascript:void(0)"><i class="icon-trash"></i>&nbsp;&nbsp;Delete</a></li>
+                                </ul>
+                            </div>
+                            <table class="table table-bordered table-striped" id="smpl_tbl">
+                                <thead>
+                                    <tr>
+                                        <th style="width:10px"></th>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th>Album</th>
+                                        <th>Single</th>
+                                        <th>Featured</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var f in ViewBag.audios)
+                                    {
+                                    <tr>
+                                        <td><input type="checkbox" name="row_sel" value="@f.album.AudioAlbumId" onclick="checkMe(@f.album.AudioAlbumId);"/></td>
+                                        <td><img src="@f.photo.Location" width="50" height="50" /></td>
+                                        <td>@f.album.Title</td>
+                                        <td>@if (!f.isSingle)
+                                        {<i class="icon-check"></i>}</td>
+                                        <td>@if (f.isSingle)
+                                        {<i class="icon-check"></i>}</td>
+                                        <td>@if (f.isFeaturedOn)
+                                        {<i class="icon-check"></i>}</td>
+                                        <td><a href="javascript:void(0)" class="btn jqShowRow" onclick="showViewFighter(@f.album.AudioAlbumId);">View</a></td>
+                                   </tr>
+                                    }
+                                </tbody>
+                            </table>
+                                <!-- Modal -->
+                                <div id="modalRow" class="modal hide fade" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h3>Row details</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-bordered table-striped" id="modal_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Customer</th>
+                                                    <th>Status</th>
+                                                    <th>Date Added</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    
+                  
+                        
+                </div>
+            

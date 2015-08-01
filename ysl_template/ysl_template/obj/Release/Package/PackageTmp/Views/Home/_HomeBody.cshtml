@@ -1,0 +1,171 @@
+﻿@{
+    Layout = null;
+        var urlPrefix = "http://guerilladevteam.com";
+ 
+}
+<link rel="stylesheet" href="~/Content/SiteTheme/style.css">
+<link rel="stylesheet" href="~/Content/SiteTheme/colors/default.css" id="color">
+
+<div class="home">
+<div id="page">
+    
+    <header id="header">
+        <div class="wrap group">
+            <div class="social-wgt group">
+             
+            </div>
+            <!-- .social-wgt -->
+
+            <div class="head-wrap group">
+             
+            </div>
+            <!-- .head-wrap -->
+        </div>
+        <!-- .wrap < header -->
+    </header>
+
+    <div id="main-content">
+        <div class="wrap">
+            <div class="inner-wrap">
+                <div class="sld-container group">
+                    <div id="main-slider" class="flexslider">
+                        <ul class="slides group">
+                            <li class="sld-item group">
+                                <a href="#"><img src="~/Images/SiteTheme/images/demo/FUN.jpg" alt=""></a>
+                                <div class="sld-desc right">
+                                    <h3><a href="#">Singer</a></h3>
+                                    @*<a href="#" class="ci-read-more">Read More</a>*@
+                                </div>
+                                <!-- sld-desc -->
+                            </li>
+                            <li class="sld-item group">
+                                <a href="#"><img src="~/Images/SiteTheme/images/demo/y3.jpg" alt=""></a>
+                                <div class="sld-desc right">
+                                    <h3><a href="#">Model</a></h3>
+                                    @*<a href="#" class="ci-read-more">Read More</a>*@
+                                </div>
+                                <!-- sld-desc -->
+                            </li>
+                            <li class="sld-item group">
+                                <a href="#"><img src="~/Images/SiteTheme/images/demo/IMG_3512.JPG" alt=""></a>
+                                <div class="sld-desc right">
+                                    <h3><a href="#">Actress</a></h3>
+                                    @*<a href="#" class="ci-read-more">Read More</a>*@
+                                </div>
+                                <!-- sld-desc -->
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- .flexslider -->
+                </div>
+                <!-- .sld-container -->
+
+                <section class="widget-block group">
+                    <div class="block one-half ">
+
+                        <h3>Latest Release</h3>
+                        <a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Music/Listen?aid=@ViewBag.latestSingle.audioAlbumId"><img src="@urlPrefix@ViewBag.latestSingle.photo.Location" alt="" width="380" height="220"></a>
+                        <h4><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Music/Listen?aid=@ViewBag.latestSingle.audioAlbumId"> @ViewBag.latestSingle.title</a></h4>
+                        <p>@ViewBag.latestSingle.title</p>
+
+                    </div>
+                    <div class="block one-half ">
+                        <h3>New Photos</h3>
+                        <a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Photo/ViewAlbum?aid=@ViewBag.uploads.photoAlbums[0].album.PhotoAlbumId"><img src="@urlPrefix@ViewBag.uploads.photoAlbums[0].items[0].Photo.Location" alt="" width="380" height="220"></a>
+                        <h4><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Photo/ViewAlbum?aid=@ViewBag.uploads.photoAlbums[0].album.PhotoAlbumId">@ViewBag.uploads.photoAlbums[0].album.Title</a></h4>
+                        <p>@ViewBag.uploads.photoAlbums[0].album.Description</p>
+                    </div>
+                    @*<div class="block widget last">
+                        <h3>Recent News</h3>
+                        <a href=""><img src="~/Images/SiteTheme/images/demo/yoyo_clouds.png" alt="" width="300" height="150"></a>
+                        <h4><a href="#">Northern Exposure</a></h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                    </div>*@
+                </section>
+                <!-- .widget-block -->
+                <section class="widget-block group">
+                    <div class="block full-thirds ">
+                        <h3>Latest Videos</h3>
+                        <div id="video-slider" class="flexslider">
+                            <ul class="slides">
+                                <li class="sld-vid-item">
+                                    <iframe width="621" height="378" src="https://www.youtube.com/embed/0biM3q3Ov20" frameborder="0" allowfullscreen></iframe>
+                                </li>
+                                <li class="sld-vid-item">
+                                    <iframe width="621" height="378" src="https://www.youtube.com/embed/aNEU-wmuSHA?list=UU8_iVnwvgL_bkkDuOkyjgbg" frameborder="0" allowfullscreen></iframe>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- .flexslider-vid -->
+                    </div>
+                    <!-- .block-videos -->
+                    @*<div class="block widget group block-events last">
+                        <h3>Upcoming Events</h3>
+                        <div class="events-container">
+                            <ul id="locations">
+@foreach (var e in ViewBag.events)
+                {
+                                <li class="vevent">
+                                    <a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Event/View/@e.EventId" title="" class="url">
+                                        <time class="dtstart" datetime="@e.Start.ToString("yyyy-MM-dd HH:mm")" title="@e.Start.ToString("yyyy-MM-dd HH:mm")">
+                                            @e.Start.ToString("MMMM dd, yyyy h:mm tt")
+                                        </time>
+                                        <h4 class="summary">@e.Description</h4>
+                                        <h4 class="summary">@e.Venue</h4>
+                                        <b class="location">@e.Location</b>
+                                    </a>
+                                </li>
+}
+                           
+                            </ul>
+                            <ul class="event-nav">
+                                <li><a href="#" class="up">Up</a></li>
+                                <li><a href="#" class="down">Down</a></li>
+                            </ul>
+                        </div>
+                        <!-- .events -->
+                    </div>
+                    <!-- .block-events -->*@
+                </section>
+                <!-- .widget-block -->
+            
+            </div>
+            <!-- .inner-wrap -->
+        </div>
+        <!-- .wrap < #main-content -->
+    </div>
+    <!-- #main-content -->
+
+
+
+    <footer id="footer">
+        <div class="wrap group">
+
+            <!-- widget-block -->
+
+            <div class="site-copy">
+                <div style="float:left;"><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Administrator">Admin</a></div>
+                <span>&copy; @DateTime.Now.Year Kontractz Ent.  All rights reserved.</span>
+                <span>&nbsp;&nbsp;</span>
+                <span>Developed by 1 of 1 inc.</span>
+            </div>
+        </div>
+        <!-- .wrap < #footer -->
+    </footer>
+
+</div>
+<!-- /page -->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="~/Scripts/SiteTheme/js/jquery.cycle.all.latest.min.js"></script>
+<script src="~/Scripts/SiteTheme/js/jquery.flexslider-min.js"></script>
+<script src="~/Scripts/SiteTheme/js/jquery.carouFredSel-5.6.1-packed.js"></script>
+<script src="~/Scripts/SiteTheme/js/superfish.js"></script>
+<script src="~/Scripts/SiteTheme/js/hoverIntent.js"></script>
+<script src="~/Scripts/SiteTheme/js/jquery.fitvid.js"></script>
+<script src="~/Scripts/SiteTheme/js/jquery.jplayer.js"></script>
+<script src="~/Scripts/SiteTheme/js/jplayer.playlist.min.js"></script>
+<!--[if (gte IE 6)&(lte IE 8)]>
+<script type="text/javascript" src="js/selectivizr-min.js"></script><![endif]-->
+<script defer src="~/Scripts/SiteTheme/js/scripts.js"></script>
+    </div>

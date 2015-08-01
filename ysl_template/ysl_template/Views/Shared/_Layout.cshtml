@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yohamna Solange</title>
+
+    <link rel="stylesheet" href="~/Content/SiteTheme/style.css">
+    <link rel="stylesheet" href="~/Content/SiteTheme/colors/default.css" id="color">
+    <link rel="stylesheet" href="~/Content/slick/slick.css">
+    <link rel="stylesheet" href="~/Content/slick/slick-theme.css">
+    <link href="~/Content/HomeTheme/css/responsive.css" rel="stylesheet">
+    <link href="~/Content/HomeTheme/css/meanmenu.css" rel="stylesheet">
+    <link href="~/Content/HomeTheme/css/colorbox.css" rel="stylesheet">
+        <link rel="stylesheet" href="~/Content/HomeTheme/infinityslider/css/font-awesome.min.css" type="text/css" media="all" />
+    <link rel="stylesheet" type="text/css" href="~/Content/HomeTheme/css/player/player/player.css" />
+
+    <!--[if IE 7]>
+    <link rel="stylesheet" type="text/css" href="css/ie7.css" media="screen"/><![endif]-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="~/Content/slick/slick.js"></script>
+    <script src="~/Scripts/SiteTheme/js/modernizr.js"></script>
+    <script src="~/Scripts/HomeTheme/js/jquery.imagesloaded.js"></script>
+    <script src="~/Scripts/HomeTheme/js/jquery.wookmark.min.js"></script>
+    <script src="~/Scripts/HomeTheme/js/jquery.colorbox-min.js"></script>
+</head>
+<body>
+    <div class="nav-top-inner">
+        <!-- Header -->
+
+        <nav>
+
+            <ul>
+                <li>
+                    <a href="@Request.Url.GetLeftPart(UriPartial.Authority)">Home</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)">Media</a>
+                    <ul>
+                        <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Music">Music</a></li>
+                        <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Photo">Photos</a></li>
+                        <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Video">Videos</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Me">Me</a>
+
+                </li>
+               @* <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Event">Events</a></li>*@
+                <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Contact">Contact</a></li>
+            </ul>
+
+        </nav>
+
+        <!-- logo -->
+        <div id="sticky" class="logo">
+
+            <a href="@Request.Url.GetLeftPart(UriPartial.Authority)">
+                <img id="lWhite" src="~/Images/HomeTheme/images/logoW.png" alt="logo">
+                <img id="lBlue" src="~/Images/HomeTheme/images/logoB.png" alt="logo" style="display:none;">
+            </a>
+
+        </div>
+
+    </div><!--/.header-->
+    <div id="page">
+
+        <header id="header">
+            <div class="wrap group">
+
+                <!-- .social-wgt -->
+
+                <div class="head-wrap group">
+                  
+                </div>
+                <!-- .head-wrap -->
+            </div>
+            <!-- .wrap < header -->
+        </header>
+
+        @RenderBody()
+        <footer id="footer">
+            <div class="wrap group">
+
+               
+
+                <div class="site-copy">
+                    <div style="float:left;"><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Administrator">Admin</a></div>
+                    <span>&copy; @DateTime.Now.Year Kontractz Ent.  All rights reserved.</span>
+                    <span>&nbsp;&nbsp;</span>
+                    <span>Developed by 1 of 1 inc.</span>
+                </div>
+            </div>
+            <!-- .wrap < #footer -->
+        </footer>
+
+    </div>
+    <!-- /page -->
+
+
+    <script src="~/Scripts/SiteTheme/js/jquery.cycle.all.latest.min.js"></script>
+    <script src="~/Scripts/SiteTheme/js/jquery.flexslider-min.js"></script>
+    <script src="~/Scripts/SiteTheme/js/jquery.carouFredSel-5.6.1-packed.js"></script>
+    <script src="~/Scripts/SiteTheme/js/superfish.js"></script>
+    <script src="~/Scripts/SiteTheme/js/hoverIntent.js"></script>
+    <script src="~/Scripts/SiteTheme/js/jquery.fitvid.js"></script>
+    <script src="~/Scripts/SiteTheme/js/jquery.jplayer.js"></script>
+    <script src="~/Scripts/SiteTheme/js/jplayer.playlist.min.js"></script>
+
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    <script type="text/javascript" src="js/selectivizr-min.js"></script><![endif]-->
+    <script defer src="~/Scripts/SiteTheme/js/scripts.js"></script>
+    <script src="~/Scripts/HomeTheme/js/functions.js"></script>
+ 
+    <script src="~/Scripts/HomeTheme/js/sortable.js"></script>
+    <script src="~/Scripts/HomeTheme/js/jquery.infieldlabel.min.js"></script>
+    <script src="~/Scripts/HomeTheme/js/jquery.meanmenu.js"></script>
+    <script src="~/Scripts/HomeTheme/js/jquery.easing.min.js"></script>
+    <script src="~/Scripts/HomeTheme/js/jquery.quicksand.js"></script>
+</body>
+</html>

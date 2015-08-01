@@ -1,0 +1,320 @@
+﻿@{
+    var urlPrefix = "http://guerilladevteam.com";
+}
+<script>
+    var itemCount = 0;
+    var totalCount = 0;
+    var jsonAudio = [];
+    var myPlaylist;
+    var photoLoc;
+    var cnt = 1;
+    var selectedMember=0;
+    var availableTags = [
+          @foreach(var a in ViewBag.members){
+             @Html.Raw( @String.Format("\"{0}\",", @a.Name.Trim()));
+          }
+        ];
+    function getUploadedItem(location, title, data) {
+        var output = "";
+        if (itemCount == 0) {
+            if (data.length == 0) {
+                output = '<ul class="media_ul pgtst" style="padding:3px;"><li class="columns3 images_gallery" data-rel="festival" >'
+                    + '<input type="hidden" class="uItem" id="item' + totalCount + '" value="' + location + ',' + title + '"/>'
+                    + ' <!-- Image -->'
+                   + ' <div class="image" style="width:100%">'
+                      + '  <img src="' + location + '" alt="img" width="120" height="120">'
+                      + '  <a href="photo_open.html" class="color1">'
+                       + '     <div class="hover color2b">'
+                            + '    <span class="font72px"></span>'
+                            + '</div>'
+                        + '</a>'
+                   + ' </div>'
+                  + '  <span class="color5" style="clear:both">' + title + '</span>'
+               + ' </li></ul>';
+            }
+            else {
+                output = data + '<ul class="media_ul pgtst" ><li class="columns3 images_gallery"  data-rel="festival">'
+                                          + '<input type="hidden" class="uItem" id="item' + totalCount + '" value="' + location + ',' + title + '"/>'
+   + ' <!-- Image -->'
+   + ' <div class="image" style="width:100%" >'
+      + '  <img src="' + location + '" alt="img">'
+      + '  <a href="video_open.html" class="color1">'
+       + '     <div class="hover color2b">'
+            + '    <span class="font72px">D</span>'
+            + '</div>'
+        + '</a>'
+   + ' </div>'
+  + '  <span class="color5" style="clear:both">' + title + '</span>'
++ ' </li></ul>';
+            }
+            ++itemCount;
+            ++totalCount;
+        }
+        else if (itemCount <= 5) {
+            data = data.substring(0, data.length - 5);
+            output = data + '<li class="columns3 images_gallery"  data-rel="festival">'
+                                      + '<input type="hidden" class="uItem" id="item' + totalCount + '" value="' + location + ',' + title + '"/>'
+                           + ' <!-- Image -->'
+                           + ' <div class="image" style="width:100%">'
+                              + '  <img src="' + location + '" alt="img">'
+                              + '  <a href="video_open.html" class="color1">'
+                               + '     <div class="hover color2b">'
+                                    + '    <span class="font72px">D</span>'
+                                    + '</div>'
+                                + '</a>'
+                           + ' </div>'
+                          + '  <span class="color5" style="clear:both">' + title + '</span>'
+                       + ' </li></ul>';
+
+            if (itemCount <= 4)
+                ++itemCount;
+            else
+                itemCount = 0;
+            ++totalCount;
+
+        }
+
+        return output;
+    }
+    function afterUpload(location, title) {
+        var data = document.getElementById("uploadedItems").innerHTML;
+        var output = getUploadedItem(location, title, data);
+        $("#ppiidd").val(location);
+        var t = $("#ppiidd").val();
+        alert(t);
+        $("#file_upload").hide();
+        document.getElementById("uploadedItems").innerHTML = output;
+        document.getElementById("uploadedItems").style.display = "block";
+
+    }
+    function saveMember() {
+        alert("saving");
+        var output = "";
+        var metta = "";
+        metta += $('#fName').val()+ "~"+ $('#lName').val()+ "~" +$('#mName').val()+ "~" +$('#aEmail').val()+ "~" + $('#ppiidd').val();
+        //    var dat = $('#uploadedItems').html();
+        // $('#uploadedItems').html("");
+        //    $('#uploadedItems').html(dat);
+    //    alert(output);
+        $.post('@Url.Action("ProcessAddition", "Member", new { })', { meta: metta });
+
+    }
+
+    function showAddMember() {
+        //alert("here:");
+        document.getElementById("contentt").innerHTML = '<h2>Create Member</h2> <span class="pull-right label label-info ttip_t" onclick="saveMember();" >Save</span><span class="pull-right label label-info ttip_t" onclick="cancelMember();" >Cancel</span>' +
+ '<div id="eventData" class="one_fourth">' +
+  '       <div class="line color1b"></div>' +
+   '    <div style="width:800px;height:90px; margin-top:10px;"> <div style="width:220px; float:left; display:inline;"> <label>FirstName: </label><input id="fName" type="text"/></div><div style="width:220px; float:left; display:inline;"> <label>Last Name: </label><input id="lName" type="text"/></div></div>' +
+   '    <div style="width:800px;height:90px; margin-top:10px;"> <div style="width:220px; float:left; display:inline;"> <label>Member Name: </label><input id="mName" type="text"/></div></div>' +
+   '    <div style="width:800px;height:90px; margin-top:10px;"> <div style="width:220px; float:left; display:inline;"> <label>Email: </label><input id="aEmail" type="text"/></div></div>' +
+       '<input type="hidden" value="" id="ppiidd">'+
+       '<!--a id="Uploader1Insert" href="javascript:void(0)" class="large_button color2b color1 color_hover2b" >Browse Photos</!--a -->' +
+'<input type="file" name="file_upload" id="file_upload" />' +
+     '   </div>' +
+    '<br />' +
+
+
+  '  	<section class="media">' +
+
+   '     <div id="uploadResult" style="clear:right;"></div>' +
+    '        <div id="Pagination"></div>' +
+'<div id="uploadedItems" style="display:none;">' +
+
+'</div>' +
+
+ '       <br style="clear:both;" /></section>'+
+'</div>'+
+'</div>';
+        $('#file_upload').uploadify({
+            'swf': '\\Content\\flash\\uploadify.swf',
+            'uploader': '@Url.Action("HandleUpload", "Photo", new { })',
+         'multi': 'false',
+         'buttonText': 'Browse Photos',
+         'fileTypeDesc': 'Image Files',
+         'fileTypeExts': '*.gif; *.jpg; *.jpeg; *.png',
+         'onUploadSuccess': function (file, data, response) {
+    
+             var item = eval(data);
+             if ((item.length / 2) == 1) {
+                 var dta = item[0].replace(/[\\*]/g, "/");
+
+                 var l = dta.split("wMedia");
+                 var loc = "/wMedia" + l[1];
+                 afterUpload(loc, item[1]);
+             }
+
+         }
+     });
+        $("#mbr_0").autocomplete({
+            source: availableTags,
+            appendTo: "#aMembers"
+        });
+          //alert('s');
+     showModal();
+    }
+
+    function showEditMember() {
+        if (selectedMember == 0)
+            return;
+
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Member/Get',
+            data: JSON.stringify({ id: selectedMember }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                var e = JSON.stringify(data);
+                var jsonObj = $.parseJSON('[' + e + ']');
+                alert(jsonObj[0].MemberId);
+              
+                document.getElementById("contentt").innerHTML = '<h2>Edit Member</h2> <span class="pull-right label label-info ttip_t" onclick="saveEditMember();" >Save</span><span class="pull-right label label-info ttip_t" onclick="cancelMember();" >Cancel</span>' +
+'<div id="eventData" class="one_fourth">' +
+ '       <div class="line color1b"></div>' +
+  '    <div style="width:800px;height:90px; margin-top:10px;"> <div style="width:220px; float:left; display:inline;"> <label>FirstName: </label><input id="fName" type="text" value="'+jsonObj[0].FirstName+'"/></div><div style="width:220px; float:left; display:inline;"> <label>Last Name: </label><input id="lName" type="text" value="'+jsonObj[0].LastName+'"/></div></div>' +
+  '    <div style="width:800px;height:90px; margin-top:10px;"> <div style="width:220px; float:left; display:inline;"> <label>Member Name: </label><input id="mName" type="text" value="'+jsonObj[0].Name+'"/></div></div>' +
+  '    <div style="width:800px;height:90px; margin-top:10px;"> <div style="width:220px; float:left; display:inline;"> <label>Email: </label><input id="aEmail" type="text" value="'+jsonObj[0].Email+'"/></div></div>' +
+      '<input type="hidden" value="" id="ppiidd">' +
+      '<!--a id="Uploader1Insert" href="javascript:void(0)" class="large_button color2b color1 color_hover2b" >Browse Photos</!--a -->' +
+'<input type="file" name="file_upload" id="file_upload" />' +
+    '   </div>' +
+   '<br />' +
+
+
+ '  	<section class="media">' +
+
+  '     <div id="uploadResult" style="clear:right;"></div>' +
+   '        <div id="Pagination"></div>' +
+'<div id="uploadedItems" style="display:none;">' +
+
+'</div>' +
+
+'       <br style="clear:both;" /></section>' +
+'</div>' +
+'</div>';
+                $('#file_upload').uploadify({
+                    'swf': '\\Content\\flash\\uploadify.swf',
+                    'uploader': '@Url.Action("HandleUpload", "Photo", new { })',
+                    'multi': 'false',
+                    'buttonText': 'Browse Photos',
+                    'fileTypeDesc': 'Image Files',
+                    'fileTypeExts': '*.gif; *.jpg; *.jpeg; *.png',
+                    'onUploadSuccess': function (file, data, response) {
+
+                        var item = eval(data);
+                        if ((item.length / 2) == 1) {
+                            var dta = item[0].replace(/[\\*]/g, "/");
+
+                            var l = dta.split("wMedia");
+                            var loc = "/wMedia" + l[1];
+                            afterUpload(loc, item[1]);
+                        }
+
+                    }
+                });
+                $("#mbr_0").autocomplete({
+                    source: availableTags,
+                    appendTo: "#aMembers"
+                });
+                afterUpload(jsonObj[0].Photo.Location, jsonObj[0].Photo.Title)
+
+                showModal();
+            },
+            error: function (data) {
+                alert("fail");
+                alert(data);
+            }
+        });
+
+    }
+
+
+    function checkMe(id){
+        //     alert(id);
+        $("input:checkbox[name=row_sel]").each(function () {
+            $(this).checked = false;
+            selectedMember = 0;
+        });
+
+        $("input:checkbox[name=row_sel]").each(function () {
+            if ($(this).val() == id)
+            {
+                $(this).checked = true;
+                selectedMember = id;
+            }
+           
+        });
+    }
+</script>
+
+<!-- main content -->
+            <div id="contentwrapper">
+                <div class="main_content">
+                    
+                  
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <h3 class="heading">Members</h3>
+                            <div class="btn-group sepH_b">
+                                <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0)" onclick="showAddMember()"><i class="icon-plus-sign"></i>&nbsp;&nbsp;Add</a></li>
+                                    <li><a href="javascript:void(0)" onclick="showEditMember()"><i class="icon-pencil"></i>&nbsp;&nbsp;Edit</a></li>
+                                    <li><a href="javascript:void(0)"><i class="icon-trash"></i>&nbsp;&nbsp;Delete</a></li>
+                                </ul>
+                            </div>
+                            <table class="table table-bordered table-striped" id="smpl_tbl">
+                                <thead>
+                                    <tr>
+                                        <th style="width:10px"></th>
+                                        <th></th>
+                                        <th>Name</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var f in ViewBag.members)
+                                    {
+                                    <tr>
+                                        <td><input type="checkbox" name="row_sel" value="@f.MemberId" onclick="checkMe(@f.MemberId);"/></td>
+                                        <td><img src="@urlPrefix@f.Photo.Location" width="50" height="50" /></td>
+                                        <td>@f.Name</td>
+                                        <td><a href="javascript:void(0)" class="btn jqShowRow" onclick="showViewFighter(@f.MemberId);">View</a></td>
+                                   </tr>
+                                    }
+                                </tbody>
+                            </table>
+                                <!-- Modal -->
+                                <div id="modalRow" class="modal hide fade" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h3>Row details</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-bordered table-striped" id="modal_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Customer</th>
+                                                    <th>Status</th>
+                                                    <th>Date Added</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    
+                  
+                        
+                </div>
+            

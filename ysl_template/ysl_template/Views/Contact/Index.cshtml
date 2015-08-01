@@ -1,0 +1,158 @@
+﻿<script>
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@@"]+(\.[^<>()[\]\\.,;:\s@@"]+)*)|(".+"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+    function submitForm() {
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var phone = $("#tel").val();
+        var msg = $("#message").val();
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Contact/Send',
+            data: JSON.stringify({ name: name, email: email, tel: phone, message:msg }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                if (data == "success")
+                {
+                    alert("Thank you for contacting us.")
+                    window.location.href = "@Request.Url.GetLeftPart(UriPartial.Authority)";
+                }
+                else
+                    alert("An error occured. Please try again.")
+
+            },
+            error: function (data) {
+                alert("fail");
+                alert(data);
+            }
+        });
+    }
+    function validateForm()
+    {
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var phone = $("#tel").val();
+        var msg = $("#message").val();
+
+        if (name == null || name.trim() == "") {
+            alert("Please enter a name.");
+            $("#name").focus();
+            return false;
+
+        }
+        if (!validateEmail(email) || email.trim() == "")
+        {
+            alert("Please enter a valid email.");
+            $("#email").focus();
+            return false;
+
+        }
+        if (msg == null || msg.trim() == "") {
+            alert("Please enter a message.");
+            $("#message").focus();
+            return false;
+        }
+        setTimeout(submitForm, 100);        
+        return false;
+    }
+</script>
+<div id="main-content">
+    <div class="wrap">
+        <div class="inner-wrap" style="margin-top:0px;">
+            <div class="page-content group">
+                <article class=" group">
+                    <h2 class="page-title">Contact Us</h2>
+
+                    <div class="entry-content group">
+                        <p>Feel free to contact us anytime.</p>
+
+                        <form id="contact-form" action="@Request.Url.GetLeftPart(UriPartial.Authority)/Contact/Send" onsubmit="return validateForm()" method="post">
+                            
+                            <fieldset>
+                                <label for="name">Your Name:</label>
+                                <input id="name" name="name" type="text" required>
+                            </fieldset>
+
+                            <fieldset>
+                                <label for="email">Your Email:</label>
+                                <input id="email" name="email" type="text" required>
+                            </fieldset>
+
+                            <fieldset>
+                                <label for="tel">Your Telephone Number:</label>
+                                <input id="tel" name="tel" type="text">
+                            </fieldset>
+
+                            <fieldset>
+                                <label for="message">Your Message:</label>
+                                <textarea id="message" name="message" cols="30" rows="10" required></textarea>
+                            </fieldset>
+
+                            <button type="submit" class="button">SEND</button>
+                        </form>
+                    </div>
+
+                </article>
+
+                @*<div id="sidebar">
+                    <aside class="widget group">
+                        <h3>Upcoming Events</h3>
+                    </aside>
+                    <div class="block widget group block-events last">
+
+                        <div class="events-container">
+                            <ul id="locations">
+@foreach (var e in ViewBag.events)
+{
+    <li class="vevent">
+        <a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Event/View/@e.EventId" title="" class="url">
+            <time class="dtstart" datetime="@e.Start.ToString("yyyy-MM-dd HH:mm")" title="@e.Start.ToString("yyyy-MM-dd HH:mm")">
+                @e.Start.ToString("MMMM dd, yyyy h:mm tt")
+            </time>
+            <h4 class="summary">@e.Description</h4>
+            <h4 class="summary">@e.Venue</h4>
+            <b class="location">@e.Location</b>
+        </a>
+    </li>
+}
+
+                         
+                            </ul>
+
+                            <ul class="event-nav">
+                                <li><a href="#" class="up">Up</a></li>
+                                <li><a href="#" class="down">Down</a></li>
+                            </ul>
+                        </div>
+                        <!-- .events -->
+                    </div>
+                    <!-- .block-events -->
+
+                   
+
+
+                    <aside class="widget group">
+                        <h3>Social</h3>
+                        <a href="#" class="icn twitter">Twitter</a> <a href="#" class="icn facebook">Facebook</a>
+                        <a href="#" class="icn flickr">Flickr</a> <a href="#" class="icn picasa">Picasa</a>
+                        <a href="#" class="icn lnkdin">Linked In</a> <a href="#" class="icn gplus">Google+</a>
+                    </aside>
+
+                   
+
+               
+
+                </div>*@
+                <!-- #sidebar -->
+            </div>
+            <!-- .page-content -->
+        </div>
+        <!-- .inner-wrap -->
+    </div>
+    <!-- .wrap < #main-content -->
+</div>
+<!-- #main-content -->

@@ -1,0 +1,394 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yohamna Solange Admin</title>
+
+    <!-- Bootstrap framework -->
+    <link rel="stylesheet" href="~/Content/admin/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/admin/bootstrap/css/bootstrap-responsive.min.css" />
+    <!-- breadcrumbs-->
+    <link rel="stylesheet" href="~/Content/admin/lib/jBreadcrumbs/css/BreadCrumb.css" />
+    <!-- tooltips-->
+    <link rel="stylesheet" href="~/Content/admin/lib/qtip2/jquery.qtip.min.css" />
+    <!-- colorbox -->
+    <link rel="stylesheet" href="~/Content/admin/lib/colorbox/colorbox.css" />
+    <!-- code prettify -->
+    <link rel="stylesheet" href="~/Content/admin/lib/google-code-prettify/prettify.css" />
+    <!-- notifications -->
+    <link rel="stylesheet" href="~/Content/admin/lib/sticky/sticky.css" />
+    <!-- splashy icons -->
+    <link rel="stylesheet" href="~/Images/admin/img/splashy/splashy.css" />
+    <!-- flags -->
+    <link rel="stylesheet" href="~/Images/admin/img/flags/flags.css" />
+    <!-- calendar -->
+    <link rel="stylesheet" href="~/Content/admin/lib/fullcalendar/fullcalendar_gebo.css" />
+
+    <!-- gebo color theme-->
+    <link rel="stylesheet" href="~/Content/admin/css/dark.css" id="link_theme" />
+    <!-- main styles -->
+    <link rel="stylesheet" href="~/Content/admin/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/flash/uploadify.css" />
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico" />
+
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="~/Content/admin/css/ie.css" />
+        <script src="~/Scripts/admin/js/ie/html5.js"></script>
+        <script src="~/Scripts/admin/js/ie/respond.min.js"></script>
+        <script src="~/Content/admin/lib/flot/excanvas.min.js"></script>
+    <![endif]-->
+
+    <script>
+            //* hide all elements & show preloader
+         //   document.documentElement.className += 'js';
+    </script>
+    <!-- jQuery -->
+    <script src="~/Scripts/jquery-1.10.2.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+    <script src="~/Scripts/jquery-ui-1.8.20.js" type="text/javascript"></script>
+    <script type="text/javascript" src="~/Scripts/js/jquery.uploadify.js"></script>
+    <script type="text/javascript" src="~/Scripts/admin/js/timepicker.js"></script>
+
+    <style>
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+            z-index: 999;
+        }
+
+        #modal {
+            position: absolute;
+            width: 800px;
+            height: 600px;
+            left: 50%;
+            top: 50%;
+            margin-left: -350px;
+            margin-top: -250px;
+            background: #fff;
+            border-radius: 14px;
+            color: #000;
+            padding: 8px;
+            z-index: 9999;
+            overflow: scroll;
+        }
+
+        #content {
+            border-radius: 8px;
+            background: #fff;
+            padding: 20px;
+            z-index: 99999;
+        }
+
+        #close {
+            position: absolute;
+            color: #f00;
+            width: 24px;
+            height: 27px;
+            display: block;
+            top: -1px;
+            right: -7px;
+            z-index: 99999;
+        }
+
+        input {
+            text-align: left;
+        }
+
+        textarea {
+            text-align: left;
+        }
+
+
+        .ui-timepicker-wrapper {
+            overflow-y: auto;
+            height: 150px;
+            width: 6.5em;
+            background: #fff;
+            border: 1px solid #ddd;
+            -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            outline: none;
+            z-index: 10001;
+            margin: 0;
+        }
+
+            .ui-timepicker-wrapper.ui-timepicker-with-duration {
+                width: 11em;
+            }
+
+        .ui-timepicker-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .ui-timepicker-duration {
+            margin-left: 5px;
+            color: #888;
+        }
+
+        .ui-timepicker-list:hover .ui-timepicker-duration {
+            color: #888;
+        }
+
+        .ui-timepicker-list li {
+            padding: 3px 0 3px 5px;
+            cursor: pointer;
+            white-space: nowrap;
+            color: #000;
+            list-style: none;
+            margin: 0;
+        }
+
+        .ui-timepicker-list:hover .ui-timepicker-selected {
+            background: #fff;
+            color: #000;
+        }
+
+        li.ui-timepicker-selected,
+        .ui-timepicker-list li:hover,
+        .ui-timepicker-list .ui-timepicker-selected:hover {
+            background: #1980EC;
+            color: #fff;
+        }
+
+            li.ui-timepicker-selected .ui-timepicker-duration,
+            .ui-timepicker-list li:hover .ui-timepicker-duration {
+                color: #ccc;
+            }
+
+        .ui-timepicker-list li.ui-timepicker-disabled,
+        .ui-timepicker-list li.ui-timepicker-disabled:hover,
+        .ui-timepicker-list li.ui-timepicker-selected.ui-timepicker-disabled {
+            color: #888;
+            cursor: default;
+        }
+
+            .ui-timepicker-list li.ui-timepicker-disabled:hover,
+            .ui-timepicker-list li.ui-timepicker-selected.ui-timepicker-disabled {
+                background: #f2f2f2;
+            }
+    </style>
+
+
+    <script>
+            // Wait until the DOM has loaded before querying the document
+            function showModal() {
+
+                document.getElementById("overlay").style.display = "block";
+                document.getElementById("modal").style.display = "block";
+            }
+
+            function closeModal() {
+
+                document.getElementById("overlay").style.display = "none";
+                document.getElementById("modal").style.display = "none";
+            }
+    </script>
+</head>
+<body>
+    <div id='overlay' style="display:none;"></div>
+    <div id='modal' style="display:none;">
+        <div id='contentt' style="height:480px;min-height:480px;"></div>
+        <a href='javascript:(0)' id='close' onclick="closeModal();">X</a>
+    </div>
+    <div id="loading_layer" style="display:none"><img src="~/Images/admin/img/ajax_loader.gif" alt="" /></div>
+
+    <div id="maincontainer" class="clearfix">
+        <!-- header -->
+        <header>
+            <div class="navbar navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="brand" href="@Request.Url.GetLeftPart(UriPartial.Authority)"><i class="icon-home icon-white"></i>Admin Portal</a>
+                        <ul class="nav user_menu pull-right">
+                            <li >
+                                <a href="@Request.Url.GetLeftPart(UriPartial.Authority)">Site</a>
+                            </li>
+                            <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Administrator/LogOff">Log Out</a></li>
+
+
+                        </ul>
+
+
+                    </div>
+                </div>
+            </div>
+
+
+        </header>
+        @RenderBody()
+
+        <!-- sidebar -->
+        <a href="javascript:void(0)" class="sidebar_switch on_switch ttip_r" title="Hide Sidebar">Sidebar switch</a>
+        <div class="sidebar">
+
+            <div class="antiScroll">
+                <div class="antiscroll-inner">
+                    <div class="antiscroll-content">
+
+                        <div class="sidebar_inner">
+                            <form action="search_page.html" class="input-append" method="post">
+                                <input autocomplete="off" name="query" class="search_query input-medium" size="16" type="text" placeholder="Search..." /><button type="submit" class="btn"><i class="icon-search"></i></button>
+                            </form>
+                            <div id="side_accordion" class="accordion">
+
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Administrator/FeaturedContent" data-parent="#side_accordion" class="accordion-toggle">
+                                            <i class="icon-folder-close"></i> Featured Content
+                                        </a>
+                                    </div>
+
+                                </div>
+
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Administrator/Events" data-parent="#side_accordion" class="accordion-toggle">
+                                            <i class="icon-user"></i> Events
+                                        </a>
+                                    </div>
+                                    <div class="accordion-body collapse" id="collapseThree">
+
+                                    </div>
+                                </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a href="#collapseFour" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                            <i class="icon-cog"></i> Sponsors
+                                        </a>
+                                    </div>
+                                    <div class="accordion-body collapse" id="collapseFour">
+
+                                    </div>
+                                </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a href="#collapseLong" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                            <i class="icon-leaf"></i> Accounts
+                                        </a>
+                                    </div>
+                                    <div class="accordion-body collapse" id="collapseLong">
+                                        <div class="accordion-inner">
+                                            <ul class="nav nav-list">
+                                                <li class="active"><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Administrator/Artist">Artist</a></li>
+                                                <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Administrator/Member">Members</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a href="#collapseLong3" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                            <i class="icon-leaf"></i> Media
+                                        </a>
+                                    </div>
+                                    <div class="accordion-body collapse" id="collapseLong3">
+                                        <div class="accordion-inner">
+                                            <ul class="nav nav-list">
+                                                <li class="active"><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Administrator/Music">Music</a></li>
+                                                <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Administrator/Photos">Photos</a></li>
+                                                <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Administrator/Videos">Videos</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-group">
+                                    <div class="accordion-heading">
+                                        <a href="#collapse8" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle">
+                                            <i class="icon-th"></i> Store
+                                        </a>
+                                    </div>
+                                    <div class="accordion-body collapse in" id="collapse8">
+                                        <div class="accordion-inner">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script src="~/Scripts/admin/js/jquery-migrate.min.js"></script>
+        <!-- smart resize event -->
+        <script src="~/Scripts/admin/js/jquery.debouncedresize.min.js"></script>
+        <!-- hidden elements width/height -->
+        <script src="~/Scripts/admin/js/jquery-migrate.min.js"></script>
+        <script src="~/Content/admin/lib/validation/jquery.validate.min.js"></script>
+        <script src="~/Scripts/admin/js/jquery.actual.min.js"></script>
+        <!-- js cookie plugin -->
+        <script src="~/Scripts/admin/js/jquery_cookie.min.js"></script>
+        <!-- main bootstrap js -->
+        <script src="~/Content/admin/bootstrap/js/bootstrap.min.js"></script>
+        <!-- bootstrap plugins -->
+        <script src="~/Scripts/admin/js/bootstrap.plugins.min.js"></script>
+        <!-- tooltips -->
+        <script src="~/Content/admin/lib/qtip2/jquery.qtip.min.js"></script>
+        <!-- jBreadcrumbs -->
+        <script src="~/Content/admin/lib/jBreadcrumbs/js/jquery.jBreadCrumb.1.1.min.js"></script>
+        <!-- lightbox -->
+        <script src="~/Content/admin/lib/colorbox/jquery.colorbox.min.js"></script>
+        <!-- fix for ios orientation change -->
+        <script src="~/Scripts/admin/js/ios-orientationchange-fix.js"></script>
+        <!-- scrollbar -->
+        <script src="~/Content/admin/lib/antiscroll/antiscroll.js"></script>
+        <script src="~/Content/admin/lib/antiscroll/jquery-mousewheel.js"></script>
+        <!-- to top -->
+        <script src="~/Content/admin/lib/UItoTop/jquery.ui.totop.min.js"></script>
+        <!-- mobile nav -->
+        <script src="~/Scripts/admin/js/selectNav.js"></script>
+        <!-- common functions -->
+        <script src="~/Scripts/admin/js/gebo_common.js"></script>
+
+        <script src="~/Content/admin/lib/jquery-ui/jquery-ui-1.10.0.custom.min.js"></script>
+        <!-- touch events for jquery ui-->
+        <script src="~/Scripts/admin/js/forms/jquery.ui.touch-punch.min.js"></script>
+        <!-- multi-column layout -->
+        <script src="~/Scripts/admin/js/jquery.imagesloaded.min.js"></script>
+        <script src="~/Scripts/admin/js/jquery.wookmark.js"></script>
+        <!-- responsive table -->
+        <script src="~/Scripts/admin/js/jquery.mediaTable.min.js"></script>
+        <!-- small charts -->
+        <script src="~/Scripts/admin/js/jquery.peity.min.js"></script>
+        <!-- charts -->
+        <script src="~/Content/admin/lib/flot/jquery.flot.min.js"></script>
+        <script src="~/Content/admin/lib/flot/jquery.flot.resize.min.js"></script>
+        <script src="~/Content/admin/lib/flot/jquery.flot.pie.min.js"></script>
+        <!-- calendar -->
+        <script src="~/Content/admin/lib/fullcalendar/fullcalendar.min.js"></script>
+        <!-- sortable/filterable list -->
+        <script src="~/Content/admin/lib/list_js/list.min.js"></script>
+        <script src="~/Content/admin/lib/list_js/plugins/paging/list.paging.js"></script>
+
+        <!-- dashboard functions -->
+        <script src="~/Scripts/admin/js/gebo_dashboard.js"></script>
+
+        <script>
+                $(document).ready(function () {
+                    //* show all elements & remove preloader
+                    setTimeout('$("html").removeClass("js")', 1000);
+                });
+        </script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\ysl_template.dll.config
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\ysl_template.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\ysl_template.pdb
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Antlr3.Runtime.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\EntityFramework.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\EntityFramework.SqlServer.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.AspNet.Identity.Core.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.AspNet.Identity.Owin.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Host.SystemWeb.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Cookies.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Facebook.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Google.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.OAuth.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Twitter.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Web.Infrastructure.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Newtonsoft.Json.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Owin.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.Helpers.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.Mvc.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.Optimization.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.Razor.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.WebPages.Deployment.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.WebPages.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.WebPages.Razor.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\WebGrease.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.Helpers.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.Mvc.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.Optimization.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.Razor.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.WebPages.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.WebPages.Deployment.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\System.Web.WebPages.Razor.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Antlr3.Runtime.pdb
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Newtonsoft.Json.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\EntityFramework.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\EntityFramework.SqlServer.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.AspNet.Identity.Core.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.AspNet.Identity.Owin.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Host.SystemWeb.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Facebook.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Cookies.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.OAuth.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Google.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Twitter.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\obj\Debug\ysl_template.csprojResolveAssemblyReference.cache
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\obj\Debug\ysl_template.dll
+c:\users\iowen\documents\visual studio 2013\Projects\ysl_template\ysl_template\obj\Debug\ysl_template.pdb
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\ysl_template.dll.config
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\ysl_template.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\ysl_template.pdb
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Antlr3.Runtime.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\EntityFramework.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\EntityFramework.SqlServer.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Twitter.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Newtonsoft.Json.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Owin.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.Helpers.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.Mvc.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.Optimization.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.Razor.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.WebPages.Deployment.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.WebPages.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.WebPages.Razor.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\WebGrease.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.Helpers.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.Mvc.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.Optimization.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.Razor.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.WebPages.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.WebPages.Deployment.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\System.Web.WebPages.Razor.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Antlr3.Runtime.pdb
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Newtonsoft.Json.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\EntityFramework.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\EntityFramework.SqlServer.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.Twitter.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\obj\Debug\ysl_template.csprojResolveAssemblyReference.cache
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\obj\Debug\ysl_template.dll
+C:\Users\iowen\Documents\GitHub\ysl\ysl_template\ysl_template\obj\Debug\ysl_template.pdb

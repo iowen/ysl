@@ -1,0 +1,368 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.25, 36.25" name="ysl">
+  <DataContextMoniker Name="/yslDataContext" />
+  <nestedChildShapes>
+    <classShape Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" absoluteBounds="0.75, 17.875, 2, 4.4631168619791666">
+      <DataClassMoniker Name="/yslDataContext/Account" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2e345696-6355-4b01-a290-e0810b613990" absoluteBounds="0.765, 18.335, 1.9700000000000002, 3.903116861979167" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d5d3324f-7609-4bca-970c-9af9ebcad3e0" absoluteBounds="6.25, 33.875, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/yslDataContext/VideoAlbumItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fcdd97f5-6ac7-4225-ab00-fa6280feb423" absoluteBounds="6.265, 34.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="5371e144-359f-4abb-b73a-84eadd0fbff3" absoluteBounds="3.5, 8.875, 2, 1.1939925130208344">
+      <DataClassMoniker Name="/yslDataContext/Administrator" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c6f4d642-4f9c-471b-9962-8354fe321154" absoluteBounds="3.515, 9.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4f9b95ff-b0a3-46b5-b7ad-78faef131178" absoluteBounds="0.75, 23.5, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/yslDataContext/ApplicationRole" />
+      <nestedChildShapes>
+        <elementListCompartment Id="23db8ddc-49dc-4115-ba54-508027b30202" absoluteBounds="0.765, 23.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="a6b41fc5-dc4b-49c6-b9ee-4753440679a5" absoluteBounds="6.25, 31.125, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/yslDataContext/Artist" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4681e215-6d14-4930-8b6b-b1430aaa9a18" absoluteBounds="6.265, 31.585, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="9ede5ec9-ad74-4d5b-bd5d-7c43109c3bf0" absoluteBounds="12, 31.125, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/yslDataContext/ArtistMember" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1534af2b-affe-45a3-b549-1c7d6e3e1252" absoluteBounds="12.015, 31.585, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="770d818b-7539-4126-aa25-d796706be4c2" absoluteBounds="3.5, 28.125, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/yslDataContext/Audio" />
+      <nestedChildShapes>
+        <elementListCompartment Id="261f8c4c-0233-4be8-abb3-86388c507f5f" absoluteBounds="3.515, 28.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f4b64a5e-bd69-4438-a525-4ce2927b3431" absoluteBounds="9, 30.75, 2, 2.732403971354163">
+      <DataClassMoniker Name="/yslDataContext/AudioAlbum" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2ffce1fa-04e2-4d8a-8826-9ef4f611b6da" absoluteBounds="9.015, 31.21, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="e9f57fe8-aa72-4ca7-8242-021c6558a246" absoluteBounds="6.25, 28.125, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/yslDataContext/AudioAlbumItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="58ac681b-05d2-4683-a00f-4b208adcd74f" absoluteBounds="6.265, 28.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d90892a2-042b-4e38-87ca-0124cdd88259" absoluteBounds="9.25, 23.125, 2, 2.9247054036458309">
+      <DataClassMoniker Name="/yslDataContext/Event" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1fd1ce06-4df4-4e78-b61f-42ec75de4386" absoluteBounds="9.265, 23.585, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="4bb322d5-0506-4cfa-9eb4-39e3e527e173" absoluteBounds="12, 28.375, 2, 1.3862939453125023">
+      <DataClassMoniker Name="/yslDataContext/EventArtist" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b5e403c1-a555-42bf-962a-52cabe42201c" absoluteBounds="12.015, 28.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d867562c-500f-4ae7-9bb2-9ac4fbfcd0d3" absoluteBounds="12, 25.75, 2, 1.7708968098958309">
+      <DataClassMoniker Name="/yslDataContext/EventItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="f67619cf-cd08-4eb5-8379-cc879c7246d2" absoluteBounds="12.015, 26.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8214be4e-1f01-4cf7-96a5-b28b5d14898a" absoluteBounds="3.5, 17.25, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/yslDataContext/MediaList" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a1a81a8e-46de-4e2f-96dc-75e10c49eaa2" absoluteBounds="3.515, 17.71, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="bcc21e7e-5887-49d4-9d9d-ea573bd6fcd2" absoluteBounds="6.25, 17.375, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/yslDataContext/MediaListItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="b9bda65e-fc4b-4576-a207-026f1348ea18" absoluteBounds="6.265, 17.835, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d816f71b-e65c-44e0-b579-1c6204415b5d" absoluteBounds="6.25, 24.5, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/yslDataContext/Member" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8431b9ec-8666-4908-abc2-1be887a26cf4" absoluteBounds="6.265, 24.96, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="1e7ca3e5-5337-46e6-86c6-922a230b16d5" absoluteBounds="3.5, 31, 2, 2.155499674479163">
+      <DataClassMoniker Name="/yslDataContext/Photo" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3fc9bfa4-0cdd-46f4-8cdd-29694d59ac13" absoluteBounds="3.515, 31.46, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2ba47e53-9490-46e5-b250-7b847d30841f" absoluteBounds="3.5, 22.625, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/yslDataContext/PhotoAlbum" />
+      <nestedChildShapes>
+        <elementListCompartment Id="8f9f08b4-dff5-435e-bbdc-72cc0867f126" absoluteBounds="3.515, 23.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8169c8e3-2631-4587-96f0-fc3cb9cb04c4" absoluteBounds="9.25, 26.875, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/yslDataContext/PhotoAlbumItem" />
+      <nestedChildShapes>
+        <elementListCompartment Id="762baedd-8d0a-47ff-9662-cf8dd6ca0b07" absoluteBounds="9.265, 27.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="042b3f85-a6a9-4b5f-a6e6-7c3c74dd8e6f" absoluteBounds="3.5, 14.875, 2, 1.5785953776041648">
+      <DataClassMoniker Name="/yslDataContext/UserClaim" />
+      <nestedChildShapes>
+        <elementListCompartment Id="1fd52731-2284-4985-98a6-63a364ca63e9" absoluteBounds="3.515, 15.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="d378cb8d-9aed-46aa-a2c7-55893c35ac23" absoluteBounds="3.5, 12.75, 2, 1.3862939453124987">
+      <DataClassMoniker Name="/yslDataContext/UserLogin" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bb075a98-2ab6-43ae-8989-990f4005f150" absoluteBounds="3.515, 13.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="014c1fb5-e0bc-40dd-a7d6-efcc8bd26e2f" absoluteBounds="3.5, 20.5, 2, 1.1939925130208309">
+      <DataClassMoniker Name="/yslDataContext/UserRole" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a9eb0a44-d8ea-4c98-b539-a7e2994ff204" absoluteBounds="3.515, 20.96, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="6fbabdc3-c63e-4e30-ad94-9b5b81cf2a5f" absoluteBounds="3.5, 33.875, 2, 2.1554996744791595">
+      <DataClassMoniker Name="/yslDataContext/Video" />
+      <nestedChildShapes>
+        <elementListCompartment Id="41eec72a-0b18-49ac-aac5-5bb87983411d" absoluteBounds="3.515, 34.335, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="0b7224ac-b8ae-476c-b20d-ee813e85cfa3" absoluteBounds="3.5, 25.375, 2, 1.9631982421875023">
+      <DataClassMoniker Name="/yslDataContext/VideoAlbum" />
+      <nestedChildShapes>
+        <elementListCompartment Id="3ae52f8b-4550-487f-9bdc-2b0c2bf12bca" absoluteBounds="3.515, 25.835, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.75 : 17.875); (1.75 : 9.47199625651042); (3.5 : 9.47199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_Administrator" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="5371e144-359f-4abb-b73a-84eadd0fbff3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.25 : 31.125); (7.25 : 30.5); (8.54166666666667 : 30.5 : JumpStart); (8.83333333333333 : 30.5 : JumpEnd); (9.01041666666667 : 30.5 : JumpStart); (9.17708333333333 : 30.5 : JumpEnd); (11.625 : 30.5); (11.625 : 31.8181469726563); (12 : 31.8181469726563)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Artist/Artist_ArtistMember" />
+      <nodes>
+        <classShapeMoniker Id="a6b41fc5-dc4b-49c6-b9ee-4753440679a5" />
+        <classShapeMoniker Id="9ede5ec9-ad74-4d5b-bd5d-7c43109c3bf0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.74846153846154 : 22.3381168619792); (3.19107443490112 : 22.7807297584187 : JumpStart); (3.30892556509888 : 22.8985808886165 : JumpEnd); (3.3125 : 22.9021553235176); (3.3125 : 29.2027498372396); (3.5 : 29.2027498372396)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_Audio" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="770d818b-7539-4126-aa25-d796706be4c2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 32.1065991210938); (9 : 32.1065991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Artist/Artist_AudioAlbum" />
+      <nodes>
+        <classShapeMoniker Id="a6b41fc5-dc4b-49c6-b9ee-4753440679a5" />
+        <classShapeMoniker Id="f4b64a5e-bd69-4438-a525-4ce2927b3431" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 29.2027498372396); (5.79166666666667 : 29.2027498372396 : JumpStart); (6.17708333333333 : 29.2027498372396 : JumpEnd); (6.25 : 29.2027498372396)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Audio/Audio_AudioAlbumItem" />
+      <nodes>
+        <classShapeMoniker Id="770d818b-7539-4126-aa25-d796706be4c2" />
+        <classShapeMoniker Id="e9f57fe8-aa72-4ca7-8242-021c6558a246" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.09375 : 30.75); (9.09375 : 29.5905989583333); (9.08333333333333 : 29.5905989583333 : JumpStart); (8.91666666666667 : 29.5905989583333 : JumpEnd); (8.83333333333333 : 29.5905989583333 : JumpStart); (8.66666666666667 : 29.5905989583333 : JumpEnd); (8.25 : 29.5905989583333)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/AudioAlbum/AudioAlbum_AudioAlbumItem" />
+      <nodes>
+        <classShapeMoniker Id="f4b64a5e-bd69-4438-a525-4ce2927b3431" />
+        <classShapeMoniker Id="e9f57fe8-aa72-4ca7-8242-021c6558a246" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 19.8565991210938); (10.25 : 19.8565991210938); (10.25 : 23.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_Event" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="d90892a2-042b-4e38-87ca-0124cdd88259" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(8.25 : 31.126509152494); (8.625 : 30.751509152494); (8.625 : 30.1362939453125); (8.66666666666667 : 30.1362939453125 : JumpStart); (8.83333333333333 : 30.1362939453125 : JumpEnd); (8.91666666666667 : 30.1362939453125 : JumpStart); (9.17708333333333 : 30.1362939453125 : JumpEnd); (11.625 : 30.1362939453125); (12 : 29.7612939453125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/yslDataContext/Artist/Artist_EventArtist" />
+      <nodes>
+        <classShapeMoniker Id="a6b41fc5-dc4b-49c6-b9ee-4753440679a5" />
+        <classShapeMoniker Id="4bb322d5-0506-4cfa-9eb4-39e3e527e173" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.25 : 26.0481659421074); (11.625 : 26.4231659421074); (11.625 : 29.0368949726562); (12 : 29.0368949726562)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Event/Event_EventArtist" />
+      <nodes>
+        <classShapeMoniker Id="d90892a2-042b-4e38-87ca-0124cdd88259" />
+        <classShapeMoniker Id="4bb322d5-0506-4cfa-9eb4-39e3e527e173" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.25 : 24.4374995); (13 : 24.4374995); (13 : 25.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Event/Event_EventItem" />
+      <nodes>
+        <classShapeMoniker Id="d90892a2-042b-4e38-87ca-0124cdd88259" />
+        <classShapeMoniker Id="d867562c-500f-4ae7-9bb2-9ac4fbfcd0d3" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 18.5440991210938); (3.5 : 18.5440991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_MediaList" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="8214be4e-1f01-4cf7-96a5-b28b5d14898a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 18.1470495605469); (3.5 : 18.1470495605469)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_MediaList1" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="8214be4e-1f01-4cf7-96a5-b28b5d14898a" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 18.1642976888021); (6.25 : 18.1642976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/MediaList/MediaList_MediaListItem" />
+      <nodes>
+        <classShapeMoniker Id="8214be4e-1f01-4cf7-96a5-b28b5d14898a" />
+        <classShapeMoniker Id="bcc21e7e-5887-49d4-9d9d-ea573bd6fcd2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(7.25 : 26.4631982421875); (7.25 : 27.875); (8.75 : 27.875); (8.75 : 30.625); (9.01041666666667 : 30.625 : JumpStart); (9.17708333333333 : 30.625 : JumpEnd); (11.375 : 30.625); (11.375 : 31.4403214863281); (11.5416666666667 : 31.4403214863281 : JumpStart); (11.7083333333333 : 31.4403214863281 : JumpEnd); (12 : 31.4403214863281)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Member/Member_ArtistMember" />
+      <nodes>
+        <classShapeMoniker Id="d816f71b-e65c-44e0-b579-1c6204415b5d" />
+        <classShapeMoniker Id="9ede5ec9-ad74-4d5b-bd5d-7c43109c3bf0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 20.1065584309896); (7.25 : 20.1065584309896); (7.25 : 24.5)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_Member" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="d816f71b-e65c-44e0-b579-1c6204415b5d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 32.1065991210938); (5.91666666666667 : 32.1065991210938 : JumpStart); (6.17708333333333 : 32.1065991210938 : JumpEnd); (6.25 : 32.1065991210938)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Photo/Photo_Artist" />
+      <nodes>
+        <classShapeMoniker Id="1e7ca3e5-5337-46e6-86c6-922a230b16d5" />
+        <classShapeMoniker Id="a6b41fc5-dc4b-49c6-b9ee-4753440679a5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 31.03125); (5.91666666666667 : 31.03125 : JumpStart); (6.17708333333333 : 31.03125 : JumpEnd); (7.16666666666667 : 31.03125 : JumpStart); (7.33333333333333 : 31.03125 : JumpEnd); (8.26192581916065 : 31.03125 : JumpStart); (8.42859248582732 : 31.03125 : JumpEnd); (9 : 31.03125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Photo/Photo_AudioAlbum" />
+      <nodes>
+        <classShapeMoniker Id="1e7ca3e5-5337-46e6-86c6-922a230b16d5" />
+        <classShapeMoniker Id="f4b64a5e-bd69-4438-a525-4ce2927b3431" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 32.6623013977865); (6 : 32.6623013977865); (6 : 30.5625); (6.01041666666667 : 30.5625 : JumpStart); (6.17708333333333 : 30.5625 : JumpEnd); (8.54166666666667 : 30.5625 : JumpStart); (8.70833333333333 : 30.5625 : JumpEnd); (9 : 30.5625); (9 : 26.4247054036458); (10.25 : 26.4247054036458); (10.25 : 26.0497054036458)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Photo/Photo_Event" />
+      <nodes>
+        <classShapeMoniker Id="1e7ca3e5-5337-46e6-86c6-922a230b16d5" />
+        <classShapeMoniker Id="d90892a2-042b-4e38-87ca-0124cdd88259" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.46769230769231 : 31); (5.875 : 30.5926923076923); (5.875 : 25.4815991210938); (5.94791666666667 : 25.4815991210938 : JumpStart); (6.11458333333333 : 25.4815991210938 : JumpEnd); (6.25 : 25.4815991210938)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Photo/Photo_Member" />
+      <nodes>
+        <classShapeMoniker Id="1e7ca3e5-5337-46e6-86c6-922a230b16d5" />
+        <classShapeMoniker Id="d816f71b-e65c-44e0-b579-1c6204415b5d" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.71615384615385 : 22.3381168619792); (3.15625 : 22.7782130158253); (3.15625 : 32.0777498372396); (3.5 : 32.0777498372396)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_Photo" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="1e7ca3e5-5337-46e6-86c6-922a230b16d5" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 22.2735004773638); (3 : 22.5235004773638); (3 : 22.123490847506); (3.19107443490112 : 22.3145652824071 : JumpStart); (3.30892556509888 : 22.4324164126049 : JumpEnd); (3.31607443490112 : 22.4395652824071 : JumpStart); (3.43392556509888 : 22.5574164126049 : JumpEnd); (3.50150915249399 : 22.625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_PhotoAlbum" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="2ba47e53-9490-46e5-b250-7b847d30841f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 31.0953836153846); (5.9375 : 30.6578836153846); (5.9375 : 27.3750005); (7.16666666666667 : 27.3750005 : JumpStart); (7.33333333333333 : 27.3750005 : JumpEnd); (8.91666666666667 : 27.3750005 : JumpStart); (9.08333333333333 : 27.3750005 : JumpEnd); (9.25 : 27.3750005)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Photo/Photo_PhotoAlbumItem" />
+      <nodes>
+        <classShapeMoniker Id="1e7ca3e5-5337-46e6-86c6-922a230b16d5" />
+        <classShapeMoniker Id="8169c8e3-2631-4587-96f0-fc3cb9cb04c4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 24.5579941923077); (6.03125 : 25.0892441923077); (6.03125 : 27.09374825); (7.16666666666667 : 27.09374825 : JumpStart); (7.33333333333333 : 27.09374825 : JumpEnd); (8.91666666666667 : 27.09374825 : JumpStart); (9.08333333333333 : 27.09374825 : JumpEnd); (9.25 : 27.09374825)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/PhotoAlbum/PhotoAlbum_PhotoAlbumItem" />
+      <nodes>
+        <classShapeMoniker Id="2ba47e53-9490-46e5-b250-7b847d30841f" />
+        <classShapeMoniker Id="8169c8e3-2631-4587-96f0-fc3cb9cb04c4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.2812525 : 17.875); (2.2812525 : 15.6642976888021); (3.5 : 15.6642976888021)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_UserClaim" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="042b3f85-a6a9-4b5f-a6e6-7c3c74dd8e6f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(1.2187475 : 17.875); (1.2187475 : 13.4431469726562); (1.66666666666667 : 13.4431469726562 : JumpStart); (1.83333333333333 : 13.4431469726562 : JumpEnd); (3.5 : 13.4431469726562)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_UserLogin" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="d378cb8d-9aed-46aa-a2c7-55893c35ac23" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 21.0969962565104); (3.5 : 21.0969962565104)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_UserRole" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="014c1fb5-e0bc-40dd-a7d6-efcc8bd26e2f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 23.5202050271434); (3.06607443490112 : 23.2041305922423 : JumpStart); (3.21517556509888 : 23.0550294620446 : JumpEnd); (3.375 : 22.8952050271434); (3.375 : 21.8391975401643); (3.52020502714343 : 21.6939925130208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/yslDataContext/ApplicationRole/ApplicationRole_UserRole" />
+      <nodes>
+        <classShapeMoniker Id="4f9b95ff-b0a3-46b5-b7ad-78faef131178" />
+        <classShapeMoniker Id="014c1fb5-e0bc-40dd-a7d6-efcc8bd26e2f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.73071242863582 : 23.5); (3.06607443490112 : 23.1646379937347 : JumpStart); (3.21517556509888 : 23.0155368635369 : JumpEnd); (3.25 : 22.9807124286358); (3.25 : 21.9247049416566); (3.5 : 21.6747049416566)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/yslDataContext/ApplicationRole/ApplicationRole_UserRole1" />
+      <nodes>
+        <classShapeMoniker Id="4f9b95ff-b0a3-46b5-b7ad-78faef131178" />
+        <classShapeMoniker Id="014c1fb5-e0bc-40dd-a7d6-efcc8bd26e2f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 34.7604484049479); (6.25 : 34.7604484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Video/Video_VideoAlbumItem" />
+      <nodes>
+        <classShapeMoniker Id="6fbabdc3-c63e-4e30-ad94-9b5b81cf2a5f" />
+        <classShapeMoniker Id="d5d3324f-7609-4bca-970c-9af9ebcad3e0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.68384615384615 : 22.3381168619792); (3.125 : 22.779270708133); (3.125 : 34.9527498372396); (3.5 : 34.9527498372396)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_Video" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="6fbabdc3-c63e-4e30-ad94-9b5b81cf2a5f" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.5 : 27.3079941923077); (5.81607443490112 : 27.6240686272088 : JumpStart); (5.99642556509888 : 27.8044197574066 : JumpEnd); (6.09375 : 27.9017441923077); (6.09375 : 34.286472202474); (6.25 : 34.286472202474)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/VideoAlbum/VideoAlbum_VideoAlbumItem" />
+      <nodes>
+        <classShapeMoniker Id="0b7224ac-b8ae-476c-b20d-ee813e85cfa3" />
+        <classShapeMoniker Id="d5d3324f-7609-4bca-970c-9af9ebcad3e0" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.75 : 22.244269708133); (3.19107443490112 : 22.6853441430341 : JumpStart); (3.30892556509888 : 22.8031952732319 : JumpEnd); (3.4375 : 22.931769708133); (3.4375 : 26.3565991210938); (3.5 : 26.3565991210938)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+      <AssociationMoniker Name="/yslDataContext/Account/Account_VideoAlbum" />
+      <nodes>
+        <classShapeMoniker Id="6f8dc9c9-e126-4ec4-8e6a-4134ed581f1f" />
+        <classShapeMoniker Id="0b7224ac-b8ae-476c-b20d-ee813e85cfa3" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

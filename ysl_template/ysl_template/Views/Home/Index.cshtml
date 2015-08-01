@@ -1,0 +1,410 @@
+﻿@{
+    var urlPrefix = "http://guerilladevteam.com";
+}
+<script type="text/javascript" src="~/Scripts/js/jquery.jplayer.min.js"></script>
+<script type="text/javascript" src="~/Scripts/js/jplayer.playlist.min.js"></script>
+<input type="hidden" value="@ViewBag.latestSingle.title" id="lst" />
+<input type="hidden" value="@urlPrefix@ViewBag.latestSingle.tracks[0].audio.Location" id="lsl" />
+
+<style>
+    .oclear {
+        clear: both;
+    }
+
+    .jp-controls {
+        float: left;
+        margin-bottom: 15px;
+    }
+
+        .jp-controls li {
+            float: left;
+            margin-right: 10px;
+        }
+
+        .jp-controls a {
+            display: block;
+            overflow: hidden;
+            text-indent: -9999px;
+        }
+
+    .jp-current-time {
+        float: right;
+        margin: -5px 0 0 0;
+    }
+
+    div.jp-progress {
+        left: 166px;
+        width: 100%;
+        height: 5px;
+        overflow: hidden;
+        background-color: #ddd;
+    }
+
+    div.jp-seek-bar {
+        background-color: #fff;
+        width: 0px;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    div.jp-play-bar {
+        background-color: #707070;
+        width: 0px;
+        height: 100%;
+    }
+
+    .jp-jplayer {
+        overflow: hidden;
+    }
+
+    .jp-playlist {
+        margin: 20px 0 0 0;
+        width: 90%;
+        text-decoration: none;
+        display: none;
+    }
+
+    .jp-playlist-current a {
+        color: #fff !important;
+    }
+
+    .jp-playlist li {
+        border-color: #b8b8b8;
+        padding: 8px 0;
+    }
+
+    div.jp-playlist span.jp-free-media {
+        float: right;
+        color: #828282;
+    }
+
+    .player_album {
+        width: 145px;
+        float: left;
+        line-height: 16px;
+    }
+
+        .player_album span {
+            float: left;
+            margin: 15px 0 0 0;
+            width: 60%;
+        }
+
+    .media_player img {
+        float: right;
+        width: 80px;
+        height: 80px;
+    }
+
+    .jp-audio {
+        float: right;
+        clear: both;
+        margin-top: 200px;
+        width: 100%;
+        width: 600px;
+    }
+
+    .media_player .default_button {
+        float: right;
+        margin: 25px 0 0 0;
+    }
+
+    .media_player .button_info {
+        float: right;
+        margin: 29px 12px 0 0;
+    }
+
+    .jp-no-solution a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .album_open .player_album {
+        width: 600px;
+    }
+
+    .album_open p {
+        float: left;
+        width: 60%;
+        margin: 10px 0 0 0;
+    }
+
+    .album_open img {
+        width: 200px;
+        height: 200px;
+        margin-top: -50px;
+        float: right;
+    }
+
+    .album_open .player_album {
+        line-height: 24px;
+    }
+
+    .jp-interface {
+        float: left;
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+</style>
+<script>
+    function createJsonFromData() {
+        var jsonObj = [];
+        for (var i = 0; i < 1; i++) {
+            var tle = $("#lst").val();
+            var loc = $("#lsl").val();
+          //  alert(tle);
+            //alert(loc);
+            item = {}
+            item["title"] = tle;
+            item["mp3"] = loc;
+
+            jsonObj.push(item);
+        }
+        return jsonObj;
+    }
+
+
+
+    var songs = createJsonFromData();
+
+    function createPlayer() {
+
+        myPlaylist = new jPlayerPlaylist({
+            jPlayer: "#jquery_jplayer_1",
+            cssSelectorAncestor: "#jp_container_1"
+        }, songs, {
+            swfPath: "/Scripts/js",
+            supplied: " mp3",
+            wmode: "window"
+        });
+
+    }
+
+    window.onload = function () { createPlayer(); };
+</script>
+<div id="top"></div>
+<div id="slide01" class="iS iS-SkinDots iS-Fullscreen">
+
+    <!-- -->
+    <div class="iS-Loading">
+
+        <div class="iS-Loadingbox">
+            <p class="iS-Loadingboxtitle">Loading</p>
+            <div class="iS-Loadingboxbar"></div>
+            <div class="iS-Loadingboxbar"></div>
+            <div class="iS-Loadingboxbar"></div>
+            <div class="iS-Loadingboxbar"></div>
+        </div>
+
+    </div>
+
+    <!--Start Commands-->
+    <div class="iS-Commands">
+
+        <div class="iS-Previous"><i class="fa fa-chevron-left"></i></div>
+        <div class="iS-Next"><i class="fa fa-chevron-right"></i></div>
+        <div class="iS-Loopline"></div>
+
+        <div class="iS-Dots">
+            <div class="iS-Dot iS-Dotactive"><i class="fa fa-music"></i></div>
+            <div class="iS-Dot"><i class="fa fa-film"></i></div>
+            @*<div class="iS-Dot"><i class="fa fa-calendar"></i></div>*@
+        </div>
+
+    </div>
+    <!--End Commands-->
+    <!--Start Content-->
+    <div class="iS-Content">
+        <!-- -->
+        <div class="iS-Items" data-looptime="4000">
+            <!-- Slide start-->
+
+            <div class="iS-Item"
+                 data-effectin="fadein" data-effectintime="500" data-effectindelay="0"
+                 data-effectout="zoomout fadein" data-effectouttime="500" data-effectoutdelay="1000"
+                 data-effectinback="zoomout fadein" data-effectintimeback="500" data-effectindelayback="0"
+                 data-effectoutback="zoomout fadein" data-effectouttimeback="500" data-effectoutdelayback="2000">
+
+                <img class="iS-Image iS-ImageAutofit" src="~/Images/HomeTheme/slide1.jpg" alt="slide" />
+
+            </div>
+            <!-- -->
+
+            <div class="iS-Item"
+                 data-effectin="slidetop zoomin fadein" data-effectintime="300" data-effectindelay="500"
+                 data-effectout="slideright fadein" data-effectouttime="500" data-effectoutdelay="500"
+                 data-effectinback="slidetop zoomin fadein" data-effectintimeback="1000" data-effectindelayback="500"
+                 data-effectoutback="slideright fadein" data-effectouttimeback="500" data-effectoutdelayback="0" style="z-index:2;">
+                <div id="jquery_jplayer_1" class="jp-jplayer"></div>
+                <div id="jp_container_1" class="jp-audio" style="margin-bottom:20px; padding-top:20px; padding-bottom:10px; width:50%; margin-right:150px;">
+                    <div class="jp-type-playlist">
+                        <div class="jp-gui jp-interface" style=" padding-top:10px;">
+                            <ul class="jp-controls">
+                                <li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
+                                <li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+                                <li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+                                <li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
+                            </ul>
+                            <div class="jp-current-time color6 font11px"></div>
+                            <div class="jp-progress">
+                                <div class="jp-seek-bar">
+                                    <div class="jp-play-bar"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="jp-playlist link_color2 font11px link_color_hover1" style="margin-left:20px;">
+                            <ul></ul>
+                        </div>
+                        <div class="jp-no-solution">
+                            <span>Update Required</span>
+                            To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- -->
+            <div class="iS-Item"
+                 data-effectin="flipright slideleft fadein" data-effectintime="1750" data-effectindelay="0"
+                 data-effectout="fliptop slidebottom fadein" data-effectouttime="500" data-effectoutdelay="0"
+                 data-effectinback="flipright slideleft fadein" data-effectintimeback="1750" data-effectindelayback="500"
+                 data-effectoutback="slideright fadein" data-effectouttimeback="500" data-effectoutdelayback="0">
+
+                <p class="slide0-text-custom" style="margin-top:-10px;margin-right:100px;">@ViewBag.latestSingle.title</p>
+
+            </div>
+
+        </div><!--/ Slide start -->
+
+        <div class="iS-Items">
+            <!-- Slide 1-->
+
+            <div class="iS-Item"
+                 data-effectin="fadein" data-effectintime="3000" data-effectindelay="100"
+                 data-effectout="slideleft" data-effectouttime="500" data-effectoutdelay="750"
+                 data-effectinback="zoomout fadein" data-effectintimeback="500" data-effectindelayback="500"
+                 data-effectoutback="zoomout fadein" data-effectouttimeback="500" data-effectoutdelayback="2000">
+
+                <img class="iS-Image iS-ImageAutofit" src="~/Images/HomeTheme/slide2.jpg" alt="slide" />
+
+            </div>
+            <!-- -->
+
+            <div class="iS-Item"
+                 data-effectin="fadein" data-effectintime="300" data-effectindelay="300"
+                 data-effectout="fadein" data-effectouttime="500" data-effectoutdelay="500"
+                 data-effectinback="fadein" data-effectintimeback="1000" data-effectindelayback="500"
+                 data-effectoutback="fadein" data-effectouttimeback="500" data-effectoutdelayback="0">
+                <div style="width:50%; height: 60%; margin: 0 auto; margin-top:50px; margin-left:50px;">
+                    <div id="youtube-player" class="video iS-VideoAutoPlay iS-YoutubeVideo">
+
+                        <iframe class="video" src="//www.youtube-nocookie.com/embed/YRTzcpwSkhc?rel=0&amp;enablejsapi=1&amp;autohide=1&amp;showinfo=0&amp;controls=1"></iframe>
+
+                    </div>
+                </div>
+            </div>
+
+        </div><!--/ Slide 1 -->
+
+
+
+        @*<div class="iS-Items">
+            <!-- Slide 3-->
+            <!-- -->
+            <div class="iS-Item"
+                 data-effectin="fadein" data-effectintime="500" data-effectindelay="2000"
+                 data-effectout="slideleft fadein" data-effectouttime="500" data-effectoutdelay="0"
+                 data-effectinback="fadein" data-effectintimeback="500" data-effectindelayback="0"
+                 data-effectoutback="slideright fadein" data-effectouttimeback="500" data-effectoutdelayback="0">
+
+                <img class="iS-Image iS-ImageAutofit" src="~/Images/HomeTheme/slide3.jpg" alt="slide" />
+
+            </div>
+            <!-- -->
+            <div class="iS-Item"
+                 data-effectin="flipright zoomin fadein" data-effectintime="1000" data-effectindelay="1000"
+                 data-effectout="slideleft fadein" data-effectouttime="500" data-effectoutdelay="0"
+                 data-effectinback="flipright zoomin fadein" data-effectintimeback="1000" data-effectindelayback="500"
+                 data-effectoutback="slideright fadein" data-effectouttimeback="500" data-effectoutdelayback="0">
+
+                <p class="slide3-text-custom-header">8 Magazine layouts</p>
+
+            </div>
+            <!-- -->
+            <div class="iS-Item"
+                 data-effectin="flipright zoomin fadein" data-effectintime="1000" data-effectindelay="1200"
+                 data-effectout="slideleft fadein" data-effectouttime="500" data-effectoutdelay="0"
+                 data-effectinback="flipright zoomin fadein" data-effectintimeback="1000" data-effectindelayback="700"
+                 data-effectoutback="slideright fadein" data-effectouttimeback="500" data-effectoutdelayback="0">
+
+                <p class="slide3-text2">For fashion blogs and news websites
+
+            </div>
+            <!-- -->
+            <div class="iS-Item"
+                 data-effectin="slidebottom fadein" data-effectintime="1000" data-effectindelay="1400"
+                 data-effectout="slideleft fadein" data-effectouttime="500" data-effectoutdelay="0"
+                 data-effectinback="slidebottom fadein" data-effectintimeback="1000" data-effectindelayback="900"
+                 data-effectoutback="slideright fadein" data-effectouttimeback="500" data-effectoutdelayback="0">
+
+                <div class="btn slide3-button1"><a href="#">Purchase now</a></div>
+
+            </div>
+            <!-- -->
+
+        </div><!--/ Slider 3 -->*@
+
+    </div>
+    <!--End Content-->
+
+</div><!--End Slider -->
+
+
+<div class="nav-top">
+    <!-- Header -->
+
+    <nav>
+
+        <ul>
+            <li>
+                <a href="#sticky">Home</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">Media</a>
+                <ul>
+                    <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Music">Music</a></li>
+                    <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Photo">Photos</a></li>
+                    <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Video">Videos</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Me">Me</a>
+
+            </li>
+            @*<li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Event">Events</a></li>*@
+            <li><a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Contact">Contact</a></li>
+        </ul>
+
+    </nav>
+
+    <!-- logo -->
+    <div id="sticky" class="logo">
+
+        <a href="#top">
+            <img id="lWhite" src="~/Images/HomeTheme/images/logoW.png" alt="logo">
+            <img id="lBlue" src="~/Images/HomeTheme/images/logoB.png" alt="logo" style="display:none;">
+        </a>
+
+    </div>
+
+</div><!--/.header-->
+
+
+<div class="wrapper bellow">
+    @Html.Partial("_HomeBody")
+</div>
+
+

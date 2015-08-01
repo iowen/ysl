@@ -1,0 +1,79 @@
+﻿@{
+    var urlPrefix = "http://guerilladevteam.com";
+}
+<div id="main-content">
+    <div class="wrap">
+        <div class="inner-wrap" style="margin-top:0px;">
+            <div class="page-content group">
+                <article class="entry group" style="width:100%;">
+                    <h2 class="page-title">Music</h2>
+
+                    <div class="entry-content group">
+                     @*<div class="filters">
+
+                            <ul id="filters" class="clearfix" style="list-style:none;">
+                                <li><a title="all" href="#" class="active"> all </a></li>
+                                <li><a title="Albums" href="#"> Albums </a></li>
+                                <li><a title="Singles" href="#"> Singles </a></li>
+                                <li><a title="Featured" href="#"> Featured On </a></li>
+                            </ul>
+
+                        </div>*@
+                        <div style="clear:both;"></div>
+                        <div id="portfolio">
+
+                            <ul id="portfolio_list">
+                                @{
+                                    var aalbumCount = 1;
+                                    string dataType = "";
+                                }
+                                @foreach (var a in ViewBag.audios)
+                                {
+                                     if (a.isSingle)
+                                     {
+                                         dataType="Singles";
+                                     }
+        
+                                else
+                                     {
+                                         dataType = "Albums";
+                                     }
+                                     if (a.isFeaturedOn)
+                                     {
+                                         dataType += " FeaturedOn";
+                                     }
+                                    <li class="portfolio" data-id="id-@aalbumCount++" data-type="@dataType">
+                                        <div class="portfolio-wrapper">
+                                            <a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Music/Listen?aid=@a.album.AudioAlbumId" >
+                                                <img src="@urlPrefix@a.photo.Location" alt="" height="178" width="228" />
+                                            </a>
+                                            <div class="label">
+                                                <div class="label-text">
+                                                        <a class="text-title"  href="@Request.Url.GetLeftPart(UriPartial.Authority)/Music/Listen?aid=@a.album.AudioAlbumId" style="text-decoration:none;">@a.album.Title</a>
+                                                        <span class="text-category">@a.album.Artist.Name</span>
+                                                </div>
+                                                <div class="label-bg"></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                }
+
+                               
+                            </ul>
+
+                        </div><!-- portfolio end -->
+                        <h2>Other Music</h2>
+
+                        <iframe width="100%" height="450" scrolling="no" frameborder="no" src="http://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/47009850&show_artwork=true"></iframe>
+
+                        <br />
+                    </div>
+                </article>
+            </div>
+            <!-- .page-content -->
+        </div>
+        <!-- .inner-wrap -->
+    </div>
+    <!-- .wrap < #main-content -->
+</div>
+<!-- #main-content -->

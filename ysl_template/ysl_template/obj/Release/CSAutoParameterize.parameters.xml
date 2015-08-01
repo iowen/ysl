@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=(LocalDb)\v11.0;AttachDbFilename=|DataDirectory|\aspnet-ysl_template-20150228112645.mdf;Initial Catalog=aspnet-ysl_template-20150228112645;Integrated Security=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\iowen\\Documents\\Visual\ Studio\ 2013\\Projects\\ysl_template\\ysl_template\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+  <parameter name="ysConnectionString-Web.config Connection String" description="ysConnectionString Connection String used in web.config by the application to access the database." defaultValue="Data Source=MANDRAKE.arvixe.com;Initial Catalog=ys;User ID=paul1of1;Password=10f14lif3" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\iowen\\Documents\\Visual\ Studio\ 2013\\Projects\\ysl_template\\ysl_template\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ysConnectionString']/@connectionString" />
+  </parameter>
+</parameters>

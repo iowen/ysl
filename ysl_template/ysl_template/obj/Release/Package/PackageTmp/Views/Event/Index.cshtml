@@ -1,0 +1,56 @@
+﻿
+<div id="main-content">
+    <div class="wrap">
+        <div class="inner-wrap" style="margin-top:0px;">
+            <div class="page-content group">
+                <article class="entry group vevent">
+                    <h1 class="entry-title summary">Events</h1>
+
+                    <div class="block widget group block-events last">
+
+                        <div class="events-container">
+                            <ul id="locations">
+                               @foreach (var e in ViewBag.events)
+                               {
+                                <li class="vevent">
+                                    <a href="@Request.Url.GetLeftPart(UriPartial.Authority)/Event/View/@e.EventId" title="" class="url">
+                                        <time class="dtstart" datetime="@e.Start.ToString("yyyy-MM-dd HH:mm")" title="@e.Start.ToString("yyyy-MM-dd HH:mm")">
+                                            @e.Start.ToString("MMMM dd, yyyy h:mm tt")
+                                        </time>
+                                        <h4 class="summary">@e.Description</h4>
+                                        <h4 class="summary">@e.Venue</h4>
+                                        <b class="location">@e.Location</b>
+                                    </a>
+                                </li>
+                               }
+
+                            </ul>
+
+                            <ul class="event-nav">
+                                <li><a href="#" class="up">Up</a></li>
+                                <li><a href="#" class="down">Down</a></li>
+                            </ul>
+                        </div>
+                        <!-- .events -->
+                    </div>
+                </article>
+
+                <div id="sidebar">
+                    <aside class="widget group">
+                        <h3>Social</h3>
+                        <a href="#" class="icn twitter">Twitter</a> <a href="#" class="icn facebook">Facebook</a>
+                        <a href="#" class="icn flickr">Flickr</a> <a href="#" class="icn picasa">Picasa</a>
+                        <a href="#" class="icn lnkdin">Linked In</a> <a href="#" class="icn gplus">Google+</a>
+                    </aside>
+                    <!-- twitter-widget -->
+
+                </div>
+                <!-- #sidebar -->
+            </div>
+            <!-- .page-content -->
+        </div>
+        <!-- .inner-wrap -->
+    </div>
+    <!-- .wrap < #main-content -->
+</div>
+<!-- #main-content -->

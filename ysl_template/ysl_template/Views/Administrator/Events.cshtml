@@ -1,0 +1,495 @@
+﻿<style>
+    .articles { margin:0 !important; }
+.default_article  { float:left; width:100%; margin: 0 0 50px 0;  }
+.default_article .article_content { float:left; width:574px; margin: 0 20px 0 0; }
+.default_article img { float:left; width:225px; margin: 0 20px 0 0; height:150px; }
+.default_article header { margin: -6px 0 12px 0; max-width:329px; display:inline-block; }
+.default_article footer { float:right; width:100px; margin-right:16px; }
+.default_article footer .default_button { float:left; margin: 11px 0; }
+.default_article footer .date_art { margin: -3px 0 0 0; display:table; }
+.default_article footer .date_art  li { margin: 0 0 5px 0 }
+.default_article footer  ul li a { text-decoration:underline; }
+</style>
+
+<script type="text/javascript">
+
+    var itemCount = 0;
+    var totalCount = 0;
+    var acnt = 1;
+    var availableTags = [
+          @foreach(var a in ViewBag.artists){
+             @Html.Raw( @String.Format("\"{0}\",", @a.Name.Trim()));
+          }
+        ];
+    function getUploadedItem(location, title, data) {
+        var output = '<ul class="media_ul pgtst" style="padding:3px;"><li class="columns3 images_gallery" data-rel="festival" >'
+                    + '<input type="hidden" class="uItem" id="item0" value="' + location + ',' + title + '"/><input type="hidden" class="uItem" id="itemLocation" value="' + location + '"/>'
+                    + ' <!-- Image --><a id="removeImg" href="javascript:void(0);" onClick="removeImage();" style="color:#fff;">X</a>'
+                   + ' <div class="image" style="width:100%">'
+                      + '  <img src="' + location + '" alt="img">'
+                      + '  <a href="video_open.html" class="color1">'
+                       + '     <div class="hover color2b">'
+                            + '    <span class="font72px">D</span>'
+                            + '</div>'
+                        + '</a>'
+                   + ' </div>'
+                  + '  <span class="color5" style="clear:both">' + title + '</span>'
+               + ' </li></ul>';
+
+
+        return output;
+    }
+
+    // This is a very simple demo that shows how a range of elements can
+    // be paginated.
+    // The elements that will be displayed are in a hidden DIV and are
+    // cloned for display. The elements are static, there are no Ajax 
+    // calls involved.
+
+    /**
+     * Callback function that displays the content.
+     *
+     * Gets called every time the user clicks on a pagination link.
+     *
+     
+     */
+    function pageselectCallback(page_index, jq) {
+        var new_content = jQuery('#uploadedItems ul.pgtst:eq(' + page_index + ')').clone();
+        $('#uploadResult').empty().append(new_content);
+        return false;
+    }
+
+    /** 
+     * Initialisation function for pagination
+     */
+    var upLength = 0
+    function initPagination() {
+        // count entries inside the hidden content
+        var num_entries;
+        if (totalCount % 6 > 0)
+            num_entries = Math.floor(totalCount / 6) + 1;
+        else
+            num_entries = totalCount / 6;
+        //alert(num_entries);
+        // Create content inside pagination element
+        $("#Pagination").pagination(num_entries, {
+            callback: pageselectCallback,
+            items_per_page: 1 // Show only one item per page
+        });
+    }
+
+
+
+        </script>
+
+<script type="text/javascript">
+
+    function removeImage() {
+        $("#uploadedItems").html("");
+        $("#uploadResult").html("");
+        $("#eventPreview").hide();
+        $("#Uploader1Insert").show();
+
+    }
+
+    function afterUpload(location, title) {
+        var data = document.getElementById("uploadedItems").innerHTML;
+        var output = getUploadedItem(location, title, data);
+        //  alert(output);
+        $("#Uploader1Insert").hide();
+        $("#eventPreview").show();
+        document.getElementById("uploadedItems").innerHTML = output;
+    }
+
+    function getMonth(date) {
+        var mon;
+        switch (date) {
+            case "01":
+                mon = "Jan";
+                break;
+            case "02":
+                mon = "Feb";
+                break;
+            case "03":
+                mon = "Mar";
+                break;
+            case "04":
+                mon = "Apr";
+                break;
+            case "05":
+                mon = "May";
+                break;
+            case "06":
+                mon = "Jun";
+                break;
+            case "07":
+                mon = "Jul";
+                break;
+            case "08":
+                mon = "Aug";
+                break;
+            case "09":
+                mon = "Sept";
+                break;
+            case "10":
+                mon = "Oct";
+                break;
+            case "11":
+                mon = "Nov";
+                break;
+            default:
+                mon = "Dec";
+                break;
+        }
+        return mon;
+    }
+    function saveEvent() {
+        //alert("saving");
+        var output = "";
+        var meta = "";
+        var artt = "";
+        meta += $('#eventTitle').val() + "~" + $('#startDate').val() + "~" + $('#startTime').val() + "~" + $('#endDate').val() + "~" + $('#endTime').val() + "~" + $('#eventLocation').val() + "~" + $('#eventDescription').val()+"~" + $('#eventVenue').val();
+        //    var dat = $('#uploadedItems').html();
+        // $('#uploadedItems').html("");
+        var useDefaultImage = true;
+        $('.uItem').each(function () {
+            alert("checking");
+            var content = $(this).val();
+            // alert(content);
+            var result = content.split(",");
+            if (result.length == 2) {
+                alert("adding");
+                useDefaultImage = false;
+                output += result[0] + "," + result[1] + ";";
+            }
+
+        });
+    if(useDefaultImage) {
+                alert("adding default image");
+        output +=  "none,none;";
+    }
+        //    $('#uploadedItems').html(dat);
+        alert(output);
+        $("input[name='art[]']").each(function () {
+            alert("checking");
+            var content = $(this).val();
+            // alert(content);
+            var result = content;
+            if (result.trim() != "") {
+                alert("adding");
+                artt += result + ";";
+            }
+        });
+        $.post('@Url.Action("Processupload", "Event", new { })', { meta: meta, uploads: output, people: artt });
+    }
+    function previewEvent() {
+
+        var location = $('#itemLocation').val();
+        var description = $('#eventDescription').val();
+        var title = $('#eventTitle').val();
+        var ac = '<a href="#"><img src="' + location + '" alt="img"></a>'
+				+ '<a href="event_open.html" class="color1 color_hover2"><header><h5 class="bold">' + title + '</h5></header></a>'
+				+ '<p class="color5">' + description + '</p>';
+        var startvals = $("#startDate").val().split("/");
+        var startmonth = getMonth(startvals[0]);
+        var showEnd = ($("#startDate").val().toString() == $("#endDate").val().toString()) ? false : true;
+        var endvals = $("#endDate").val().split("/");
+        var endmonth;
+        var ad;
+        var at;
+
+        if (showEnd == true) {
+            endmonth = getMonth(endvals[0]);
+            ad = '<ul><li class="font26px bold">' + startvals[1] + '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + endvals[1] + '</li><li class="font14px">' + startmonth + '&nbsp;&nbsp;-&nbsp;&nbsp;' + endmonth + '</li></ul>';
+            at = '<li>' + $("#startTime").val() + ' - ' + $("#endTime").val() + '</li>';
+
+        } else {
+            endmonth = startmonth;
+            ad = '<ul><li class="font26px bold">' + startvals[1] + '</li><li class="font18px">' + startmonth + '</li></ul>';
+
+            at = '<li>' + $("#startTime").val() + ' - ' + $("#endTime").val() + '</li>';
+        }
+        $('#acontent').html(ac);
+        $('#adate').html(ad);
+        $('#atime').html(at);
+        //  alert('show');
+        $('#eventData').hide();
+        $('#pevent').show();
+
+    }
+
+    function hidePreview() {
+        $('#pevent').hide();
+        $('#eventData').show();
+    }
+
+</script>
+@*  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+
+   <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+							<script type="text/javascript" src="~/Scripts/js/timepicker.js"></script>
+                    <script type="text/javascript" src="~/Scripts/js/jquery.uploadify.js"></script>*@
+
+ <script>
+     function enableEnd() {
+         var check = document.getElementById("sameEnd").checked
+         if (check == true) {
+             $("#endDate").datepicker('disable');
+             $("#endDate").val($("#startDate").val());
+         }
+         else {
+             $("#endDate").val("");
+             $("#endDate").datepicker('enable');
+         }
+
+     }
+     function addToEnd() {
+         var check = document.getElementById("sameEnd").checked
+         if (check == true) {
+             $("#endDate").val($("#startDate").val());
+             $("#endDate").datepicker('disable');
+         }
+     }
+    
+  </script>
+<script>
+    var cnt = 1;
+    function saveEvent1() {
+        var fName = document.getElementById("eTitle").value;
+        alert(fName);
+        var lName = document.getElementById("eDesc").value;
+        alert(lName);
+        var bgrnd = document.getElementById("eDate").value;
+        alert(bgrnd);
+        var pic = document.getElementById("eTime").value;
+        alert("saving event");
+        $.ajax({
+            type: 'Post',
+            dataType: 'json',
+            url: '@Request.Url.GetLeftPart(UriPartial.Authority)/Event/Add',
+            data: JSON.stringify({ title:fName, description: lName, time: pic, date: bgrnd }),
+            contentType: 'application/json; charset=utf-8',
+            async: false,
+            success: function (data) {
+                alert(data);
+                closeModal();
+            },
+            error: function (data) {
+                alert(data);
+            }
+        });
+    }
+    function removeArtist(id) {
+        $("#" + id).remove();
+        //      alert("removed");
+    }
+    function addArtist() {
+        var txt = "<div id=\"aart_" + acnt + "\"><br><input type=\"text\" name=\"art[]\" id=\"art_" + acnt + "\"/><span class=\"pull-right label label-info ttip_t\" onclick=\"removeArtist('aart_" + acnt + "');\" >Remove</span></div>";
+
+        $("#aArts").append(txt);
+        //     alert("appended");
+        $("#art_" + acnt).autocomplete({
+            source: availableTags,
+            appendTo: "#aArts"
+        });
+        acnt = acnt + 1;
+
+    }
+    function showAddEvent() {
+        document.getElementById("contentt").innerHTML = '<h2>Create Event</h2>' +
+                			'						<a href="javascript:void(0)" class="default_button color2b color1 color_hover2b" onClick="saveEvent();">Save Event</a>' +
+ '<div id="eventData" class="one_fourth">' +
+  '       <div class="line color1b"></div>' +
+   '    <div style="width:800px;height:90px; margin-top:10px;"> <div style="width:220px; float:left; display:inline;"> <label>Title: </label><input id="eventTitle" /></div>' +
+           '<div style="width:320px;margin-left:40px;float:left; display:inline;"><label>Description: </label> <textarea id="eventDescription"></textarea></div></div>' +
+    '   <div style="width:800px;height:70px; margin-top:10px;"> <div style="width:220px; float:left; display:inline;"><label>Start Date: </label> <input type="text" id="startDate" readonly/> </div><div style="width:220px;margin-left:40px;float:left; display:inline;"><label>Start Time: </label><div id="ss"> <input id="startTime" type="text" /></div></div>' +
+    '<div style="width:100px;margin-left:40px; display:inline;"><input type="checkbox" checked id="sameEnd" onclick="enableEnd();"/>Same End Date</div>' +
+     '   </div>' +
+      ' <div style="width:800px;height:70px; margin-top:10px;"> <div style="width:220px;float:left; display:inline;"> <label>End Date: </label><input id="endDate" type="text" readonly /></div><div style="width:220px;margin-left:40px;float:left; display:inline;">' +
+       ' <label>End Time: </label><div id="ee">  <input id="endTime" type="text" /></div></div></div>' +
+        '<label>Venue: </label><br /> <input id="eventVenue" /><br />' +
+        '<label>Location: </label><br /> <input id="eventLocation" /><br />' +
+
+    '<br />' +
+    '<!--a id="Uploader1Insert" href="javascript:void(0)" class="large_button color2b color1 color_hover2b" >Browse Photos</!--a -->' +
+'<input type="file" name="file_upload" id="file_upload" />' +
+       '   <div style="width:800px;height:70px; margin-top:10px;"> <div style="width:220px; float:left; display:inline;"><span class="pull-right label label-info ttip_t" onclick="addArtist();" >Add More</span><label>Artists: </label><br><div id="aArts"> <input type="text" name="art[]" id="art_0"/></div> </div></div>' +
+
+ '    <a id="eventPreview" style="display:none;" href="javascript:void(0)" class="large_button color2b color1 color_hover2b" onClick="previewEvent();">Preview</a>' +
+  '  	<section class="media">' +
+
+   '     <div id="uploadResult" style="clear:right;"></div>' +
+    '        <div id="Pagination"></div>' +
+'<div id="uploadedItems" style="display:none;">' +
+
+'</div>' +
+
+ '       <br style="clear:both;" /></section>' +
+  '  </div>' +
+   '     <div class="three_fourth last" id="pevent" style="display:none;">' +
+   '<a href="javascript:void(0)" class="default_button color2b color1 color_hover2b" onClick="hidePreview();">Close PReview</a>' +
+	'					<section class="articles">' +
+	'						<!-- Article -->' +
+     '                       								<div class="line color1b"></div>' +
+
+		'					<article class="default_article">' +
+		'						<div class="article_content" id="acontent">' +
+
+		'						</div>' +
+		'						<!-- Footer -->' +
+		'						<footer>' +
+		'							<div class="font18px date_art" id="adate">' +
+
+		'							</div>' +
+         '                           									<ul class="font11px color6" id="atime">' +
+			'						</ul>' +
+			'						<a href="#" class="default_button color2b color1 color_hover2b">Buy tickets</a>' +
+
+			'					</footer>' +
+			'				</article>' +
+             '               </section>' +
+
+'</div>' +
+'					<div class="line color1b"></div>' +
+    			'						<a href="javascript:void(0)" class="default_button color2b color1 color_hover2b" onClick="addMediaToEvent();">Add Media</a>' +
+    '<div id="addedMedia"></div>';
+    
+        $('#file_upload').uploadify({
+            'swf': '\\Content\\flash\\uploadify.swf',
+            'uploader': '@Url.Action("HandleUpload", "Photo", new { })',
+            'multi': 'false',
+            'debug' : 'true',
+            'buttonText': 'Browse Photos',
+            'fileTypeDesc': 'Image Files',
+            'fileTypeExts': '*.gif; *.jpg; *.jpeg; *.png',
+            'onUploadSuccess': function (file, data, response) {
+
+                var item = eval(data);
+                if ((item.length / 2) == 1) {
+                    var dta = item[0].replace(/[\\*]/g, "/");
+
+                    var l = dta.split("wMedia");
+                    var loc = "/wMedia" + l[1];
+                    afterUpload(loc, item[1]);
+                }
+
+            }
+        });
+  
+            $("#startDate").datepicker({
+                onSelect: function (dateText, inst) { addToEnd(); }
+            });
+  //      alert('A');
+        $("#endDate").datepicker();
+    //    alert('b');
+
+            $("#endDate").datepicker('disable');
+      //      alert('c');
+
+            $('#startTime').timepicker({ 'step': 10, 'appendTo': $("#ss") });
+        //    alert('d');
+
+            $('#endTime').timepicker({ 'step': 10, 'appendTo': $("#ee") });            
+
+            $("#art_0").autocomplete({
+                source: availableTags,
+                appendTo: "#aArts"
+            });
+            //alert('s');
+        showModal();
+    }
+</script>
+      <!-- main content -->
+            <div id="contentwrapper">
+                <div class="main_content">
+                    
+                  
+                    <div class="row-fluid">
+                        <div class="span12">
+                            <h3 class="heading">Events</h3>
+                            <div class="btn-group sepH_b">
+                                <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="javascript:void(0)" onclick="showAddEvent();"><i class="icon-plus-sign"></i>&nbsp;&nbsp;Add</a></li>
+                                    <li><a href="javascript:void(0)"><i class="icon-pencil"></i>&nbsp;&nbsp;Edit</a></li>
+                                    <li><a href="javascript:void(0)"><i class="icon-trash"></i>&nbsp;&nbsp;Delete</a></li>
+                                </ul>
+                            </div>
+                            <table class="table table-bordered table-striped" id="smpl_tbl">
+                                <thead>
+                                    <tr>
+                                        <th style="width:10px"></th>
+                                        <th>Title</th>
+                                        <th></th>
+                                        <th>Date/Time</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var e in ViewBag.events)
+                                    {
+                                    <tr>
+                                        <td><input type="checkbox" name="row_sel" /></td>
+                                        <td>@e._event.Title</td>
+                                        <td><img src="@e.photoLocation" width="50" height="50" /></td>
+                                        <td>@e._event.Start.ToString("f")</td>
+                                        <td><a href="javascript:void(0)" class="btn jqShowRow" onclick="showViewEvent(@e._event.EventId);">View</a></td>
+                                    </tr>
+                                    }
+                                   
+                                </tbody>
+                            </table>
+                                <!-- Modal -->
+                                <div id="modalRow" class="modal hide fade" aria-hidden="true">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h3>Row details</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table table-bordered table-striped" id="modal_table">
+                                            <thead>
+                                                <tr>
+                                                    <th>id</th>
+                                                    <th>Customer</th>
+                                                    <th>Status</th>
+                                                    <th>Date Added</th>
+                                                    <th>Total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    
+                    <!-- hide elements (for later use) -->
+                    <div class="hide">
+                        <!-- actions for datatables -->
+                        <div class="dt_gal_actions">
+                            <div class="btn-group">
+                                <button data-toggle="dropdown" class="btn dropdown-toggle">Action <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#" class="delete_rows_dt" data-tableid="dt_gal"><i class="icon-trash"></i> Delete</a></li>
+                                    <li><a href="javascript:void(0)">Lorem ipsum</a></li>
+                                    <li><a href="javascript:void(0)">Lorem ipsum</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- confirmation box -->
+                        <div id="confirm_dialog" class="cbox_content">
+                            <div class="sepH_c tac"><strong>Are you sure you want to delete this row(s)?</strong></div>
+                            <div class="tac">
+                                <a href="#" class="btn btn-gebo confirm_yes">Yes</a>
+                                <a href="#" class="btn confirm_no">No</a>
+                            </div>
+                        </div>
+                    </div>
+                        
+                </div>
+            
